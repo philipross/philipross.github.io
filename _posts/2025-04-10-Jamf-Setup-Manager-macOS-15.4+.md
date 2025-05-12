@@ -2,7 +2,7 @@
 title: "How changes to macOS 15.4 impact the use of Jamf Setup Manager"
 date: 2025-04-10 18:00:00
 description: "Detailing the changes to Setup Assistant in macOS 15.4+, and how that impacts the use of Jamf Setup Manager to deliver a set of components to macOS devices before the first user logon"
-cateogories: [Jamf Setup Manager]
+categories: [Jamf Setup Manager]
 tags: [Jamf Setup Manager, macOS, Setup Assistant]
 ---
 
@@ -20,8 +20,8 @@ Often, organisations limit the number of panes displayed to as few as possible, 
 
 ## What does this mean for Setup Manager?
 
-###### Well, that depends how you use Setup Manager...
-If you're setting your `runAt` key to `enrolment` - as in, it installs, launches, and completes _during_ SA, you're going ot have to make changes to the Panes that are displayed so there's an pane displayed that is pending an action which Setup Manager can run on top of.
+###### Well, that depends on how you use Setup Manager...
+If you're setting your `runAt` key to `enrolment` - as in, it installs, launches, and completes _during_ SA, you're going to have to make changes to the Panes that are displayed so there's a pane displayed that is pending an action which Setup Manager can run on top of.
 
 In the `enrolment` context, that's all Setup Manager is doing - running above a pane that hasn't yet been progressed past by a human action.
 Most admins have reported that the `Terms and Conditions` pane is a suitable candidate for this as it runs _before_ user sign in.
@@ -38,7 +38,7 @@ More details on that can be found in @scriptingosx's [post](https://github.com/j
 ##### In short, no... 
 How you use Setup Manager is entirely down to the requirements of your organisation or your personal preferences.
 
-Given the impact these changes have brought about, it's evident that setting your `runAt` key to `loginwindow` could be a more robust option if there are future changes made to SA, but that comes with it's own challenges.
+Given the impact these changes have brought about, it's evident that setting your `runAt` key to `loginwindow` could be a more robust option if there are future changes made to SA, but that comes with its own challenges.
 
 The only best practice advice given is test, test, and test again.
 Oh, and make sure you join AppleSeed for IT if you're able to. You can get hands-on with Beta versions of macOS before they're released, and find solutions for your organisation before the GA release.

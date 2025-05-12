@@ -30,19 +30,19 @@ This is where it lived in macOS from 15.0-15.3, so it stands to reason that if y
 
 ## Why do I need to be cautious?
 
-##### To be honest, there's a couple of reasons.
+##### To be honest, there are a couple of reasons.
 
 #### Will this change again?
-Without working for Apple in a specific team or role, we're highly unlikley to know what's planned for any future changes to Setup Assistant.
+Without working for Apple in a specific team or role, we're highly unlikely to know what's planned for any future changes to Setup Assistant.
 
- - Was `Location Services` moved deliberately to *after* user sign in? 
+ - Was `Location Services` moved deliberately to *after* user sign-in? 
  - Was it moved back as a result of some bugs?
 
-We could hypothesise endlessly on this topic, but there are some outcomes to these questions which leave a sense of ***this could happen again in future*** in the air.
+We could hypothesise endlessly on this topic, but there are some outcomes to these questions which leave a sense of ***this could happen again in the future*** in the air.
 
-Given the pain and difficulties this caused initially, I'd really rather not go through it again, so I'm looking at ways I can modify my implementation of Setup Manager, to prevent any Setup Assistant changes from breaking it again.
+Given the pain and difficulties this caused initially, I'd really rather not go through it again, so I'm looking at ways I can modify my implementation of Setup Manager to prevent any Setup Assistant changes from breaking it again.
 
-#### What's unlikley to change?
+#### What's unlikely to change?
 
 In my expert opinion (massive `/s`) there's one part of the device onboarding process which is unlikely to change.
 
@@ -56,14 +56,14 @@ Have a read of [@scriptingosx](https://github.com/scriptingosx)'s [post](https:/
 
 #### How do I manage different Setup Manager configurations?
 
-The easiest way is manage just one configuration.<br>
+The easiest way is to manage just one configuration.<br>
 This might seem really simplistic, but that's the point.
 
 It's far easier to maintain something when it's simple, and by having fewer configurations to manage you're making it simpler!
 
 On the face of it, this does present a challenge to admins to make sure devices are *not* on macOS 15.4/15.4.1 when they enrol into MDM, so devices are either on macOS 15.3 or earlier or are on 15.5 or later.
 
-However, Apple have already released functionality within macOS to make this a moot issue and it's already live in Jamf Pro<br>(n.b: I don't have access to other Jamf Products to confirm if it exists there).<br>
+However, Apple have already released functionality within macOS to make this a moot issue and it's already live in Jamf Pro<br>(n.b.: I don't have access to other Jamf Products to confirm if it exists there).<br>
 [Link to Apple's Platform Deployment guide](https://support.apple.com/en-gb/guide/deployment/dep73069dd57/web#:~:text=Enforcing%20a%20minimum,put%20into%20production.)<br>
 [Link to Jamf's PreStage documentation](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Automated_Device_Enrollment_for_Computers.html#ariaid-title5)
 
@@ -71,15 +71,15 @@ To make this as straightforward as possible, you can leverage these settings to 
 - Set it to 15.5 explicitly<br>
     ![Image showing ADE Minimum OS version set to 15.5 in Jamf Pro PreStage](/assets/img/postImages/ADE-Minimum-15.5.png)
 - Set it to the Latest Major version available
-    ![Image showing ADE Minimim OS version set to Latest Major Version in Jamf Pro PreStage](/assets/img/postImages/ADE-Minimum-LatestMajor.png)
+    ![Image showing ADE Minimum OS version set to Latest Major Version in Jamf Pro PreStage](/assets/img/postImages/ADE-Minimum-LatestMajor.png)
 
-By setting one of these options, *any* macOS client that's not on 15.5 should be forced to update it's OS during Setup Assistant, before enrolment into MDM can complete.
+By setting one of these options, *any* macOS client that's not on 15.5 should be forced to update its OS during Setup Assistant, before enrolment into MDM can complete.
 
 ## Is this now best practice?
 
 ##### Same as before, it's not.
 
-The configuration choices made during an implementation of Setup Manager is still entirely at an organisation's discretion.<br>
+The configuration choices made during an implementation of Setup Manager are still entirely at an organisation's discretion.<br>
 What works for me, may not work for you, and that's okay!
 
 The tool deliberately has different ways to configure it to make it mouldable to your organistion's use case.
