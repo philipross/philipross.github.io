@@ -15,10 +15,11 @@ Both tools have their pros and cons, their strengths and limitations, but by usi
 
 For the purposes of this post, I'll be specifically looking at the strengths and limitations below:
 
-| Tool | Strength | Limitation |
-| :----: | :-------- | :---------- |
-| Jamf Setup Manager | - Runs prior to logon<br>- Can be used to deliver a standard 'stock build' with a one-touch build approach<br>- Many customisation options<br>- ***Excellent*** UI for user experience | - Runs in System Space (or a System User space)<br>- Unable to deliver VPP applications
-| Jamf macOS Onboarding | - Able to deliver VPP applications<br>- Runs in user space<br>- Driven by Jamf Self Service<br>- Able to be retriggered in future[^1]  | - Runs after logon<br>- Limited customisation options<br>- Requires the device to be logged into to install core applications, so can skew reporting
+|         Tool          |  Strength  |  Limitation  |
+| :-------------------: | :--------- | :----------- |
+|  Jamf Setup Manager   | - Runs prior to logon<br>- Can be used to deliver a standard <br>'stock build' with a one-touch build<br> approach<br>- Many customisation options<br>- ***Excellent*** UI for user experience | - Runs in System Space<br>(or a System User space)<br>- Unable to deliver VPP applications |
+| Jamf macOS Onboarding | - Able to deliver VPP applications<br>- Runs in user space<br>- Driven by Jamf Self Service<br>- Able to be retriggered in future[^1]  | - Runs after logon<br>- Limited customisation options<br>- Requires the device to be logged into to <br>install core applications |
+
 
 [^1]: This is a planned topic for a future post...
 
