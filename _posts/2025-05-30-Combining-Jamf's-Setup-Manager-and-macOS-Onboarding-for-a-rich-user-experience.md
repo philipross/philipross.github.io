@@ -9,15 +9,15 @@ tags: [Jamf Setup Manager, macOS, Setup Assistant, macOS Onboarding]
 ## What is the difference between Jamf Setup Manager and Jamf macOS Onboarding?
 
 [Jamf Setup Manager](https://github.com/jamf/Setup-Manager/tree/main) is a utility that sets device configuration *before* the user logs in. <br>
-In contrast, [Jamf macOS Onboarding](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html) is a mechanism within into Jamf Pro that sets configurations *after* the user logs in, through the Self Service app.
+In contrast, [Jamf macOS Onboarding](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html) is a mechanism within Jamf Pro that sets configurations *after* the user logs in, through the Self Service app.
 
-Both tools have their advantages and disadvantages, buy by combining them we can overcome the limitations of one tool with the strengths of the other.
+Both tools have their advantages and disadvantages, but by combining them we can overcome the limitations of one tool with the strengths of the other.
 
 ## What can Jamf Setup Manager do...or not do?
 
 Jamf Setup Manager offers a range of capabilities, as detailed in its extensive documentation on the [Setup Manager GitHub page](https://github.com/jamf/Setup-Manager/tree/main).<br>However, to understand its limitations, it’s crucial to understand how it operates in the background.
 
-Setup Manager runs Jamf policies and actions using the `jamf` binary. Policies run by executing the `policy` command using the `-event` argument, requiring a custom triggers set on the Jamf policy.
+Setup Manager runs actions by using the `jamf` binary. Policies run by executing the `policy` command using the `-event` argument, requiring a custom trigger to be set on the Jamf policy.
 
 However, Setup Manager relies on the `jamf` binary's capabilities.
 
@@ -51,7 +51,7 @@ Before migrating my device onboarding flow to Jamf Setup Manager, all of my onbo
 This was good experience, but using a one-touch technician build process meant we had to wait until the user arrived to sign in for the build to be finished.<br>
 Alternatively, we could sign in with the local admin account to complete the build, but this presented other challenges...
 
-Now, we've taken the leap and moved to Jamf Setup Manager to deliver the core build of our devices. However, we've still left macOS Onboarding enabled, and doing *some* tasks.<br>
+Now, we've taken the leap and moved to Jamf Setup Manager to deliver the core build of our devices, however we've still left macOS Onboarding enabled and doing *some* tasks.<br>
 I do still have all of my policies and actions which Setup Manager runs included in onboarding as a fail-safe for any policy failures, or network issues that cause Setup Manager to fail.
 
 Here's Setup Manager in action:
@@ -63,7 +63,7 @@ But the main items that macOS Onboarding delivers are:
 - Scripts that set configurations within the user space, including dock configuration, wallpaper, post enrolment user input, and more.
 
 
-Here's how macOS Onboarding looks like in action:
+Here's how macOS Onboarding looks in action:
 ![Jamf macOS Onboarding running 4 items](/assets/img/postImages/2025-05-30/build-macOSOnboarding-full.png)
 
 In the image above, you can see that Finder is active, and there's a Dock process running, indicating that macOS Onboarding is running within an active user session.
