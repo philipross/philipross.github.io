@@ -11,7 +11,7 @@ tags: [Jamf Pro, API, Powershell]
 The [Jamf-API-Powershell Project](https://github.com/philipross/jamf-api-powershell) is a new piece of work which I released recently.
 <br> Most macOS Admins use Macs ad their daily drivers, but many also support other devices and platforms, and some organisations adopt a 'Windows-first' approach.
 
-Whilst managing MAcs requires a Mac for testing, this project aims to help Jamf Pro admins interact with the Jamf Pro API suite from a Windows client.
+Whilst managing Macs requires a Mac for testing, this project aims to help Jamf Pro admins interact with the Jamf Pro API suite from a Windows client.
 
 The Jamf Pro API suite offers powerful capabilities for interacting with Jamf Pro through command line and scripts.<br>This project is designed to leverage the APIs available for taking actions on individual clients; managing clients, or Jamf Pro configurations en masse; and for extracing information for reporting purposes.
 
