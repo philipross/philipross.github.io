@@ -2,7 +2,7 @@
 title: "Déjà Vu... How changes to macOS 15.5 impact the use of Jamf Setup Manager"
 date: 2025-05-12 18:30:00 +0100
 description: "Continuing on from my previous post, this post dives into the changes to Setup Assistant in macOS 15.5+ and how they impact the use of Jamf Setup Manager"
-categories: [Jamf Setup Manager]
+categories: [Mac Management, Device Onboarding]
 tags: [Jamf Setup Manager, macOS, Setup Assistant]
 ---
 
