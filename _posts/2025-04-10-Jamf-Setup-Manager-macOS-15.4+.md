@@ -2,7 +2,7 @@
 title: "How changes to macOS 15.4 impact the use of Jamf Setup Manager"
 date: 2025-04-10 18:00:00
 description: "Detailing the changes to Setup Assistant in macOS 15.4+, and how that impacts the use of Jamf Setup Manager to deliver a set of components to macOS devices before the first user logon"
-categories: [Jamf Setup Manager]
+categories: [Mac Management, Device Onboarding]
 tags: [Jamf Setup Manager, macOS, Setup Assistant]
 ---
 
