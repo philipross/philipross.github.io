@@ -36,9 +36,6 @@ I'm also using the custom trigger as I want this to be deployed on any new devic
 
 ![Image showing the Visual Studio Code policy setup in Jamf, scoped to 'All Managed Clients', enabled in Self Service, and setup with a custom trigger of 'jsmVSC'](/assets/img/postImages/2025-06-17/0-Policy-creation.png)
 
-> [!TIP]
-> This process could equally be used for configuration profiles, or Application delivered from the Mac App Store, via VPP. Any component that macOS Onboarding supports can be used within this process.
-
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 > This process could equally be used for configuration profiles, or Application delivered from the Mac App Store, via VPP. Any component that macOS Onboarding supports can be used within this process.
@@ -139,8 +136,12 @@ open -a "Self Service"
 exit 0
 ```
 
-> [!NOTE]
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
 > [swiftDialog](https://github.com/swiftDialog/swiftDialog) is a prerequisite of the script above
+{: .prompt-info }
+
+<!-- markdownlint-restore -->
 
 ##### (This script could definitely be cleaned up, I know!)
 
