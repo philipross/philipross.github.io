@@ -74,7 +74,7 @@ username@computername ~ % defaults read ~/Library/Preferences/com.jamfsoftware.s
     "com.jamfsoftware.selfservice.onboardingcomplete" = 1;
 ```
 
-Since this is a boolean value, it then stands to reason that setting it to _0_ would mean that Self Service wouldn't recognise macOS Onboarding as complete and it would attempt to run it again.
+Since this is a boolean value, it stands to reason that setting it to _0_ would mean that Self Service wouldn't recognise macOS Onboarding as complete and it would attempt to run it again.
 
 Here's how I script this from within Jamf Pro:
 
