@@ -60,7 +60,7 @@ We can see that Visual Studio code didn't run when macOS Onboarding ran intially
 
 In Jamf's macOS Onboarding documentation there's a section for [_excluding computers from macOS Onboarding_](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html#ariaid-title2).
 
-This demonstrates that we can run a script on the devices where macOS Onboarding should not be triggered. By setting a specific key in a specific plist file, we can achieve this.
+This demonstrates that we can exclude already enrolled devices from executing macOS Onboarding by setting a specific key in a specific plist file.
 
 File: _~/Library/Preferences/com.jamfsoftware.selfservice.mac.plist_<br>
 Key: _com.jamfsoftware.selfservices.onboardingcomplete_<br>
