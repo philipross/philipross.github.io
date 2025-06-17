@@ -146,7 +146,7 @@ exit 0
 <!-- markdownlint-restore -->
 
 
-Execute this script in a policy, and it will re-trigger macOS Onboarding on the devices in scope.
+Execute this script in a policy and it will re-trigger macOS Onboarding on the devices in scope.
 
 ## What does this look like to the end-user?
 
