@@ -143,7 +143,7 @@ exit 0
 
 <!-- markdownlint-restore -->
 
-##### (This script could definitely be cleaned up, I know!)
+###### (This script could definitely be cleaned up, I know!)
 
 Execute this script in a policy, and it will re-trigger macOS Onboarding on the devices in scope.
 
