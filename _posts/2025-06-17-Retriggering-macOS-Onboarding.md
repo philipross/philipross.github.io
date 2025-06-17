@@ -48,8 +48,9 @@ This image shows the _Visual Studio Code_ policy has been added into the macOS O
 
 ![Image of Jamf's macOS Onboarding configuration showing Visual Studio Code included in the list of actions](/assets/img/postImages/2025-06-17/01-Onboarding-configuration-modification.png)
 
-We can see that Visual Studio code didn't run when macOS Onboarding ran intially, as it wasn't included in the list of actions.
-![Image showing macOS Onboarding running on a device and does not include Visual Studio Code in list of actions](/assets/img/postImages/2025-06-17/02-onboarding-previous-run.png =200x)
+We can see that Visual Studio code didn't run when macOS Onboarding ran intially, as it wasn't included in the list of actions.<br>
+
+<img src="/assets/img/postImages/2025-06-17/02-onboarding-previous-run.png" alt="Image showing macOS Onboarding running on a device and does not include Visual Studio Code in list of actions" width="500"/><br>
 
 
 In Jamf's [macOS Onboarding documentation](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html), there's a section for [_excluding computers from macOS Onboarding_](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html#ariaid-title2).
