@@ -29,7 +29,7 @@ There's a couple of steps required but it's all very simple and straightforward.
 
 #### 1. Create the policy for the new Application in Jamf
 
-The first component needed is the policy to install the App you're looking to deploy (I did say it was straighforward!)
+The first component needed is the policy to install the App you're looking to deploy (I did say it was straightforward!)
 
 The image below shows the Visual Studio Code policy enabled for deployment via Self Service. I want to deploy it to everyone, so I've scoped it accordingly.<br>
 I'm also using the custom trigger to ensure the app is deployed immediately on any new device enrolments using Jamf Setup Manager.
@@ -44,7 +44,7 @@ I'm also using the custom trigger to ensure the app is deployed immediately on a
 <!-- markdownlint-restore -->
 
 
-#### 2. Modify the macOS Onboarding 
+#### 2. Modify the macOS Onboarding actions
 
 To include the new policy within the macOS Onboarding list of actions, it needs to be added to the relevant settings within Jamf Pro.
 
