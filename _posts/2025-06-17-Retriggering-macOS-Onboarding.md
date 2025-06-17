@@ -136,7 +136,7 @@ open -a "Self Service"
 exit 0
 ```
 
-###### (This script could definitely be cleaned up, I know!)
+###### ***(This script could definitely be cleaned up, I know!)***
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
