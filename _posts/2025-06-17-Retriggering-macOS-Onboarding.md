@@ -6,7 +6,7 @@ categories: [Mac Management, Device Onboarding]
 tags: [Jamf Setup Manager, macOS, Setup Assistant, macOS Onboarding]
 ---
 
-In a previous post, I explained how I use Jamf’s Setup Manager and macOS Onboarding tools to create a rich user experience when configuring a Mac for a user. If you haven’t read it, visit the [post](https://philipross.github.io/posts/Combining-Jamf’s-Setup-Manager-and-macOS-Onboarding-for-a-rich-user-experience/) to learn more.
+In a previous post, I explained how I use Jamf’s Setup Manager and macOS Onboarding tools to create a rich user experience when configuring a Mac for a user. If you haven’t read it, visit the [post](https://philipross.github.io/posts/Combining-Jamf's-Setup-Manager-and-macOS-Onboarding-for-a-rich-user-experience/) to learn more.
 
 I also mentioned in that post that I would share details on how to deploy new core software to already enrolled devices by re-triggering macOS Onboarding.
 
