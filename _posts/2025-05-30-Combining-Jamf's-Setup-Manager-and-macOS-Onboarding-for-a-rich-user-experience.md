@@ -1,5 +1,5 @@
 ---
-title: "Combining Jamf's Setup Manager and macOS Onboarding tools for a rich user experience"
+title: "Onboarding Like It's 2099: Setup Manager Gets a Sidekick"
 date: 2025-05-30 10:10:00 +0100
 description: "Combining Jamf’s Setup Manager and macOS Onboarding tools can enhance the user experience during device onboarding. This post explains how I integrate Jamf Setup Manager with Jamf Pro’s macOS Onboarding to provide a rich experience for end users."
 categories: [Mac Management, Device Onboarding]
