@@ -160,9 +160,9 @@ Once the timer has finished, or the user has acknowledged the prompt, Self Servi
 If Self Service _isn't_ running, the user sees this:<br>
 ![Image of a swiftDialog notification warning the user that Self Service is about to be opened because of required updates](/assets/img/postImages/2025-06-17/2-Open-notification.png)
 
-Once the time has finished, or the user has acknowledged the prompt, Self Service launches.
+Once the timer has finished, or the user has acknowledged the prompt, Self Service launches.
 
-As the `com.jamfsoftware.selfservice.onboardingcomplete` key is set to `FALSE` before Self Service relaunches, macOS Onboarding is retriggered, and will run any policies that have been added to the macOS Onboarding configuration, and have not yet run on the device:
+As the `com.jamfsoftware.selfservice.onboardingcomplete` key is set to `FALSE` before Self Service relaunches, macOS Onboarding is re-triggered and will run any policies that have been added to the macOS Onboarding configuration which have not yet run on the device:
 
 ![Image of Self Service running macOS Onboarding running the VSCode policy](/assets/img/postImages/2025-06-17/3-Onboarding-in-progress.png)
 
@@ -183,7 +183,7 @@ To achieve what's shown in this post, you would also need to:
 The script and policy to reset macOS Onboarding is reusable.
 
 I actually have mine set to run once a month on all clients, regardless of whether there's something new deployed or not.<br>
-This helps my users to get used to the update notifications and also acts as a catch-all safety net for any policies that may have had an issue in deploying cleanly first time around.
+This helps my users to get familiar with the update notifications and it acts as a catch-all safety net for any policies that may have had an issue in deploying cleanly first time around.
 
 Having this run on a regular cadence and scoping new software to groups of devices allows for a phased approach, with increasing pool sizes.<br>
 I recommend the [deployment group](https://derflounder.wordpress.com/2021/09/10/setting-up-software-deployment-groups-using-a-jamf-pro-extension-attribute/) approach written by [Rich Trouton](https://github.com/rtrouton), but there are countless permutations with scoping and policy options.
