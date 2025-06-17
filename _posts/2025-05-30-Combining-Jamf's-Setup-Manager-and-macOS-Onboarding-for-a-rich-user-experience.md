@@ -38,8 +38,7 @@ Jamf macOS Onboarding is driven by Jamf Self Service, and *must* run in an inter
 Since we can add VPP applications to Self Service for users to selectively install, we can leverage this configuration to have macOS Onboarding install any VPP-delivered applications.
 
 macOS Onboarding also has the ability to be re-triggered in the future, on already enrolled devices. There's more details covered on this process in my post:<br>
-- [Re-triggering Jamf macOS Onboarding to provide an engaging interface to users when deploying software
-](https://philipross.github.io/posts/Retriggering-macOS-Onboarding/)
+- [Push it real good: Re-triggering Jamf macOS Onboarding for core software deployment.](https://philipross.github.io/posts/Retriggering-macOS-Onboarding/)
 
 
 ## So, which is better?
