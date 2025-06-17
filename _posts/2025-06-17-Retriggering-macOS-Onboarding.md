@@ -25,6 +25,33 @@ Each organisation communicates with users in its own way and uses its own tone o
 
 ## Makes sense...so how do I do it?
 
+There's a couple of steps required but it's all very simple and straightforward.
+
+#### 1. Create the policy for the new Application in Jamf
+
+Straightforward action here, but the first component needed is the policy to install the App you're looking to deploy.
+
+The image below shows the Visual Studio Code policy enabled for deployment via Self Service. I want to deploy it to everyone, so I've scoped it accordingly.<br>
+I'm also using the custom trigger as I want this to be deployed on any new device enrolments straight away using Jamf Setup Manager.
+
+![Image showing the Visual Studio Code policy setup in Jamf, scoped to 'All Managed Clients', enabled in Self Service, and setup with a custom trigger of 'jsmVSC'](/assets/img/postImages/2025-06-17/0-Policy-creation.png)
+
+> [!TIP]
+> This process could equally be used for configuration profiles, or Application delivered from the Mac App Store, via VPP. Any component that macOS Onboarding supports can be used within this process.
+
+
+#### 2. Modify the macOS Onboarding 
+
+To include the new policy within the macOS Onboarding list of actions, it needs to be added to the relevant settings within Jamf Pro.
+
+This image shows the _Visual Studio Code_ policy has been added into the macOS Onboarding list of actions, so it will now be included on any devices that haven't had the policy run already, when macOS Onboarding is re-triggered.
+
+![Image of Jamf's macOS Onboarding configuration showing Visual Studio Code included in the list of actions](/assets/img/postImages/2025-06-17/01-Onboarding-configuration-modification.png)
+
+We can see that Visual Studio code didn't run when macOS Onboarding ran intially, as it wasn't included in the list of actions.
+![Image showing macOS Onboarding running on a device and does not include Visual Studio Code in list of actions](/assets/img/postImages/2025-06-17/02-onboarding-previous-run.png =200x)
+
+
 In Jamf's [macOS Onboarding documentation](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html), there's a section for [_excluding computers from macOS Onboarding_](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html#ariaid-title2).
 
 This demonstrates that we can run a script on the devices where macOS Onboarding should not be triggered. By setting a specific key in a specific plist file, we can achieve this.
