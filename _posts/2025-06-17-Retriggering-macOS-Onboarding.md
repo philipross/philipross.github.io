@@ -66,7 +66,7 @@ File: _~/Library/Preferences/com.jamfsoftware.selfservice.mac.plist_<br>
 Key: _com.jamfsoftware.selfservices.onboardingcomplete_<br>
 Value: _TRUE_
 
-Running a script to set this, or checking the state of the key in the plist file after macOS Onboarding has completed will return the following:
+If this was set, or if a device has already run macOS Onboarding, checking the key value would return the following:
 
 ```shell
 username@computername ~ % defaults read ~/Library/Preferences/com.jamfsoftware.selfservice.mac | grep onboarding
