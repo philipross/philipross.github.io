@@ -1,5 +1,5 @@
 ---
-title: "Re-triggering Jamf macOS Onboarding to provide an engaging interface to users when deploying software"
+title: "Push it real good: Re-triggering Jamf macOS Onboarding for core software deployment."
 date: 2025-06-17 09:00:00 +0100
 description: "Jamf’s macOS Onboarding tool can enhance user engagement by providing an informative interface during software deployment. It keeps users informed about progress and device changes. I’ll demonstrate how to achieve this using simple scripting from Jamf."
 categories: [Mac Management, Device Onboarding]
