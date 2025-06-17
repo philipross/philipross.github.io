@@ -52,6 +52,7 @@ We can see that Visual Studio code didn't run when macOS Onboarding ran intially
 
 <img src="/assets/img/postImages/2025-06-17/02-onboarding-previous-run.png" alt="Image showing macOS Onboarding running on a device and does not include Visual Studio Code in list of actions" width="500"/><br>
 
+#### 3. Create components to re-trigger macOS Onboarding
 
 In Jamf's [macOS Onboarding documentation](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html), there's a section for [_excluding computers from macOS Onboarding_](https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/macOS_Onboarding.html#ariaid-title2).
 
