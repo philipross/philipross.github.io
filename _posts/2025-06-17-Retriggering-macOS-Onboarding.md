@@ -39,6 +39,13 @@ I'm also using the custom trigger as I want this to be deployed on any new devic
 > [!TIP]
 > This process could equally be used for configuration profiles, or Application delivered from the Mac App Store, via VPP. Any component that macOS Onboarding supports can be used within this process.
 
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+> This process could equally be used for configuration profiles, or Application delivered from the Mac App Store, via VPP. Any component that macOS Onboarding supports can be used within this process.
+{: .prompt-tip }
+
+<!-- markdownlint-restore -->
+
 
 #### 2. Modify the macOS Onboarding 
 
