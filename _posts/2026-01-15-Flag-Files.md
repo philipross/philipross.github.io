@@ -120,7 +120,7 @@ Once we have a mechanism to create and report on a flag file, we need to create 
 
 ![Image of Jamf Pro smart group editor showing the configuration required to report on a "Present" status for the flag file attribute.](/assets/img/postImages/2025-11-05/03-Smart-Group-Configuration.png)
 
-You could also create the inverse of this group, and look for devices that have a value that `is not Present` and scope using that.
+You could also create the inverse of this group, using the `is not` operator scope using that.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
@@ -136,3 +136,6 @@ You could also create the inverse of this group, and look for devices that have 
 That's pretty much all there is too it.
 
 Now you can scope your policies, profiles, or apps to devices that are members of the Smart Group, and they'll fall into scope after the flag file creation script is run on their device, and inventory is updated.
+
+This provides a waterfall method for structuring deployments across both DMS delivery mechanisms, allowing admins to create their own short workflows.
+
