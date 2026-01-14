@@ -83,11 +83,11 @@ exit $exitCode
 The script above makes use of the variable paths within Jamf to provide a script that can be used in multiple deployments.
 <br>Of course the `$4` and `$5` variables can be modified to hard code your desired flag file location.
 
-![Image of Jamf Pro script editor showing the parameter labels set for $4 and $5 variables.](/assets/img/postImages/2025-11-05/01-Script-Parameter-labels.png)
+![Image of Jamf Pro script editor showing the parameter labels set for $4 and $5 variables.](/assets/img/postImages/2026-01-15/01-Script-Parameter-labels.png)
 
 When you come to deploy this script in a policy you'll need to specify the absolute path of the directory, and the file name.
 
-![Image of Jamf Pro policy editor showing the script payload and parameters provided for flag file directory and name.](/assets/img/postImages/2025-11-05/02-Script-Deployment-Policy.png)
+![Image of Jamf Pro policy editor showing the script payload and parameters provided for flag file directory and name.](/assets/img/postImages/2026-01-15/02-Script-Deployment-Policy.png)
 
 
 ### Extension attribute
@@ -118,7 +118,7 @@ As EA values are only evaluated on inventory update, the flag file creation scri
 
 Once we have a mechanism to create and report on a flag file, we need to create a smart group that we can use to scope components to, or exclude components from.
 
-![Image of Jamf Pro smart group editor showing the configuration required to report on a "Present" status for the flag file attribute.](/assets/img/postImages/2025-11-05/03-Smart-Group-Configuration.png)
+![Image of Jamf Pro smart group editor showing the configuration required to report on a "Present" status for the flag file attribute.](/assets/img/postImages/2026-01-15/03-Smart-Group-Configuration.png)
 
 You could also create the inverse of this group, using the `is not` operator scope using that.
 
