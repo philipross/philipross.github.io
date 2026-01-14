@@ -1,6 +1,6 @@
 ---
 title: "Capture the flag (files): Turning deployment chaos into organised victory"
-date: 2025-11-05 09:00:00 +0100
+date: 2026-01-15 09:00:00 +0000
 description: "Creating structured workflow deployments is key to running deployments that need a specific order of operations. With a simple script, and Extension Attribute, you can utilise existing capability within Jamf Pro to order your deployment, and enhance reporting across your macOS fleet."
 categories: [Mac Management, Deployments]
 tags: [macOS, Flag Files, Jamf, Workflows]
@@ -19,7 +19,7 @@ In two words: ***Flag files***.
 
 Occasionally I'll come across an application deployment which requires me to think more carefully about how to craft the order of operations to achieve success with the deployment whilst limiting impact to the end user. 
 
-Device Management Systems (DMS) often combine the use of the MDM/DDM channel provided by Apple with a separate, sometimes proprietary mechanism to deliver components outside of these channels. With Jamf Pro, configuration profiles or blueprints are delivered over the MDM/DDM channels, whereas policies and (some) inventory information is orchestrated by the `Jamf` binary.
+Device Management Systems (DMS) often combine the use of the MDM/DDM channel provided by Apple with a separate, sometimes proprietary mechanism to deliver components outside of these channels. With Jamf Pro, configuration profiles or blueprints are delivered over the MDM/DDM channels, whereas policies and (some) inventory information is orchestrated by the `jamf` binary.
 
 If you come across a deployment that needs to make use of both of these mechanisms, it can be challenging to combine them with a structured order. 
 
@@ -120,3 +120,19 @@ Once we have a mechanism to create and report on a flag file, we need to create 
 
 ![Image of Jamf Pro smart group editor showing the configuration required to report on a "Present" status for the flag file attribute.](/assets/img/postImages/2025-11-05/03-Smart-Group-Configuration.png)
 
+You could also create the inverse of this group, and look for devices that have a value that `is not Present` and scope using that.
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+> Important to remember that devices that either haven't got the flag file, or devices that haven't had an inventory update since the EA was put live would be in scope in that situation.
+{: .prompt-info }
+
+<!-- markdownlint-restore -->
+
+
+
+## Et Voila!
+
+That's pretty much all there is too it.
+
+Now you can scope your policies, profiles, or apps to devices that are members of the Smart Group, and they'll fall into scope after the flag file creation script is run on their device, and inventory is updated.
