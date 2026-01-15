@@ -1,6 +1,6 @@
 ---
 title: "Capture the flag (files): Turning deployment chaos into organised victory"
-date: 2026-01-15 09:00:00 +0000
+date: 2026-01-15 10:00:00 +0000
 description: "Creating structured workflow deployments is key to running deployments that need a specific order of operations. With a simple script, and Extension Attribute, you can utilise existing capability within Jamf Pro to order your deployment, and enhance reporting across your macOS fleet."
 categories: [Mac Management, Deployments]
 tags: [macOS, Flag Files, Jamf, Workflows]
@@ -128,6 +128,14 @@ You could also create the inverse of this group, using the `is not` operator sco
 {: .prompt-info }
 
 <!-- markdownlint-restore -->
+
+## What does this look like client-side?
+
+For demonstration purposes, I created a Self Service policy to run the flag file creation script, but you can use whatever triggers are suitable for your needs.
+
+When running the policy, the short clip below shows that the flag file populates within the specified directory, in this case it's `/private/var/db/` 
+
+![](/assets/img/postImages/2026-01-15/04-Flag-file-creation-client-side.mp4)
 
 
 
