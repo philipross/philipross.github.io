@@ -1,6 +1,6 @@
 ---
 title: "Capture the flag (files): Turning deployment chaos into organised victory"
-date: 2026-01-15 10:00:00 +0000
+date: 2026-01-15 08:00:00 +0000
 description: "Creating structured workflow deployments is key to running deployments that need a specific order of operations. With a simple script, and Extension Attribute, you can utilise existing capability within Jamf Pro to order your deployment, and enhance reporting across your macOS fleet."
 categories: [Mac Management, Deployments]
 tags: [macOS, Flag Files, Jamf, Workflows]
