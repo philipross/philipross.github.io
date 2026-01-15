@@ -8,7 +8,7 @@ tags: [macOS, Flag Files, Jamf, Workflows]
 
 ## Long time, no post...
 
-It's been pretty quiet on here for the last few months. Entering beta season, working on a complex deployment, and also taking some time off to get married has meant I've been a bit occupied and not had time to write.
+It's been pretty quiet on here for the last few months. Entering beta season, working on a complex deployment, and also taking some time off to get married has meant I've been a bit occupied and not had time to write. 
 
 However, that complex deployment has helped me to learn something new, and I thought it'd be a great opportunity to write something again!
 
