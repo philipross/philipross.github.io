@@ -133,9 +133,13 @@ You could also create the inverse of this group, using the `is not` operator sco
 
 For demonstration purposes, I created a Self Service policy to run the flag file creation script, but you can use whatever triggers are suitable for your needs.
 
-When running the policy, the short clip below shows that the flag file populates within the specified directory, in this case it's `/private/var/db/` 
+![Image of Mac desktop showing Self Service open, and Finder open to the /private/var/db directory. There is no Flag file currently present at that directory with name ".DigitalDeskFlag".](/assets/img/postImages/2026-01-15/05-Flag-File-not-present.png)
 
-![](/assets/img/postImages/2026-01-15/04-Flag-file-creation-client-side.mp4)
+When the policy is run, you can see the Flag File populates within the `/private/var/db/` directory as configured.
+
+![Image of Mac desktop showing Self Service open with DigitalDesk Flag File policy in progress, and Finder open to the /private/var/db directory](/assets/img/postImages/2026-01-15/06-Flag-file-policy-running.png)
+
+![Image of Mac desktop showing Self Service open with DigitalDesk Flag File policy in progress, and Finder open to the /private/var/db directory. After the Policy has executed, there is a ".DigitalDeskFlag" flag file present](/assets/img/postImages/2026-01-15/07-Flag-file-present.png)
 
 <video src="https://private-user-images.githubusercontent.com/61972104/536142736-cfb73758-91d0-43f4-867e-d352379e48cd.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px">
 
