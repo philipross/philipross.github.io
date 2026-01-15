@@ -137,6 +137,10 @@ When running the policy, the short clip below shows that the flag file populates
 
 ![](/assets/img/postImages/2026-01-15/04-Flag-file-creation-client-side.mp4)
 
+<video src="https://private-user-images.githubusercontent.com/61972104/536142736-cfb73758-91d0-43f4-867e-d352379e48cd.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px">
+
+  </video>
+
 
 
 ## Et Voila!
