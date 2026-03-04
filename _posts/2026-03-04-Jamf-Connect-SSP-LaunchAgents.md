@@ -69,7 +69,7 @@ chflags -h -P hidden "$APP"
 ```
 {: file='postinstall_2'}
 
-This is useful to know, as up until that version, using the JC 2.X LaunchAgent was _probably_ fine, as the target path of `/Applications/Jamf Connect.app/' still existed, even though it was pointing at something new.
+This is useful to know, as up until that version, using the JC 2.X LaunchAgent was _probably_ fine, as the target path of `/Applications/Jamf Connect.app/` still existed, even though it was pointing at something new.
 
 #### However...
 
