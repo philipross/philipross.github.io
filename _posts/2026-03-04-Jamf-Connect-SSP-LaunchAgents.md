@@ -1,6 +1,6 @@
 ---
 title: "The Right Agent, at the right time: Understanding LaunchAgent conflicts between Jamf Connect, and Jamf Self Service+ "
-date: 2026-03-04 18:30:00 +0000
+date: 2026-03-04 19:30:00 +0000
 description: "Jamf Connect is now bundled in with Self Service+, but ingrained ways of updating the Jamf Connect versions may now be causing issues in Enterprise environments. This post is designed to highlight the changes to the LaunchAgent that runs the Account Management features of Self Service+, formerly included in Jamf Connect."
 categories: [Mac Management]
 tags: [macOS, Jamf, Jamf Connect, Self Service+ ]
