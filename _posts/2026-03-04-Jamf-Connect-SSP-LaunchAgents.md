@@ -92,7 +92,7 @@ chflags -h -P hidden "$APP"
 
 ### Where does this become a problem?
 
-If you've already migrated to SSP, you know that it handles updates automagically, independently of Jamf Pro server upgrades, which SSC used to rely on.<br>
+If you've already migrated to SSP you know that it handles updates automagically, independently of Jamf Pro server upgrades, which SSC used to rely on.<br>
 However, JCL doesn't do this.
 
 I'll caveat the following information by saying that it's not really relevant if you're using automated methods of updating JCL, such as installomator, or Jamf Apps auto-patching _stuff_.
@@ -101,7 +101,7 @@ If you're manually updating JCL then you'd be forgiven for thinking you need to 
 
 _But it can do now._
 
-If you have SSP installed, subsequently update the JCL version _and_ update the LaunchAgent with the content from the JCL DMG, you're going to break the SSP menu bar LaunchAgent as it's going to look for a file that doesn't exist.
+If you have SSP installed, subsequently updating the JCL version _and_ updating the LaunchAgent with the content from the JCL DMG, you're going to break the SSP menu bar LaunchAgent as it's going to look for a file that doesn't exist.
 
 This is the JC 2.X LaunchAgent content:
 ```xml
