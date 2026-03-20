@@ -1,6 +1,6 @@
 ---
 title: "Declare and Secure: Enforcing macOS Background Security Update installation using DDM"
-date: 2026-03-20 14:00:00 -0000
+date: 2026-03-20 14:00:00 +0100
 description: "DDM Software Update plans have the capability to enforce installation of Background Security Improvements. This post will cover off the ways that this can be achieved within Jamf, working with Blueprints but also without."
 categories: [Mac Management]
 tags: [macOS, Jamf, Security, Patching, DDM, Blueprints]
@@ -161,6 +161,21 @@ As this is essentially pushing a DDM SU plan, users will see a _Managed Update_ 
 In System Settings, BSIs ***do not*** show up under General > Software Update.<br>
 They instead live under Privacy & Security > Background Security Improvements:
 ![Image of System Settings open to the Background Security Improvements extension](/assets/img/postImages/2026-03-20/11-BSI-System-Settings.png)
+
+## Credits
+
+This post was born out of a couple of threads on the [MacAdmins Slack](https://www.macadmins.org/).
+
+All the testing in this post is my own, but it was definitely helped by a few people, and I wanted to thank them for that - even if they didn't realise they helped:
+- [Colorenz](https://github.com/colorenz)
+- [charliwest](https://github.com/charliwest)
+- [Aiden](https://github.com/aidentopp)
+- Mark Buffington
+- [adamcodega](https://github.com/acodega)
+
+Special mention has to go to [Ade](https://github.com/unknownade), who's technical curiosity matches my own and helped to have an in depth, provocative conversation that led to this post.<br>
+
+
 
 ## Final thoughts...
 
