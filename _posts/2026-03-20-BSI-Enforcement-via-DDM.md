@@ -170,7 +170,7 @@ All the testing in this post is my own, but it was definitely helped by a few pe
 - [Colorenz](https://github.com/colorenz)
 - [charliwest](https://github.com/charliwest)
 - [Aiden](https://github.com/aidentopp)
-- Mark Buffington
+- [Mark Buffington](https://github.com/markbuffington)
 - [adamcodega](https://github.com/acodega)
 
 Special mention has to go to [Ade](https://github.com/unknownade), who's technical curiosity matches my own and helped to have an in depth, provocative conversation that led to this post.<br>
