@@ -8,7 +8,7 @@ tags: [macOS, Jamf, Security, Patching, DDM, Blueprints]
 
 ## Background Security Improvewhaaa?
 
-Background Security Improvements - or BSIs - is a capability introduced into the Apple iOS, iPadOS, and macOS platforms with the 26.1 release.<br>
+[Background Security Improvements](https://support.apple.com/en-gb/102657) - or BSIs - is a capability introduced into the Apple iOS, iPadOS, and macOS platforms with the 26.1 release.<br>
 Prior to this release, Apple used Rapid Security Releases - RSRs - to achieve a similar goal.
 
 This week, Apple released BSIs for the iOS, iPadOS, and macOS platforms, and it left a bit of a question on how to ensure devices across enterprise fleets installed this BSI as soon as possible.
