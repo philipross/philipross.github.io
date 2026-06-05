@@ -89,11 +89,11 @@ dialogContent=(
 # Call the dialog, and capture the output in a variable
 dialogOutput=$("$dialogPath" "${dialogOptions[@]}" "${dialogContent[@]}")
 
-# Quit Self Service+ 
-osascript -e 'tell app "Self Service+" to quit'
-
 # Revert Jamf Setup Checklist window position
 setupchecklist step script-user-details windowPosition center
+
+# Quit Self Service+ 
+osascript -e 'tell app "Self Service+" to quit'
 
 # Parse the output to capture the department
 department=$(echo $dialogOutput | grep "SelectedOption" | awk -F " : " '{gsub(/"/,"",$NF); print $NF}' )
