@@ -144,8 +144,6 @@ This action leverages the [script step](https://github.com/Jamf-Concepts/setup-c
 
 This is a powerful step that's capable of doing a multitude of things, but remember that Jamf Setup Checklist is running in the *user space*, so any script actions it calls also execute in the *user context*.
 
-Initially I forgot this and tried to deliver a .sh file via pkg that would handle the dialog creation, and subsequent publish to Jamf Pro, but the `jamf` binary needed `sudo` so that approach failed.
-
 This is the content I've put into my Jamf Setup Checklist configuration profile to execute this action.
 
 ```xml
@@ -169,7 +167,7 @@ This is the content I've put into my Jamf Setup Checklist configuration profile 
     fi
     </string>
     <key>buttonScript</key>
-    <string>open 'jamfselfservice://content?entity=policy&amp;id=13&amp;action=execute'</string>
+    <string>open -j 'jamfselfservice://content?entity=policy&amp;id=13&amp;action=execute'</string>
     <key>windowPosition</key>
     <string>right</string>
 </dict>
@@ -197,8 +195,8 @@ Now that this has been run, we can refresh the computer record and see that the 
 
 ### Et voilà!
 
-In my opinion, this process isn't the prettiest, but it works around limitations of user context and binaries requiring sudo as best we can.<br>
-As tools evolve, we may have a different option available to us in the future where this process can be revisited to refine the UI, and when it comes to macOS there's often more than one way to achieve the same outcome.
+To help keep this process clean and slick, I'm using the `open` command with the `-j` argument to launch the Self Service application hidden. There's some work do be done to polish this up a bit more, but it's great starting point.<br>
+Thanks to [Armin (scriptingosx)](https://github.com/scriptingosx) for the thought provoking conversation around possibilities here!
 
 There's an important gotcha with how I delivered this.<br>
 My script is leveraging the `setupchecklist` CLI to update the Jamf Setup Checklist UI that the step has been completed, and to enable the 'continue' button. If the script fails for some reason, this continue button won't enable and the user could get stuck at this step without clear instruction on how to proceed.
