@@ -1,7 +1,7 @@
 ---
 title: "User Details? Check!: Leveraging Jamf Setup Checklist to populate user details in Jamf Pro"
 date: 2026-06-05 14:00:00 +0100
-description: "Jamf Setup Checklist is a great tool for getting your users ready to go from the moment they're logged in, however sometimes organisations need to populate Jamf Pro inventory fields to ensure device configuration is copmlete. This post covers an example of how do to just that."
+description: "Jamf Setup Checklist is a great tool for getting your users ready to go from the moment they're logged in, however sometimes organisations need to populate Jamf Pro inventory fields to ensure device configuration is complete. This post covers an example of how to do just that."
 categories: [Mac Management]
 tags: [macOS, Jamf, Jamf Setup Checklist]
 ---
@@ -14,12 +14,12 @@ Definitely go check it out and have a play if you haven't done so already.
 
 ### What does it do?
 
-The docs for Setup Checklist are pretty comprehensive on its capabilities and what it is designed to do, but what's important for the detail of this post is that Setup Checklist activates upon user login, runs within the user session and therefore runs in _user context._
+The docs for Setup Checklist are pretty comprehensive regarding its capabilities and what it is designed to do, but what's important for the detail of this post is that Setup Checklist activates upon user login, runs within the user session and therefore runs in _user context._
 
 Initially I forgot this and tried to deliver this outcome via a .sh file delivered to the device via package, but the script would have needed `sudo` so that approach failed.
 
 This post will cover how to populate the *User and Location* details within a Jamf Pro Computer record.<br>
-The fields available here can be interacted with via the `jamf` binary via a `recon` command.
+The fields available here can be interacted with through the `jamf` binary using a `recon` command.
 
 ### Jamf binary commands
 
@@ -33,7 +33,7 @@ This presents a challenge as we cannot run an elevated command directly within S
 Luckily...Jamf allows us to programmatically action a specific policy without using the binary as long as it's available to run within Self Service.<br>
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
->References to "Self Service" within this post are agnostic of which version you're using in your environment. Both Self Service+, and Self Service (classic) will work provided the relevant URL scheme is used.<br>
+>References to "Self Service" within this post are agnostic of which version you're using in your environment. Both Self Service+ and Self Service (classic) will work provided the relevant URL scheme is used.<br>
 Screenshots have been taken from Self Service+ only.
 {: .prompt-info }
 
@@ -41,7 +41,7 @@ Screenshots have been taken from Self Service+ only.
 
 ### Jamf Pro Components
 
-There's a few things required to make this work. Jamf Setup Checklist is a pre-requisite of this process, but this post isn't written to go through how to use Jamf Setup Checklist, so I've assumed you've already done that.<br>
+There's a few things required to make this work. Jamf Setup Checklist is a prerequisite of this process, but this post isn't written to go through how to use Jamf Setup Checklist, so I've assumed you've already done that.<br>
 I'm also using [swiftDialog](https://github.com/swiftDialog/swiftDialog) to create the UI, so that's a requirement too. 
 
 What do I need?<br>
@@ -58,7 +58,7 @@ For fans of the Irish pop group, prepare to be disappointed.<br>Whilst your man 
 I've created a script in Jamf Pro called `Set Department`
 ![Image of Jamf Pro Script editor with a script setting up a swiftDialog prompt to capture user input](/assets/img/postImages/2026-06-05/1-Script.png)<br>
 This script is 'quick and dirty' to show the possibilities here. swiftDialog has ***plenty*** of customisation options for you to play around with to suit your organisation's needs.<br>
-Here's the full contents to give you an idea of the structure:
+Here are full contents to give you an idea of the structure:
 
 ```zsh
 #!/bin/zsh
@@ -72,7 +72,7 @@ dialogMessage="Please complete the fields below to complete the department assig
 dialogOptions=(
     --button1text "OK"
     --width 700
-    --heigh 300
+    --height 300
     --titlefont "size=28"
     --messagefont "size=14"
     --selecttitle "Select a department"
@@ -107,7 +107,7 @@ setupchecklist status script-user-details canContinue
 ```
 {: file='postinstall_2'}
 
-I wrote the structure of this script referencing a [blog post](https://bigmacadmin.wordpress.com/2023/01/03/avoiding-eval-with-swiftdialog/) from the mighty [BigMac Admin's](https://github.com/bigmacadmin) explaining how to avoid using eval when using swiftDialog.
+I wrote the structure of this script referencing a [blog post](https://bigmacadmin.wordpress.com/2023/01/03/avoiding-eval-with-swiftdialog/) from the mighty [BigMac Admin](https://github.com/bigmacadmin) explaining how to avoid using eval when using swiftDialog.
 
 #### The policy
 
@@ -195,7 +195,7 @@ Here's a clip of what this experience looks like to the user
 Now that this has been run, we can refresh the computer record and see that the department has successfully populated.
 ![Image of computer record in Jamf Pro looking at the User and Location section, now showing a department has been set](/assets/img/postImages/2026-06-05/7-Department-Set.png)
 
-### Et voila!
+### Et voilà!
 
 In my opinion, this process isn't the prettiest, but it works around limitations of user context and binaries requiring sudo as best we can.<br>
 As tools evolve, we may have a different option available to us in the future where this process can be revisited to refine the UI, and when it comes to macOS there's often more than one way to achieve the same outcome.
