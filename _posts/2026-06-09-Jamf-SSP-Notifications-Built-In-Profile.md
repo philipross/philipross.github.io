@@ -1,6 +1,6 @@
 ---
 title: "Don't ignore me!: Self Service+ notifications are now natively managed on all devices."
-date: 2026-06-09 11:00:00 +0100
+date: 2026-06-08 11:00:00 +0100
 description: "Notifications for Jamf's Self Service+ application were only managed for devices enrolled after Jamf Pro 11.18, or via a custom profile. Jamf Pro 11.28.x version fixes this across your fleet"
 categories: [Mac Management]
 tags: [macOS, Jamf, Self Service+]
@@ -25,12 +25,12 @@ When Jamf released Jamf Pro 11.18, they included a change that if you were alrea
 The catch? This logic only applied to *new* enrolments hitting the Jamf Pro server after it was upgraded.<br>
 Already managed macOS devices then needed a custom profile to manage the Self Service+ notifications, to avoid prompts to end users.
 
-![Image of Jamf Pro documentation highlighting that a manual notification profile is needed for devices enrolled into Jamf Pro 11.17.1 or earlier](/assets/img/postImages/2026-06-09/1-Jamf-Notes-11.18.png)
+![Image of Jamf Pro documentation highlighting that a manual notification profile is needed for devices enrolled into Jamf Pro 11.17.1 or earlier](/assets/img/postImages/2026-06-08/1-Jamf-Notes-11.18.png)
 
 I've verified this on a device that was enrolled before 11.17.1, and has *only* the built in notifications profile enabled.<br>
 Taking a peek at the contents of the profile, this is what is contained:
 
-![Image of terminal showing the contents of the profile in XML structure](/assets/img/postImages/2026-06-09/2-Profile-contents-terminal.png)
+![Image of terminal showing the contents of the profile in XML structure](/assets/img/postImages/2026-06-08/2-Profile-contents-terminal.png)
 
 ```xml
 ...
@@ -93,7 +93,7 @@ defaults read /Library/Managed\ Preferences/com.apple.notificationsettings.plist
 
 After the Jamf Pro console has updated to 11.28.x and the Jamf Binary has updated on the device, I noticed there was a management command queued up to install the notifications profile.
 
-![Computer record management history tab in Jamf Pro, searching for 'notifications'](/assets/img/postImages/2026-06-09/3-Queued-up%20computer-command.png)
+![Computer record management history tab in Jamf Pro, searching for 'notifications'](/assets/img/postImages/2026-06-08/3-Queued-up%20computer-command.png)
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
@@ -106,7 +106,7 @@ After the Jamf Pro console has updated to 11.28.x and the Jamf Binary has update
 
 As this is now showing as installed on my device, we can query the profile contents again to see if it's changed.
 
-![Terminal showing the contents of the updated profile in XML structure](/assets/img/postImages/2026-06-09/4-Updated-profile-contents-terminal.png)
+![Terminal showing the contents of the updated profile in XML structure](/assets/img/postImages/2026-06-08/4-Updated-profile-contents-terminal.png)
 
 
 ```xml
@@ -188,7 +188,7 @@ If you also wanted, you can check the contents of the profile in the System Sett
 
 {%
   include embed/video.html
-  src='/assets/img/postImages/2026-06-09/5-System-Settings-UI-showing-profile-contents.mov'
+  src='/assets/img/postImages/2026-06-08/5-System-Settings-UI-showing-profile-contents.mov'
   types='mov'
   title='Verifying Native Self Service+ Notification Management'
   autoplay=true
