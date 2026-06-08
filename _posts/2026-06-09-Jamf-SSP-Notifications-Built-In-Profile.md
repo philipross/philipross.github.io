@@ -188,7 +188,7 @@ If you also wanted, you can check the contents of the profile in the System Sett
 
 {%
   include embed/video.html
-  src='/assets/img/postImages/2026-06-08/5-System-Settings-UI-showing-profile-contents.mov'
+  src='/assets/img/postImages/2026-06-08/5-System-Settings-UI-showing-profile-contents.mp4
   types='mov'
   title='Verifying Native Self Service+ Notification Management'
   autoplay=true
