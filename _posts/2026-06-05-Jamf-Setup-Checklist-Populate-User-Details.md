@@ -2,7 +2,7 @@
 title: "User Details? Check!: Leveraging Jamf Setup Checklist to populate user details in Jamf Pro"
 date: 2026-06-05 13:00:00 +0100
 description: "Jamf Setup Checklist is a great tool for getting your users ready to go from the moment they're logged in, however sometimes organisations need to populate Jamf Pro inventory fields to ensure device configuration is complete. This post covers an example of how to do just that."
-categories: [Mac Management]
+categories: [Mac Management, Deployments]
 tags: [macOS, Jamf, Jamf Setup Checklist]
 ---
 

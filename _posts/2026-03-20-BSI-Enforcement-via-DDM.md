@@ -2,7 +2,7 @@
 title: "Declare and Secure: Enforcing macOS Background Security Update installation using DDM"
 date: 2026-03-20 14:00:00 +0100
 description: "DDM Software Update plans have the capability to enforce installation of Background Security Improvements. This post will cover off the ways that this can be achieved within Jamf, working with Blueprints but also without."
-categories: [Mac Management]
+categories: [Mac Management, Patching]
 tags: [macOS, Jamf, Security, Patching, DDM, Blueprints]
 ---
 
