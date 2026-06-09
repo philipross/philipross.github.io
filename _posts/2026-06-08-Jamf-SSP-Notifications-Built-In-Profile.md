@@ -183,6 +183,16 @@ As this is now showing as installed on my device, we can query the profile conte
 ```
 {: file='com.jamf.notifications.settings.mobileconfig'}
 
+Rerunning the `defaults` command to look at the relevant content of the managed notification plist, I can see it's now containing the Self Service+ bundle IDs, in addition to the previous content:
+
+```zsh
+defaults read /Library/Managed\ Preferences/com.apple.notificationsettings.plist | grep -i jamf
+            BundleIdentifier = "com.jamfsoftware.selfservice.mac";
+            BundleIdentifier = "com.jamf.selfserviceplus";
+            BundleIdentifier = "com.jamf.selfserviceplus.agent";
+            BundleIdentifier = "com.jamfsoftware.Management-Action";
+```
+
 If you also wanted, you can check the contents of the profile in the System Settings UI
 
 {%
