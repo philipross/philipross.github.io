@@ -10,10 +10,9 @@ tags: [macOS, Jamf, Self Service+]
 
 Hidden within the Jamf Pro 11.28 [release notes](https://learn.jamf.com/r/en-US/jamf-pro-release-notes-current/Resolved_Issues) there is a small entry that will bring a tear of joy to an admin's eye:
 
-```
-[PI136028] Fixed: Jamf Pro does not install the Jamf Notifications profile to 
-already‑managed computers after a Jamf Pro upgrade.
-```
+
+> ***[PI136028]*** *Fixed: Jamf Pro does not install the Jamf Notifications profile to already‑managed computers after a Jamf Pro upgrade.*
+
 
 Initially I missed this nugget, and only looked into it as a result of a thread comment posted by [Fraser](https://github.com/fraserhess) on the [MacAdmins Slack](https://www.macadmins.org/).
 
