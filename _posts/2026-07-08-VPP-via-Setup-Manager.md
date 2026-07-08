@@ -48,7 +48,7 @@ I set about testing this using Slack as the VPP app I wanted to install during S
 
 Firstly, we need to make sure that the VPP App is set to install through Self Service, and is scoped accordingly.
 
-![Slack for Desktop app setting shown in Jamf Pro, highlighting Distribution Method is set to "Make Available in Self Service](/assets/img/postImages/2026-07-09/01-VPP-App-Config-Jamf-Pro.png)
+![Slack for Desktop app setting shown in Jamf Pro, highlighting Distribution Method is set to "Make Available in Self Service"](/assets/img/postImages/2026-07-09/01-VPP-App-Config-Jamf-Pro.png)
 
 We also need to grab the App ID which is both in the Jamf Pro URL, and also listed in the App URLs section under the Self Service settings. In the example image below, the App ID is `1`.
 
@@ -56,7 +56,7 @@ We also need to grab the App ID which is both in the Jamf Pro URL, and also list
 
 #### Handling the installation
 
-As I touched on earlier, to actually *do* the installation during Setup Manager, we need to initate this from a script contained in a policy.
+As I touched on earlier, to actually *do* the installation during Setup Manager, we need to initiate this from a script contained in a policy.
 
 The policy setup is simple:
 - Scope it accordingly
@@ -67,7 +67,7 @@ The policy setup is simple:
 The script is the heavy lifting bit here.<br>
 I'll caveat that I'm ***definitely not*** a great scripting admin, but I've tried my best. If you can spot obvious improvements, please do let me know as I'd love to hear about them!
 
-My idea was that the policy would initate the install and then watch for completion of the installation before marking the policy as complete. To prevent an issue during this from keeping Setup Manager running on a specific step indefinitely, I've included a timeout which will mark the install as failed, and allow Setup Manager to progress.
+My idea was that the policy would initiate the install and then watch for completion of the installation before marking the policy as complete. To prevent an issue during this from keeping Setup Manager running on a specific step indefinitely, I've included a timeout which will mark the install as failed, and allow Setup Manager to progress.
 
 The timeout threshold can be customised, but I'd recommend starting with a higher value and reducing it than the other way around.<br>
 In my testing, I started around 10 minutes (600 seconds) and reduced it to 5 minutes (300 seconds).
@@ -162,7 +162,7 @@ For Slack, I then populated the following information:
 
 Below you can see a recording of Jamf Setup Manager executing a very slimline set of actions. This is merely for demonstrating purposes, and I've sped the recording up so it's as quick to watch as possible.
 
-At the end of the recording, I open `Finder`, and nagivate to the `/Applications` directory to show that `Slack.app` is present on the device.<br>
+At the end of the recording, I open `Finder`, and navigate to the `/Applications` directory to show that `Slack.app` is present on the device.<br>
 I also open the `/Applications/Slack.app` package contents to show the presence of the `_MASReceipt` directory, which is only present on installs of Apps from the Mac App Store.
 
 {%
@@ -185,7 +185,7 @@ We can also see a Completed MDM command to `Install App - Slack for Desktop` in 
 
 ### What's different (Architectural context summary)
 
-If we complare what's happening here to what was happening in my previous post, there's a pretty big shift in the process:
+If we compare what's happening here to what was happening in my previous post, there's a pretty big shift in the process:
 
 1. **Context Switching**: Previously the workflow required handing off the VPP App install to `macOS Onboarding` *after* a user session was established as there is no way to directly use the `jamf` binary to install VPP Apps. This new method hacks the Self Service URL scheme to trigger the installations in the background *during* the Setup Manager phase.
 2. **User Experience**: By utilising the `open -j` flag, the Self Service GUI does not appear when Setup Manager is running. This drastically cleans up the ugly UX that I experienced from my testing in 2025.
