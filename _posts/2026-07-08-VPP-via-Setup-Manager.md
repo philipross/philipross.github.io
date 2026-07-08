@@ -8,7 +8,7 @@ tags: [Jamf Setup Manager, macOS, Setup Assistant, VPP]
 
 ## Rewinding the clock
 
-One of my first blog posts detailed the process I was using to workaround the limitations of the `jamf` binary that [Jamf Setup Manager](https://github.com/jamf/Setup-Manager/tree/main) works with, and how that prevented the ability to command VPP apps to install directly during Setup Manager.
+One of my first blog posts detailed the process I was using to work around the limitations of the `jamf` binary that [Jamf Setup Manager](https://github.com/jamf/Setup-Manager/tree/main) works with, and how that prevented the ability to command VPP apps to install directly during Setup Manager.
 
 If you haven't read that, or want to refresh your memory, you can find it here:<br>
  - [Onboarding like it's 2099: Setup Manager gets a sidekick](https://philipross.github.io/posts/Combining-Jamf's-Setup-Manager-and-macOS-Onboarding-for-a-rich-user-experience/)
@@ -32,7 +32,7 @@ This is an obstacle that's been irritating me for a while, and whilst I was sat 
 - We can use Jamf Setup Manager to call policies...
 - Policies can include a script...
 - VPP Apps can be made as a Self Service install item...
-- We can initate install programatically using the URL Scheme for Self Service...
+- We can initiate the install programmatically using the URL Scheme for Self Service...
 
 See where this is headed?
 
@@ -40,7 +40,7 @@ Admittedly, I had actually thought of, and tested this process in March 2025 and
 
 However, being a Mac Admin requires constant learning, and learnings from my more recent post where I use [Jamf Setup Checklist to populate user details in Jamf Pro](https://philipross.github.io/posts/Jamf-Setup-Checklist-Populate-User-Details/) afforded me the ability to reattempt this.
 
-## I'm intruiged....go on...
+## I'm intrigued....go on...
 
 #### App setup
 
@@ -52,7 +52,7 @@ Firstly, we need to make sure that the VPP App is set to install through Self Se
 
 We also need to grab the App ID which is both in the Jamf Pro URL, and also listed in the App URLs section under the Self Service settings. In the example image below, the App ID is `1`.
 
-![Slack for Desktop Self Service settings shown in Jamf Pro, highlighting the app ID in the Site URL, and alos in the App URLs section](/assets/img/postImages/2026-07-09/02-VPP-App-SelfServiceConfig-Jamf-Pro.png)
+![Slack for Desktop Self Service settings shown in Jamf Pro, highlighting the app ID in the Site URL, and also in the App URLs section](/assets/img/postImages/2026-07-09/02-VPP-App-SelfServiceConfig-Jamf-Pro.png)
 
 #### Handling the installation
 
@@ -67,7 +67,7 @@ The policy setup is simple:
 The script is the heavy lifting bit here.<br>
 I'll caveat that I'm ***definitely not*** a great scripting admin, but I've tried my best. If you can spot obvious improvements, please do let me know as I'd love to hear about them!
 
-My idea was that the policy would initate the install and then watch for completion of the installation before marking the policy as complete. To prevent an issue during this from keeping Setup Manager running on a specific step indefinitely, I've included a timeout which will make the install as failed, and allow Setup Manager to progress.
+My idea was that the policy would initate the install and then watch for completion of the installation before marking the policy as complete. To prevent an issue during this from keeping Setup Manager running on a specific step indefinitely, I've included a timeout which will mark the install as failed, and allow Setup Manager to progress.
 
 The timeout threshold can be customised, but I'd recommend starting with a higher value and reducing it than the other way around.<br>
 In my testing, I started around 10 minutes (600 seconds) and reduced it to 5 minutes (300 seconds).
@@ -101,7 +101,7 @@ function quit_self_service(){
 }
 
 if [[ -d "$APP_PATH" ]]; then
-    echo "$APP_PATH exits."
+    echo "$APP_PATH exists."
     echo "Not calling to install. Exiting with success"
     exit 0
 else
@@ -183,9 +183,16 @@ We can also see a Completed MDM command to `Install App - Slack for Desktop` in 
 
 ![Management command history showing a successful command to install Slack for Desktop](/assets/img/postImages/2026-07-09/07-Post-JSM-Management-Commands.png)
 
-### Et voilà!
+### What's different (Architectural context summary)
 
-This testing wasn't without it's challenges, and whilst this does work in this example, I'd recommend ***thorough*** testing if you want to use this in your environment.
+If we complare what's happening here to what was happening in my previous post, there's a pretty big shift in the process:
+
+1. **Context Switching**: Previously the workflow required handing off the VPP App install to `macOS Onboarding` *after* a user session was established as there is no way to directly use the `jamf` binary to install VPP Apps. This new method hacks the Self Service URL scheme to trigger the installations in the background *during* the Setup Manager phase.
+2. **User Experience**: By utilising the `open -j` flag, the Self Service GUI does not appear when Setup Manager is running. This drastically cleans up the ugly UX that I experienced from my testing in 2025.
+
+## Et voilà!
+
+This testing wasn't without its challenges, and whilst this does work in this example, I'd recommend ***thorough*** testing if you want to use this in your environment.
 
 Since I worked this process out, I've also had some subsequent thoughts on modernising this further which in early testing is proving successful.<br>
 That'll be the focus of a future blog post, coming soon™️!
