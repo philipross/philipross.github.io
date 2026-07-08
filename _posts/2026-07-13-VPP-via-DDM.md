@@ -16,26 +16,26 @@ By way of disclaimer - all of the testing shown in this post has been done on ma
 
 ## How do I do it?
 
-In my testing, there's certain conditions that need to be set before an App Store app will install through DDM.<br>
-I'm not sure if these are a result of using a Custom declaration, or how Jamf have implemented VPP.
+In my testing, there are certain conditions that need to be set before an App Store app will install through DDM.<br>
+I'm not sure if these are a result of using a Custom declaration, or how Jamf has implemented VPP.
 
 *Or* if this is a result of how the `com.apple.configuration.app` declaration type works on the macOS Platform.
 
 However, those conditions are as follows:
 
-**Firstly** the app *must* be available in your MDM already, so you must have gone through Apple Business, purchased licenses, and assigned them the appropriate Organisational Unit.
+**Firstly** the app *must* be available in your MDM already, so you must have gone through Apple Business, purchased licences, and assigned them the appropriate Organisational Unit.
   - This is a fairly obvious point, but I'll mention it anyway. There's no change here to how you do it today via the MDM channel.
 
 **Secondly**, the device(s) you're sending the Declaration to *must* be in scope of the App ***before*** pushing the declaration to the device.<br>
   - If you push the declaration to the device before the device is in scope of the App, it won't install. 
   - If you subsequently move the device into scope after the declaration has landed on the device, it still won't install.
-    - In that situation, you'd need to remove the declaration from the device, and re-push it to achieve the correct order or operations for the app to install.
+    - In that situation, you'd need to remove the declaration from the device, and re-push it to achieve the correct order of operations for the app to install.
 
 ### Got it. So...how do I do it?
 
-Now we've got the pre-reqs out of the way, let's get to it!
+Now we've got the prereqs out of the way, let's get to it!
 
-For my testing, I've added Slack, and Windows App to the VPP applications available in my Jamf Pro server:
+For my testing, I've added Slack and Windows App to the VPP applications available in my Jamf Pro server:
 ![Jamf Pro Mac Apps section showing Slack for Desktop, and Windows app under the App Store header](/assets/img/postImages/2026-07-13/01-Jamf-Pro-VPP-List.png)
 
 <!-- markdownlint-capture -->
@@ -55,10 +55,10 @@ At the time of writing, in Jamf Pro, there is no pre-built Blueprint component a
 You can see the declaration types are listed in alphabetical order, and the first one is `com.apple.configuration.audio-accessory.settings`, so it should be before that:
 ![A blank Jamf Pro Blueprint showing the components filtered to Declarative configurations](/assets/img/postImages/2026-07-13/04-Blueprint-creation-Jamf-Pro.png)
 
-For my Custom Blueprint, I've scoped it and deployed it to my test device:
+For my Blueprint, I've scoped it and deployed it to my test device:
 ![Slack deployment Blueprint showing deployed, and showing the contents of the custom declaration](/assets/img/postImages/2026-07-13/05-Blueprint-deployment-Jamf-Pro.png)
 
-The contents of my custom blueprint is:
+The contents of my custom declaration are:
 
 - Kind: **Configuration**
 - Channel: **System**
@@ -66,16 +66,16 @@ The contents of my custom blueprint is:
 - Payload:
 ```json
 {
-  "AppStoreID": "803453959",
-  "UpdateBehavior": {
-    "AutomaticAppUpdates": "AlwaysOn"
-  },
-  "InstallBehavior": {
-    "Install": "Required",
-    "License": {
-      "Assignment": "Device"
+    "AppStoreID": "803453959",
+    "UpdateBehavior": {
+        "AutomaticAppUpdates": "AlwaysOn"
+    },
+      "InstallBehavior": {
+        "Install": "Required",
+        "License": {
+          "Assignment": "Device"
+      }
     }
-  }
 }
 ```
 
@@ -91,7 +91,7 @@ The contents of my custom blueprint is:
   muted=true
 %}
 
-In the recording above it shows that as soon as the Declaration lands on the device, there's an `Slack.appdownload` entry present in the `/Applications` directory.<br>
+In the recording above it shows that as soon as the Declaration lands on the device, there's a `Slack.appdownload` entry in the `/Applications` directory.<br>
 Once the installation is complete, this disappears and is replaced with the `Slack.app` bundle that we know and love.
 
 This is a ***huge*** change from VPP installations over the MDM channel, as this displays progress of the installation directly to the user, without them using specific predicates within the unified logging system.
@@ -102,7 +102,7 @@ The App Declaration looks like this when expanded:
 
 ### How do I build the Custom Declaration?
 
-Apple's Developer Docs (for this specific Declaration)[https://developer.apple.com/documentation/devicemanagement/appmanaged] are a great place to start to learn how to structure the declaration payload required here.
+Apple's Developer Docs [for this specific Declaration](https://developer.apple.com/documentation/devicemanagement/appmanaged) are a great place to start to learn how to structure the declaration payload required here.
 
 There are some keys available that I've not included in this post, so this is not an exhaustive example of how this can be done.
 
@@ -138,6 +138,6 @@ Pretty simple stuff today, but hopefully useful to those who read it.
 
 I'd also like to point out - whilst I've used Jamf for testing purposes and creation of screenshots, this should work with any MDM that allows Custom Declarations, or that has built a UI around the `com.apple.configuration.app` declaration type.
 
-I don't have access to another MDM to test this, but I'd be happy to help you try this in your if you want to reach out.
+I don't have access to another MDM to test this, but I'd be happy to help you try this in your own environment if you want to reach out.
 
 
