@@ -157,3 +157,35 @@ For Slack, I then populated the following information:
 | Parameter 9 | SELF_SERVICE_NAME | Self Service+           |
 
 ![Policy script settings showing the parameter values](/assets/img/postImages/2026-07-09/04-Policy-Script-Parameter-Values.png)
+
+### What does it look like in action?
+
+Below you can see a recording of Jamf Setup Manager executing a very slimline set of actions. This is merely for demonstrating purposes, and I've sped the recording up so it's as quick to watch as possible.
+
+At the end of the recording, I open `Finder`, and nagivate to the `/Applications` directory to show that `Slack.app` is present on the device.<br>
+I also open the `/Applications/Slack.app` package contents to show the presence of the `_MASReceipt` directory, which is only present on installs of Apps from the Mac App Store.
+
+{%
+  include embed/video.html
+  src='/assets/img/postImages/2026-07-09/05-JSM-Run-through-VPP.mp4'
+  types='mov'
+  title='Jamf Setup Manager installing Slack through VPP'
+  autoplay=true
+  loop=true
+  muted=true
+%}
+
+Once that completed, we can see the policy logs report the output of the installation script, increasing in time and reporting a success when the `/Applications/Slack.app` path exists on the device.
+
+![Slack install policy logs from Jamf Pro](/assets/img/postImages/2026-07-09/06-Post-JSM-Policy-Logs.png)
+
+We can also see a Completed MDM command to `Install App - Slack for Desktop` in the Management history section of the computer record, further proving this has indeed been installed through VPP.
+
+![Management command history showing a successful command to install Slack for Desktop](/assets/img/postImages/2026-07-09/07-Post-JSM-Management-Commands.png)
+
+### Et voilà!
+
+This testing wasn't without it's challenges, and whilst this does work in this example, I'd recommend ***thorough*** testing if you want to use this in your environment.
+
+Since I worked this process out, I've also had some subsequent thoughts on modernising this further which in early testing is proving successful.<br>
+That'll be the focus of a future blog post, coming soon™️!
