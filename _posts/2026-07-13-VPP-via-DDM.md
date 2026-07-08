@@ -10,3 +10,6 @@ tags: [macOS, VPP, DDM, Blueprints]
 
 Apple actually released the `AppManaged` Declaration with the release of iOS/iPadOS 17.2, and it came to macOS with the macOS 26 Tahoe release. You can read more about it in the [Apple Developer Docs](https://developer.apple.com/documentation/devicemanagement/appmanaged).
 
+I hadn't really looked into this too much when it was first released, but since Apple announced during WWDC '26 that Declarative device management is *the standard* for Device Management with the AppleOS 27 releases, this triggered the curiosity and got my time-to-test juices flowing!
+
+By way of disclaimer - all of the testing shown in this post has been done on macOS 26 Tahoe.
