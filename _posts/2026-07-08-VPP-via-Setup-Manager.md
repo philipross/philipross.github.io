@@ -1,6 +1,6 @@
 ---
 title: "VPP via Setup Manager? Challenge accepted."
-date: 2026-07-09 11:00:00 +0100
+date: 2026-07-09 07:00:00 +0100
 description: "Since the release of Jamf Setup Manager, it's not been possible to install App Store Applications through VPP whilst running Setup Manager....until now!"
 categories: [Mac Management, Device Onboarding]
 tags: [Jamf Setup Manager, macOS, Setup Assistant, VPP]
@@ -36,7 +36,7 @@ This is an obstacle that's been irritating me for a while, and whilst I was sat 
 
 See where this is headed?
 
-Admittedly, I had actually thought of, and tested this process in March 2025 and shared this on the [Mac Admins Slack](https://macadmins.slack.com/archives/C078DDLKRDW/p1741008513379369?thread_ts=1741006453.784969&cid=C078DDLKRDW), but at the time the UX was ugly and I didn't spend much time trying to improve it.
+Admittedly, I had actually thought of, and tested this process in March 2025 and shared this on the [Mac Admins](https://www.macadmins.org/) [Slack](https://macadmins.slack.com/archives/C078DDLKRDW/p1741008513379369?thread_ts=1741006453.784969&cid=C078DDLKRDW), but at the time the UX was ugly and I didn't spend much time trying to improve it.
 
 However, being a Mac Admin requires constant learning, and learnings from my more recent post where I use [Jamf Setup Checklist to populate user details in Jamf Pro](https://philipross.github.io/posts/Jamf-Setup-Checklist-Populate-User-Details/) afforded me the ability to reattempt this.
 
