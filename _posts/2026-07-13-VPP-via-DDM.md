@@ -157,6 +157,41 @@ Using DDM to install a VPP Application now also *removes* the Application if the
 All I did in Jamf Pro here was remove the device from the Blueprint scope.<br>
 Once the declaration was removed from the device, you can see that the `/Applications/Slack.app` entry was removed *instantly*, which is a great improvement over the VPP App deployment purely on the MDM channel.
 
+## This is great...but I already install via MDM?
+
+I won't use the Professor Farnsworth GIF again, however do I have some good news for you!
+
+In my testing, if an App is already installed on the device through the MDM channel, you can push the Declaration for the App quite safely over the top and it will take over the Management of the App.
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+> If you then remove the Declaration from the device(s), this ***will remove*** the Application like I showed above.
+{: .prompt-warning }
+
+<!-- markdownlint-restore -->
+
+There's also a consideration that I feel warrants me throwing out the *Danger* warning here...
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+> I'm not trying to be sensationalist, but please, please, read this bit - you can easily end up in a deployment loop here!
+{: .prompt-danger }
+
+<!-- markdownlint-restore -->
+
+Consider this scenario:
+1. You use MDM to push out Slack.app via VPP, and you have this set to deploy *Automatically*
+2. Slack installs successfully on the device 
+3. You then push out a Declaration to takeover the installation of Slack, and you don't modify the VPP deployment in your MDM.
+4. Suddenly, your org decides to move to a new Application and Slack needs to be removed.
+5. You remove the Declaration, Slack uninstalls from your devices, nice work everyone.
+6. However, over a period of time, Slack starts re-appearing on your devices!
+
+What's happened here is that the Declaration removal has actioned the App removal, but because your devices then report to the MDM that they don't have Slack installed, and it's configured to install *Automatically*, it's been re-pushed over the MDM channel.
+
+Obviously I will recommend testing this in your environment, but and there's a few ways you can mitigate this, but we're all busy people so it could be easy for something like this to slip through.
+
+
 
 ## That's all there is to it!
 
