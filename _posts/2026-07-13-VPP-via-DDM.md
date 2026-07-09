@@ -139,10 +139,10 @@ Using MDM commands to install VPP Applications was great, until it came to remov
 - On iOS/iPadOS, removing the device(s) from the Application scope would trigger it to uninstall
 - On macOS, removing the device(s) from the Application scope would leave the Application in place, requiring alternative methods to do the device-side clean up.
 
-But..
+***HOWEVER...***<br>
 ![Futurama's Professor Farnsworth saying Good News Everyone!](/assets/img/postImages/2026-07-13/good-news-gif.gif){: width="480" height="270" .w-50}
 
-Using DDM to install a VPP Application now also *removes* the Applications if the declaration is removed from the device!
+Using DDM to install a VPP Application now also *removes* the Application if the declaration is removed from the device!
 
 
 
