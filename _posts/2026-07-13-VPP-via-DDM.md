@@ -8,9 +8,9 @@ tags: [macOS, VPP, DDM, Blueprints]
 
 ## VPP via DDM? When did this come about?
 
-Apple actually released the `AppManaged` Declaration with the release of iOS/iPadOS 17.2, and it came to macOS with the macOS 26 Tahoe release. You can read more about it in the [Apple Developer Docs](https://developer.apple.com/documentation/devicemanagement/appmanaged).
+Apple actually released the `AppManaged` Declaration with the release of iOS/iPadOS 17.2, and it came to macOS with the macOS 26 Tahoe release. You can read more about it in the [Apple Developer Docs](https://developer.apple.com/documentation/devicemanagement/appmanaged){:target="_blank"}.
 
-I hadn't really looked into this too much when it was first released, but since Apple announced during WWDC '26 that Declarative device management is *the standard* for Device Management with the AppleOS 27 releases, this triggered the curiosity and got my time-to-test juices flowing!
+I hadn't really looked into this too much when it was first released, but since Apple announced during WWDC '26 that Declarative device management is [*the standard*](https://youtu.be/XimrZukpOfg?si=1oGStl6ZWKhiW4sX&t=192){:target="_blank"} for Device Management with the AppleOS 27 releases, this triggered the curiosity and got my time-to-test juices flowing!
 
 By way of disclaimer - all of the testing shown in this post has been done on macOS 26 Tahoe.
 
@@ -102,7 +102,7 @@ The App Declaration looks like this when expanded:
 
 ### How do I build the Custom Declaration?
 
-Apple's Developer Docs [for this specific Declaration](https://developer.apple.com/documentation/devicemanagement/appmanaged) are a great place to start to learn how to structure the declaration payload required here.
+Apple's Developer Docs [for this specific Declaration](https://developer.apple.com/documentation/devicemanagement/appmanaged){:target="_blank"} are a great place to start to learn how to structure the declaration payload required here.
 
 There are some keys available that I've not included in this post, so this is not an exhaustive example of how this can be done.
 
