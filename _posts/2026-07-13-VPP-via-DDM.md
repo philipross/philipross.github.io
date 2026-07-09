@@ -140,11 +140,19 @@ Using MDM commands to install VPP Applications was great, until it came to remov
 - On macOS, removing the device(s) from the Application scope would leave the Application in place, requiring alternative methods to do the device-side clean up.
 
 ***HOWEVER...***<br>
-![Futurama's Professor Farnsworth saying Good News Everyone!](/assets/img/postImages/2026-07-13/good-news-gif.gif){: width="480" height="270" .w-50}
+![Futurama's Professor Farnsworth saying Good News Everyone!](/assets/img/postImages/2026-07-13/11-good-news-gif.gif){: width="480" height="270" .w-50}
 
 Using DDM to install a VPP Application now also *removes* the Application if the declaration is removed from the device!
 
-
+{%
+  include embed/video.html
+  src='/assets/img/postImages/2026-07-13/12-Declaration-removed-app-removal.mp4'
+  types='mov'
+  title='Slack being removed as Declaration is removed'
+  autoplay=true
+  loop=true
+  muted=true
+%}
 
 
 ## That's all there is to it!
