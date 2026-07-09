@@ -131,6 +131,21 @@ How....anticlimactic.
 
 Because the App wasn't in scope before the Declaration was deployed, the App didn't start to install.
 
+## Nice! But things have changed, and I need to remove an App...
+
+Application requirements in Enterprise are like a non-Newtonian fluid - rarely do they flow at a steady rate, and urgency can change depending on the push from the Organisation.
+
+Using MDM commands to install VPP Applications was great, until it came to remove an Application.<br>
+- On iOS/iPadOS, removing the device(s) from the Application scope would trigger it to uninstall
+- On macOS, removing the device(s) from the Application scope would leave the Application in place, requiring alternative methods to do the device-side clean up.
+
+But..
+![Futurama's Professor Farnsworth saying Good News Everyone!](/assets/img/postImages/2026-07-13/good-news-gif.gif){: width="480" height="270" .w-50}
+
+Using DDM to install a VPP Application now also *removes* the Applications if the declaration is removed from the device!
+
+
+
 
 ## That's all there is to it!
 
