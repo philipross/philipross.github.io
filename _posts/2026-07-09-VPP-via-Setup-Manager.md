@@ -1,6 +1,6 @@
 ---
 title: "VPP via Setup Manager? Challenge accepted."
-date: 2026-07-09 07:00:00 +0100
+date: 2026-07-09 07:01:00 +0100
 description: "Since the release of Jamf Setup Manager, it's not been possible to install App Store Applications through VPP whilst running Setup Manager....until now!"
 categories: [Mac Management, Device Onboarding]
 tags: [Jamf Setup Manager, macOS, Setup Assistant, VPP]
