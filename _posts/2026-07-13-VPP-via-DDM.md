@@ -154,6 +154,9 @@ Using DDM to install a VPP Application now also *removes* the Application if the
   muted=true
 %}
 
+All I did in Jamf Pro here was remove the device from the Blueprint scope.<br>
+Once the declaration was removed from the device, you can see that the `/Applications/Slack.app` entry was removed *instantly*, which is a great improvement over the VPP App deployment purely on the MDM channel.
+
 
 ## That's all there is to it!
 
