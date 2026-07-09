@@ -184,12 +184,12 @@ Consider this scenario:
 2. Slack installs successfully on the device 
 3. You then push out a Declaration to takeover the installation of Slack, and you don't modify the VPP deployment in your MDM.
 4. Suddenly, your org decides to move to a new Application and Slack needs to be removed.
-5. You remove the Declaration, Slack uninstalls from your devices, nice work everyone.
+5. You remove the Declaration, Slack uninstalls from your devices - nice work everyone.
 6. However, over a period of time, Slack starts re-appearing on your devices!
 
 What's happened here is that the Declaration removal has actioned the App removal, but because your devices then report to the MDM that they don't have Slack installed, and it's configured to install *Automatically*, it's been re-pushed over the MDM channel.
 
-Obviously I will recommend testing this in your environment, but and there's a few ways you can mitigate this, but we're all busy people so it could be easy for something like this to slip through.
+Obviously I will recommend testing this in your environment. There are a few ways you can mitigate this, but we're all busy people so it could be easy for something like this to slip through.
 
 
 
