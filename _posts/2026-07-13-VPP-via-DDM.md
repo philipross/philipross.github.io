@@ -1,6 +1,6 @@
 ---
 title: "Look Ma, No MDM commands! Deploying VPP apps using DDM"
-date: 2026-07-13 11:00:00 +0100
+date: 2026-07-13 14:30:00 +0100
 description: "DDM is the standard in Device Management, and you can move to install App Store apps on your devices via Declarative Device Management."
 categories: [Mac Management, Deployments]
 tags: [macOS, VPP, DDM, Blueprints]
@@ -190,6 +190,8 @@ Consider this scenario:
 What's happened here is that the Declaration removal has actioned the App removal, but because your devices then report to the MDM that they don't have Slack installed, and it's configured to install *Automatically*, it's been re-pushed over the MDM channel.
 
 Obviously I will recommend testing this in your environment. There are a few ways you can mitigate this, but we're all busy people so it could be easy for something like this to slip through.
+
+> P.S - If there's anyone from Salesforce reading this, I mean no harm! I used Slack as I was using it for my [previous post](https://philipross.github.io/posts/VPP-via-Setup-Manager/), and this is a semi-continuation. (And I love Slack ❤️)
 
 
 
