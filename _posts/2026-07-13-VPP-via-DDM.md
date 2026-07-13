@@ -1,6 +1,6 @@
 ---
 title: "Look Ma, No MDM commands! Deploying VPP apps using DDM"
-date: 2026-07-13 15:00:00 +0100
+date: 2026-07-13 15:00:01 +0100
 description: "DDM is the standard in Device Management, and you can move to install App Store apps on your devices via Declarative Device Management."
 categories: [Mac Management, Deployments]
 tags: [macOS, VPP, DDM, Blueprints]
