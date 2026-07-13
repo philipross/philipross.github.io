@@ -1,6 +1,6 @@
 ---
 title: "Look Ma, No MDM commands! Deploying VPP apps using DDM"
-date: 2026-07-13 14:30:00 +0100
+date: 2026-07-13 14:45:00 +0100
 description: "DDM is the standard in Device Management, and you can move to install App Store apps on your devices via Declarative Device Management."
 categories: [Mac Management, Deployments]
 tags: [macOS, VPP, DDM, Blueprints]
@@ -110,6 +110,14 @@ To find the `AppStoreID` value, this is listed in the URL for the App, when view
 ![App Store for Mac in a browser showing the Slack for Desktop app, with the ID in the URL highlighted](/assets/img/postImages/2026-07-13/08-AppStoreID-MAS-Web.png)
 Or, you can also find this same URL on the App record within Jamf Pro:
 ![Jamf Pro Mac Apps section showing the Slack for Desktop general settings, with the ID in the URL highlighted](/assets/img/postImages/2026-07-13/09-AppStoreID-JamfPro-Mac-Apps.png)
+
+According to the [docs](https://developer.apple.com/documentation/devicemanagement/appmanaged#:~:text=27%2B%20%7C%20visionOS%202.4%2B-,AppStoreID,-string){:target="_blank"}, you don't *have* to use the `AppStoreID` value. The docs say:
+> Only one of `AppStoreID`, `BundleID`, `ManifestURL`, or `AppComposedIdentifier` needs to be present.
+
+![Section of the Apple Developer docs showing the AppStoreID propery details](/assets/img/postImages/2026-07-13/09.1-docs-AppStoreID.png)
+
+`AppStoreID` and `BundleID` are applicable to App Store apps, so relevant for using with VPP.<br>
+`ManifestURL` and `AppComposedIdentifier` are not applicable with App Store apps, so not relevant in the context of this post, but maybe I'll be able to test these out in future...
 
 ## What about that Windows App demonstration?
 
