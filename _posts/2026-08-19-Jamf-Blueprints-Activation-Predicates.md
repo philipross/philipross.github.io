@@ -53,5 +53,9 @@ Now though, Apple have deprecated that configuration profile, and it's been conf
 ### So...what do I we do now then?
 
 ![Screenshot from Apple's "WWDC26: What's new in managing Apple devices" YouTube video, showing DDM is not the standard for device management](/assets/img/postImages/2026-08-19/1-DDM-is-standard.png){: .left}
-In line with Apple's WWDC26 statement about DDM being the *standard* for Device Management, the ability to configure Software Update settings via configuration profile will be removed, but Apple provided capability to manage these same settings via DDM with macOS Sequoia. More info can be found in [Apple's Developer Docs.](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettings)
+In line with Apple's WWDC26 statement about DDM being the <i>standard</i> for Device Management, the ability to configure Software Update settings via configuration profile will be removed, but Apple provided capability to manage these same settings via DDM with macOS Sequoia.
 
+[Apple's Developer Docs](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettings) contain more info on this.
+
+<br>
+Lorem
