@@ -58,4 +58,24 @@ In line with Apple's WWDC26 statement about DDM being the <i>standard</i> for De
 [Apple's Developer Docs](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettings) contain more info on this.
 
 <br>
-Lorem
+Within this declaration type, this example will make use of the `Beta` dictionary.
+
+This is a very stripped back example of what the declaration content will contain:
+
+```json
+"Payload": {
+    "Beta": {
+        "ProgramEnrollment": "Allowed"
+    }
+}
+```
+
+Declarative controls take a *most restrictive wins* approach to multiple keys with conflicting values.<br>
+If we push one declaration to the device that sets the `Beta` dictionary key value to `Allowed` or `AlwaysOn`, and an additional declaration that sets the same key value to `AlwaysOff`, the ability to access Beta OS versions will be denied due to the `AlwaysOff` control winning.
+
+To stack our controls, we first need to create a base configuration that will apply to *all* of our devices.
+
+[insert picture of Jamf Pro Blueprints]
+
+Notice that we've deliberately omitted the inclusion of any `Beta` controls here.<br>
+That's because this key will apply different values based on the permissions we want to set: some users will be allowed to access Beta versions, most will be denied.
