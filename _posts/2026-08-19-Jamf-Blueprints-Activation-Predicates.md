@@ -1,6 +1,6 @@
 ---
 title: "Admin-eers, standby... 3, 2, 1... ACTIVATE: Stacking DDM predicates to lean out Jamf Blueprints"
-date: 2026-08-19 08:00:00 +0100
+date: 2026-08-20 08:00:00 +0100
 description: "Activation Predicates are a powerful way of controlling which devices in your fleet are applied with which controls, without having to create and maintain endless blueprints and scoping groups."
 categories: [Mac Management, ]
 tags: [Jamf, macOS, DDM, Blueprints, Security]
@@ -52,7 +52,7 @@ Now though, Apple have deprecated that configuration profile, and it's been conf
 
 ### So...what do I we do now then?
 
-![Screenshot from Apple's "WWDC26: What's new in managing Apple devices" YouTube video, showing DDM is not the standard for device management](/assets/img/postImages/2026-08-19/1-DDM-is-standard.png){: .left}
+![Screenshot from Apple's "WWDC26: What's new in managing Apple devices" YouTube video, showing DDM is not the standard for device management](/assets/img/postImages/2026-08-20/1-DDM-is-standard.png){: .left}
 In line with Apple's WWDC26 statement about DDM being the <i>standard</i> for Device Management, the ability to configure Software Update settings via configuration profile will be removed, but Apple provided capability to manage these same settings via DDM with macOS Sequoia.
 
 [Apple's Developer Docs](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettings) contain more info on this.
@@ -75,7 +75,47 @@ If we push one declaration to the device that sets the `Beta` dictionary key val
 
 To stack our controls, we first need to create a base configuration that will apply to *all* of our devices.
 
-[insert picture of Jamf Pro Blueprints]
+![Screenshot of Software Update Settings Blueprint, with no beta controls applied.](/assets/img/postImages/2026-08-20/2-Sofware-Update-Settings-Core-Settings-Configuration.png)
 
 Notice that we've deliberately omitted the inclusion of any `Beta` controls here.<br>
 That's because this key will apply different values based on the permissions we want to set: some users will be allowed to access Beta versions, most will be denied.
+
+Make sure that the component block doesn't have any custom activation conditions set, so that it applies to all computers that are in your Blueprint scoping target.<br>
+Given this is core settings for all devices, I'm using `All Managed Clients` as my scoping target.
+![Screenshot of the Blueprint configuration, with component block and no activation condition](/assets/img/postImages/2026-08-20/3-Software-Update-Settings-Core-Settings-Activation.png)
+
+If we deploy this now, all of our devices will receive the controls, but as we've not set any Beta controls, all devices will be able to access the Beta seeds if they attempted to.<br>
+This is what that Declaration would look like, client side:
+![Declaration configuration shown in System Settings on the Client](/assets/img/postImages/2026-08-20/4-Client-Side-Core-Settings.png)
+
+### Okay, but Beta versions are still permitted?
+
+This is the fun bit!
+
+As declarative controls are 'most restrictive wins', we then want a secondary control that denies Beta access.<br>
+As we want Beta access on *some* devices where the use is approved, we're going to want to ensure that the restriction doesn't apply to all devices.
+
+This is where the activation predicates show their magic.
+
+<br>
+
+For the purposes of this demonstration, I've already setup a Static Group in Jamf Pro called: `Beta == Allowed`.
+
+I've added a second component block to my Blueprint called "Beta Updates denied", and configured the Software Update settings to disallow Beta updates:
+![Software Update Settings blueprint with second component block added, titled "Beta Updates denied". This block contains a Software Update Settings payload](/assets/img/postImages/2026-08-20/5-Software-Update-Settings-2nd-Component-Block.png)
+
+Here's the contents of the Software Update Settings contained in that second component block:
+![Configuration of the Software Update Settings configuration in the beta updates denied component block](/assets/img/postImages/2026-08-20/6-Software-Update-Settings-2nd-Component-Block-Configuration.png)
+
+Once that's saved, I've then modified the activation condition on the second component block, so that it only activates on devices that *are not* a member of the `Beta == Allowed` static group.
+
+{%
+  include embed/video.html
+  src='/assets/img/postImages/2026-08-20/7-Activation-Condition-Set.mp4'
+  types='mov'
+  title='Setting activation condition to static group'
+  autoplay=true
+  loop=true
+  muted=true
+%}
+
