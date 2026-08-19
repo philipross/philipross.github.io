@@ -177,7 +177,7 @@ So, if I want to permit this device to access Beta Seeds, I can add it to my `Be
 
 ## That's all there is to it!
 
-The above is just *one* example of what's possible leveraging activation predicates. There are lots of possibilities, and lots of power in the capability we're given here.<br>
+The above is just one example of what's possible leveraging activation predicates. There are lots of possibilities, and lots of power in the capability we're given here.<br>
 Used in the right way, and depending on the complexity of your organisation, it may help you to significantly reduce the number of Blueprints you need to maintain, helping you spend more time on other things.
 
 <br>
