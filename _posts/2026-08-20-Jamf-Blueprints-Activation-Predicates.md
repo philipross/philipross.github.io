@@ -8,7 +8,7 @@ tags: [Jamf, macOS, DDM, Blueprints, Security]
 
 ## What's an Activation Predicate?
 
-Whenever I hear the phrase _"Activation Predicate"_, my mind is instantly taken back to my lates 90s/early noughties childhood watching *Robot Wars* on a Friday evening.<br>
+Whenever I hear the phrase _"Activation Predicate"_, my mind is instantly taken back to my late 90s/early noughties childhood watching *Robot Wars* on a Friday evening.<br>
 
 I like to think that when a Declaration lands on an Apple device, it checks for any predicate-based activation conditions, and if it matches there's a tiny Craig Charles shouting *"3, 2, 1....ACTIVATE!"* and those settings are applied.
 
@@ -48,7 +48,7 @@ So you'd end up with something like this:
 This worked great.<br>
 All of your devices have *some* configuration applied to the Software Update settings, and you could easily allow a computer to access the Beta seeds by modifying its group memberships in Jamf Pro.
 
-Now though, Apple has deprecated that configuration profile, and it's been confirmed it's [*removed* in macOS 27.0](https://github.com/apple/device-management/blob/seed_OS_27_0/mdm/profiles/com.apple.SoftwareUpdate.yaml#L12){:target="_blank"}
+Now though, Apple has deprecated that configuration profile, and it has been confirmed to be [*removed* in macOS 27.0](https://github.com/apple/device-management/blob/seed_OS_27_0/mdm/profiles/com.apple.SoftwareUpdate.yaml#L12){:target="_blank"}
 
 ### So...what do we do now then?
 
@@ -93,7 +93,7 @@ This is what that Declaration would look like, client side:
 This is the fun bit!
 
 As declarative controls are 'most restrictive wins', we then want a secondary control that denies Beta access.<br>
-As we want Beta access on *some* devices where use is approved, we're going to want to ensure that the restriction doesn't apply to all devices.
+As we want Beta access on *some* devices where its use is approved, we're going to want to ensure that the restriction doesn't apply to all devices.
 
 This is where the activation predicates show their magic.
 
@@ -159,7 +159,7 @@ When we deploy this blueprint, the client-side declaration configuration only co
 ### Right-o, but I need to then allow some users to use Betas?
 
 So far this post has only shown applying core settings, then additionally a setting to deny betas.<br>
-This is because the snippets and detail so far have only included examples where the device is *not a member* of the static group I included in my activation condition.
+This is because the snippets and details so far have only included examples where the device is *not a member* of the static group I included in my activation condition.
 
 ![Computer record in Jamf Pro showing static group memberships of device](/assets/img/postImages/2026-08-20/12-Jamf-Pro-Computer-Record-Group-Memberships.png)
 
@@ -177,7 +177,7 @@ So, if I want to permit this device to access Beta Seeds, I can add it to my `Be
 
 ## That's all there is to it!
 
-The above is just one example of what's possible leveraging activation predicates. There are lots of possibilities, and lots of power in the capability we're given here.<br>
+The above is just one example of what's possible leveraging activation predicates. There are lots of possibilities and lots of power in the capability we're given here.<br>
 Used in the right way, and depending on the complexity of your organisation, it may help you to significantly reduce the number of Blueprints you need to maintain, helping you spend more time on other things.
 
 <br>
