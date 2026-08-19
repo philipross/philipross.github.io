@@ -16,9 +16,9 @@ In reality, Activation Predicates aren't nearly as exhilarating as watching home
 
 Apple's Deployment Guide states:
 
-    Activations can include optional predicates that determine whether the configurations referenced in the activation are applied to the device. 
-    ...
-    The benefit of activation predicates is in smart use cases, where you can preload devices with declarations, which automatically activate when the device management service sends the correct management property. This approach can help avoid complex grouping and scoping on the service side.
+> Activations can include optional predicates that determine whether the configurations referenced in the activation are applied to the device.<br> 
+>...<br>
+>The benefit of activation predicates is in smart use cases, where you can preload devices with declarations, which automatically activate when the device management service sends the correct management property. This approach can help avoid complex grouping and scoping on the service side.
 
 [Link to source](https://support.apple.com/en-gb/guide/deployment/depc30268577/web#:~:text=certificates%20and%20identities.-,Activation%20predicates,-Declarative%20device%20management){:target="_blank"}
 
