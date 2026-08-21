@@ -6,4 +6,73 @@ categories: [Mac Management]
 tags: [Jamf, macOS, DDM, Blueprints, MDM Migration, Apple Business]
 ---
 
+## What's an *MDM-Enabled* user?
+
+When looking at applying configurations to Apple Platforms, Apple gives us details on the Configuration Availability for which Platforms a control is applicable to.
+
+Taking the [Safari Extension declarative settings](https://developer.apple.com/documentation/devicemanagement/safariextensionsettings#Configuration-availability){:target="_blank"} as an example:
+
+![The configuration availability of Safari Extension declarative controls taken from Apple's Developer docs](/assets/img/postImages/2026-08-27/1-Safari-Extension-Configuration-Availability.png)
+
+We can see that this declaration is applicable to the system scope on iOS, and visionOS, but only the user scope on macOS and Shared iPad.<br>
+As this control is applicable to macOS *only on the user scope*, it can only be applied if there is an MDM-Enabled user on the macOS device.
+
+iOS doesn't really have the concept of "user accounts", so doesn't have a user scope.<br>
+iPadOS does, but only if it's set up to be Shared iPad, which requires specific configuration to enable.
+
+If there is no MDM-Enabled user on the Mac, admins cannot the user channel is not active, so no user configurations can be applied.
+
+## How does a user become MDM-Enabled?
+
+If you're provisioning your devices using Automated Device Enrolment (ADE) into a Device Mangement Service (DMS), your users may already be MDM-Enabled.<br>
+If you're not sure, [Rich Trouton](https://github.com/rtrouton){:target="_blank"} has a great Derflounder [post](https://derflounder.wordpress.com/2025/10/18/identifying-mdm-managed-user-accounts-using-system-information-on-macos-tahoe/){:target="_blank"} on how to identify MDM-Enabled users on macOS Tahoe which you could use on a fresh enrolment in your Org to check.<br>
+
+However, if you - like me - are skipping user creation in Setup Assistant, and handing JIT account creation over to a tool like Jamf Connect, your macOS users are most likely *not* MDM-Enabled.
+
+And this presents a big headache.
+
+## Ah crap.  My users aren't MDM-Enabled...what do I do?
+
+At the time of writing, Apple haven't formally given admins a way to retrospectively enable the user channel on macOS devices, and make existing users MDM-Enabled.
+
+It is possible to do it with the `profiles renew -type enrollment` command, however that comes with it's own constraints:
+
+- If a device is already enrolled in a DMS, running this command will renew enrolment, but will require admin credentials to authenticate the re-enrolment in System Settings.
+- If a device is ***not*** enrolled in a DMS, this command does not require admin credentials.
+    - This did require admin credentials prior to macOS Sequoia. [Source](https://support.apple.com/en-md/121011#:~:text=profiles%20renew%20%2Dtype,enrolled%20in%20MDM.){:target="_blank"}
+
+With those constraints taken into consideration, it sounds like we have 3 options:
+1. Modify our enrolment process, then wipe and re-enrol all our devices.
+2. Run `profiles renew -type enrollment` on all existing devices providing admin credentials to standard users, or elevating their permissions to do so.
+3. Remove the MDM profile from existing devices, and instruct users to run the re-enrolment themselves.
+
+None of these options sound great.<br>
+They either require a lot of work for admins, or are a high-risk approach involving elevating users to admin,  or temporarily losing management of devices and hoping users can/will run the re-enrolment themselves.
+
+sad-macadmin.png.
+
+<br>
+
+# However.
+
+There *is* a 4th option, which:
+- [x] Does not require wiping and re-enrolling
+- [x] Does not require modifying users permissions on their devices
+- [x] Does not leave devices in an unmanaged state for any period of time.
+
+I have two words for you: MDM Migration.
+
+When Apple released their AppleOS 26 releases, they also released a feature brand-new in the-product-formerly-known-as-Apple-Business-Manager (Apple Business) that allows admins to enforce devices migrate from one DMS, to another, without needing to wipe their devices.
+
+If you aren't aware of this feature, here are the relevant pages from the [Deployment Guide](https://support.apple.com/en-gb/guide/deployment/dep4acb2aa44/web){:target="_blank"} on the topic.
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+>The astute amongst you may well have spotted that this blog is heavily leant towards how to do things in Jamf. There's good reason for this - it's the only DMS I have access to.<br>
+>From herein, this post will be no exception, however I do hope that for admins reading this who use a different flavour of DMS, it's given you some inspiration to investigate how you could do this in the tooling you use.<br>
+>I'd be really interested to hear if you're able to leverage this approach in your environments.
+{: .prompt-warning }
+
+<!-- markdownlint-restore -->
 
