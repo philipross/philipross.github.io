@@ -76,3 +76,27 @@ If you aren't aware of this feature, here are the relevant pages from the [Deplo
 
 <!-- markdownlint-restore -->
 
+## Sounds like a lot of work...
+
+Honestly, it's not!
+
+I have quite a simple Jamf environment, and I also don't do any scoping based on pre-stage assignment.
+
+However I think this might be relatively straightforward for even the most complex environment.
+
+To use the MDM Migration feature in Apple Business, we need to have a different DMS to assign the device to.
+So, first step is to create that, and link the ADE token into Jamf Pro.<br>
+ - I won't cover that here, it's pretty bread and butter, and if you're already using ADE you'll have done it already. Never the less, here's the [docco from Jamf](https://learn.jamf.com/r/en-US/jamf-pro-documentation-current/Automated_Device_Enrollment_Integration){:target="_blank"}
+
+Once you've done that, I found the easiest step to take next was to clone your existing pre-stage. This keeps all of the existing configuration the same, but you will need to update the ADE Instance the pre-stage is linked to, and tick the "Automatically assign new devices" box.
+
+![Cloned pre-stage with the relevant sections highlighted](/assets/img/postImages/2026-08-27/2-Cloned-Prestage.png)
+
+
+Before we carry on, I think there's two problems that need to be solved here.
+1. Firstly, we need to make sure that any *new* enrolments are MDM-Enabled. 
+    - That's not the focus of this post, but really it should be the first thing you do. You don't want to be adding water into the bucket, whilst we're trying to empty it.
+    - This new pre-stage will possibly become your default moving forward, unless you want to migrate devices back again. If that's how you'll proceed, make those changes on this newly created prestage.
+2. Secondly, once you have that nailed, we need to retrofit this to our existing devices.
+    - That's what this post is focussing on.
+
