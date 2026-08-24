@@ -170,4 +170,4 @@ On this device, now it's been migrated, it shows `1`.
 ![Terminal showing the MDM profile contents grepped to the 'Migration' key](/assets/img/postImages/2026-08-27/12-PostMigration-Profiles-Migrated.png)
 
 On that note, I did migrate this device a number of times to test this process and to capture the screenshots for this post.<br>
-Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value.
+Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value, so this may be a one-way change on this key.
