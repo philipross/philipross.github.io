@@ -133,4 +133,43 @@ In a similar way to Managed Updates via DDM, when the MDM Migration prompt first
 <br>
 
 
-Lorem
+Once that's interacted with, the user is taken to System Settings and guided through a full screen enrolment process.
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+>Note there is a "Not Now" button available to select. I presume, this is because I've initiated it before the deadline, and that would not show up once the deadline is reached.... (I haven't tested that, though)
+{: .prompt-info }
+
+<!-- markdownlint-restore -->
+
+The next images show the process flow seen by the user of the device when they're completing the MDM-Migration process:
+
+![System Settings showing the start of the Migration process](/assets/img/postImages/2026-08-27/5-Migration-SystemSettings.png){: width="1670" height="1474" .w-50 }
+This is the screen displayed after the notification is interacted with
+![Full Screen enrolment page showing a deadline](/assets/img/postImages/2026-08-27/6-Migration-Enrol-Prompt.png){: width="1670" height="1474" .w-50 }
+![Enrolment prompt asking for credentials](/assets/img/postImages/2026-08-27/7-Migration-Enrol-Credentials.png){: width="1670" height="1474" .w-50 }
+![Enrolment flow removing current MDM profile](/assets/img/postImages/2026-08-27/8-Migration-Unenrol.png){: width="1670" height="1474" .w-50 }
+![Enrolment flow installing new MDM profile](/assets/img/postImages/2026-08-27/9-Migration-Reenrol.png){: width="1670" height="1474" .w-50 }
+![Enrolment flow showing enrolment complete](/assets/img/postImages/2026-08-27/10-Migration-Complete.png){: width="1670" height="1474" .w-50 }
+
+And that's it!
+
+That's *literally* all there is to it.
+
+## Nice, but how do we know the user is now MDM-Enabled?
+
+I thought that question might come up...
+
+Keeping my 90s TV show references going - here's a screenshot I prepared earlier:
+
+![Terminal showing the two commands proving logged in user is not admin, and now the user is MDM-Enabled](/assets/img/postImages/2026-08-27/11-PostMigration-Terminal.png)
+
+### Bonus info
+
+I also spotted, whilst testing this process, that there's a boolean key in the MDM Profile contents named `HasUndergoneMigration`.
+
+If your devices have never been through an MDM-Migration, it'll likely show `0`.<br>
+On this device, now it's been migrated, it shows `1`.
+![Terminal showing the MDM profile contents grepped to the 'Migration' key](/assets/img/postImages/2026-08-27/12-PostMigration-Profiles-Migrated.png)
+
+On this note, I did migrate this device a number of times to test this, and capture the screenshots for this post.<br>
+Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value.
