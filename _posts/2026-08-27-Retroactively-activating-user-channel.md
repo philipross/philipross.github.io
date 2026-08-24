@@ -46,7 +46,7 @@ I think there are two problems that need to be solved here.
 2. Secondly, once we have that nailed, we need to retrofit this to our existing devices.
     - That's what this post is focusing on.
 
-To support the retroactive enablement of the user channel via MDM-Migration, we'll need to create a new PreStage in Jamf Pro.
+To support the retroactive enablement of the user channel via MDM Migration, we'll need to create a new PreStage in Jamf Pro.
 
 This new PreStage will also give an opportunity to address point 1 above, _and_ enable point 2.
 
@@ -54,7 +54,7 @@ After this has been done, it's possible that this new PreStage may also become y
 
 ## Ah crap.  My users aren't MDM-Enabled...What do I do?
 
-At the time of writing, Apple haven't formally given admins a way to retroactively enable the user channel on macOS devices, and make existing users MDM-Enabled.
+At the time of writing, Apple haven't formally given admins a way to retroactively enable the user channel on macOS devices and make existing users MDM-Enabled.
 
 It is possible to do it with the `profiles renew -type enrollment` command, however that comes with its own constraints:
 
@@ -62,13 +62,13 @@ It is possible to do it with the `profiles renew -type enrollment` command, howe
 - If a device is ***not*** enrolled in a DMS, this command does not require admin credentials.
     - This did require admin credentials prior to macOS Sequoia. [Source](https://support.apple.com/en-md/121011#:~:text=profiles%20renew%20%2Dtype,enrolled%20in%20MDM.){:target="_blank"}
 
-With those constraints taken into consideration, it sounds like we have 3 options:
+With those constraints taken into consideration, it sounds like we have three options:
 1. Modify our enrolment process, then wipe and re-enrol all our devices.
 2. Run `profiles renew -type enrollment` on all existing devices providing admin credentials to standard users, or elevating their permissions to do so.
 3. Remove the MDM profile from existing devices and instruct users to run the re-enrolment themselves.
 
 None of these options sound great.<br>
-They either require a lot of work for admins, or are a high-risk approach involving elevating users to admin, or temporarily losing management of devices and hoping users can/will run the re-enrolment themselves.
+They either require a lot of work for admins, are a high-risk approach involving elevating users to admin, or temporarily losing management of devices and hoping users can/will run the re-enrolment themselves.
 
 sad-macadmin.png.
 
@@ -105,7 +105,7 @@ I have quite a simple Jamf environment, and I also don't do any scoping based on
 However I think this might be relatively straightforward for even the most complex environment.
 
 To use the MDM Migration feature in Apple Business, we need to have a different DMS to assign the device to.
-So, first step is to create that, and link the ADE token into Jamf Pro.<br>
+So, first step is to create that and link the ADE token into Jamf Pro.<br>
  - I won't cover that here, it's pretty bread and butter, and if you're already using ADE you'll have done it already. Nevertheless, here's the [docco from Jamf](https://learn.jamf.com/r/en-US/jamf-pro-documentation-current/Automated_Device_Enrollment_Integration){:target="_blank"}
 
 Once you've done that, I found the easiest step to take next is to clone your existing PreStage. This keeps all of the existing configuration the same, but you will need to update the ADE Instance the PreStage is linked to, and tick the "Automatically assign new devices" box.
@@ -127,7 +127,7 @@ Before we complete the migration, I took a screenshot to prove two things:
 <br>
 <br>
 
-In a similar way to Managed Updates via DDM, when the MDM Migration prompt first appears for a user they will see a notification in Notification Center.
+In a similar way to Managed Updates via DDM, when the MDM Migration prompt first appears for a user, they will see a notification in Notification Center.
 
 <br>
 <br>
@@ -140,7 +140,7 @@ Once they interact with that, the user is taken to System Settings and guided th
 
 <!-- markdownlint-restore -->
 
-The next images show the process flow seen by the user of the device when they're completing the MDM-Migration process:
+The next images show the process flow seen by the user of the device when they're completing the MDM Migration process:
 
 ![System Settings showing the start of the Migration process](/assets/img/postImages/2026-08-27/5-Migration-SystemSettings.png){: width="1670" height="1474" .w-75 }
 ![Full Screen enrolment page showing a deadline](/assets/img/postImages/2026-08-27/6-Migration-Enrol-Prompt.png){: width="1670" height="1474" .w-75 }
@@ -165,7 +165,7 @@ Keeping my 90s TV show references going - here's a screenshot I prepared earlier
 
 I also spotted while testing this process that there's a boolean key in the MDM Profile contents named `HasUndergoneMigration`.
 
-If your devices have never been through an MDM-Migration, it'll likely show `0`.<br>
+If your devices have never been through an MDM Migration, it'll likely show `0`.<br>
 On this device, now it's been migrated, it shows `1`.
 ![Terminal showing the MDM profile contents grepped to the 'Migration' key](/assets/img/postImages/2026-08-27/12-PostMigration-Profiles-Migrated.png)
 
