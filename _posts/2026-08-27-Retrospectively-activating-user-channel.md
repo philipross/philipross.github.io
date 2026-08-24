@@ -127,11 +127,12 @@ Before we complete the migration, I took a screenshot to prove two things:
 ![Terminal showing the two commands proving logged in user is not admin, and no MDM-Enabled user on system](/assets/img/postImages/2026-08-27/3-PreMigration-Terminal.png)
 ![Notification Center prompt for Migration starting](/assets/img/postImages/2026-08-27/4-Migration-Notification.png){: width="872" height="458" .w-50 .right} 
 <br>
+<br>
 
 In a similar way to Managed Updates via DDM, when the MDM Migration prompt first appears for a user they will see a notification in Notification Center.
 
 <br>
-
+<br>
 
 Once that's interacted with, the user is taken to System Settings and guided through a full screen enrolment process.
 <!-- markdownlint-capture -->
@@ -143,13 +144,12 @@ Once that's interacted with, the user is taken to System Settings and guided thr
 
 The next images show the process flow seen by the user of the device when they're completing the MDM-Migration process:
 
-![System Settings showing the start of the Migration process](/assets/img/postImages/2026-08-27/5-Migration-SystemSettings.png){: width="1670" height="1474" .w-50 }
-This is the screen displayed after the notification is interacted with
-![Full Screen enrolment page showing a deadline](/assets/img/postImages/2026-08-27/6-Migration-Enrol-Prompt.png){: width="1670" height="1474" .w-50 }
-![Enrolment prompt asking for credentials](/assets/img/postImages/2026-08-27/7-Migration-Enrol-Credentials.png){: width="1670" height="1474" .w-50 }
-![Enrolment flow removing current MDM profile](/assets/img/postImages/2026-08-27/8-Migration-Unenrol.png){: width="1670" height="1474" .w-50 }
-![Enrolment flow installing new MDM profile](/assets/img/postImages/2026-08-27/9-Migration-Reenrol.png){: width="1670" height="1474" .w-50 }
-![Enrolment flow showing enrolment complete](/assets/img/postImages/2026-08-27/10-Migration-Complete.png){: width="1670" height="1474" .w-50 }
+![System Settings showing the start of the Migration process](/assets/img/postImages/2026-08-27/5-Migration-SystemSettings.png){: width="1670" height="1474" .w-75 }
+![Full Screen enrolment page showing a deadline](/assets/img/postImages/2026-08-27/6-Migration-Enrol-Prompt.png){: width="1670" height="1474" .w-75 }
+![Enrolment prompt asking for credentials](/assets/img/postImages/2026-08-27/7-Migration-Enrol-Credentials.png){: width="1670" height="1474" .w-75 }
+![Enrolment flow removing current MDM profile](/assets/img/postImages/2026-08-27/8-Migration-Unenrol.png){: width="1670" height="1474" .w-75 }
+![Enrolment flow installing new MDM profile](/assets/img/postImages/2026-08-27/9-Migration-Reenrol.png){: width="1670" height="1474" .w-75 }
+![Enrolment flow showing enrolment complete](/assets/img/postImages/2026-08-27/10-Migration-Complete.png){: width="1670" height="1474" .w-75 }
 
 And that's it!
 
@@ -172,4 +172,4 @@ On this device, now it's been migrated, it shows `1`.
 ![Terminal showing the MDM profile contents grepped to the 'Migration' key](/assets/img/postImages/2026-08-27/12-PostMigration-Profiles-Migrated.png)
 
 On this note, I did migrate this device a number of times to test this, and capture the screenshots for this post.<br>
-Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value.
+Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value, so this key may well be a one-way ticket.
