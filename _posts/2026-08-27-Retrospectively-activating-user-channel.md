@@ -27,6 +27,8 @@ If there is no MDM-Enabled user on the Mac, admins cannot the user channel is no
 If you're provisioning your devices using Automated Device Enrolment (ADE) into a Device Mangement Service (DMS), your users may already be MDM-Enabled.<br>
 If you're not sure, [Rich Trouton](https://github.com/rtrouton){:target="_blank"} has a great Derflounder [post](https://derflounder.wordpress.com/2025/10/18/identifying-mdm-managed-user-accounts-using-system-information-on-macos-tahoe/){:target="_blank"} on how to identify MDM-Enabled users on macOS Tahoe which you could use on a fresh enrolment in your Org to check.<br>
 
+Jamf have some great [documentation](https://learn.jamf.com/r/en-US/jamf-pro-documentation-current/Enrollment_Methods_that_Enable_MDM_for_Users){:target="_blank"} about different enrolment methods for ensuring a users are created as MDM-Enabled
+
 However, if you - like me - are skipping user creation in Setup Assistant, and handing JIT account creation over to a tool like Jamf Connect, your macOS users are most likely *not* MDM-Enabled.
 
 And this presents a big headache.
