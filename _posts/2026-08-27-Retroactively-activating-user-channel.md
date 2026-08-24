@@ -1,5 +1,5 @@
 ---
-title: "Back to the Future: Retrospectively activating the macOS User Channel post-enrolment"
+title: "Back to the Future: Retroactively activating the macOS User Channel post-enrolment"
 date: 2026-08-27 08:00:00 +0100
 description: "For many organisations, their current macOS provisioning process doesn't make the user MDM-enabled. Here's an example of how you can activate that for your already enrolled devices."
 categories: [Mac Management]
@@ -8,16 +8,16 @@ tags: [Jamf, macOS, DDM, Blueprints, MDM Migration, Apple Business]
 
 ## What's an *MDM-Enabled* user?
 
-When looking at applying configurations to Apple OS platforms, Apple gives us details on the Configuration Availability for which platforms a control is applicable to.
+When applying configurations across Apple OS platforms, Apple gives us details on the Configuration Availability for which platforms a control is applicable to.
 
 Taking the [Safari Extension declarative settings](https://developer.apple.com/documentation/devicemanagement/safariextensionsettings#Configuration-availability){:target="_blank"} as an example:
 
 ![The configuration availability of Safari Extension declarative controls taken from Apple's Developer docs](/assets/img/postImages/2026-08-27/1-Safari-Extension-Configuration-Availability.png)
 
-We can see that this declaration is applicable to the system scope on iOS, and visionOS, but only the user scope on macOS and Shared iPad.<br>
+We can see that this declaration is applicable to the system scope on iOS and visionOS, but only the user scope on macOS and Shared iPad.<br>
 As this control is applicable to macOS *only on the user scope*, it can only be applied if there is an MDM-Enabled user on the macOS device.
 
-iOS doesn't really have the concept of "user accounts", so doesn't have a user scope.<br>
+iOS doesn't really have the concept of "user accounts", so it doesn't have a user scope.<br>
 iPadOS does, but only if it's set up to be Shared iPad, which requires specific configuration to enable.
 
 If there is no MDM-Enabled user on the Mac, the user channel is not active, so no user configurations can be applied.
@@ -46,15 +46,15 @@ I think there are two problems that need to be solved here.
 2. Secondly, once we have that nailed, we need to retrofit this to our existing devices.
     - That's what this post is focusing on.
 
-To support the retrospective enablement of the user channel via MDM-Migration, we'll need to create a new PreStage in Jamf Pro.
+To support the retroactive enablement of the user channel via MDM-Migration, we'll need to create a new PreStage in Jamf Pro.
 
 This new PreStage will also give an opportunity to address point 1 above, _and_ enable point 2.
 
-After this has been done, it's possible that this new PreStage may also become your default moving forward, so ensuring that devices enrolled using this new PreStage result in your users become MDM-Enabled from the get-go is important.
+After this has been done, it's possible that this new PreStage may also become your default moving forward, so ensuring that devices enrolled using this new PreStage result in your users becoming MDM-Enabled from the get-go is important.
 
 ## Ah crap.  My users aren't MDM-Enabled...What do I do?
 
-At the time of writing, Apple haven't formally given admins a way to retrospectively enable the user channel on macOS devices, and make existing users MDM-Enabled.
+At the time of writing, Apple haven't formally given admins a way to retroactively enable the user channel on macOS devices, and make existing users MDM-Enabled.
 
 It is possible to do it with the `profiles renew -type enrollment` command, however that comes with its own constraints:
 
@@ -65,7 +65,7 @@ It is possible to do it with the `profiles renew -type enrollment` command, howe
 With those constraints taken into consideration, it sounds like we have 3 options:
 1. Modify our enrolment process, then wipe and re-enrol all our devices.
 2. Run `profiles renew -type enrollment` on all existing devices providing admin credentials to standard users, or elevating their permissions to do so.
-3. Remove the MDM profile from existing devices, and instruct users to run the re-enrolment themselves.
+3. Remove the MDM profile from existing devices and instruct users to run the re-enrolment themselves.
 
 None of these options sound great.<br>
 They either require a lot of work for admins, or are a high-risk approach involving elevating users to admin, or temporarily losing management of devices and hoping users can/will run the re-enrolment themselves.
@@ -74,7 +74,7 @@ sad-macadmin.png.
 
 <br>
 
-However there *is* a 4th option, which:
+However, there *is* a 4th option, which:
 - [x] Does not require wiping and re-enrolling
 - [x] Does not require modifying users permissions on their devices
 - [x] Does not leave devices in an unmanaged state for any period of time.
@@ -100,7 +100,7 @@ If you aren't aware of this feature, here are the relevant pages from the [Deplo
 
 Honestly, it's not!
 
-I have quite a simple Jamf environment, and I also don't do any scoping based on pre-stage assignment.
+I have quite a simple Jamf environment, and I also don't do any scoping based on PreStage assignment.
 
 However I think this might be relatively straightforward for even the most complex environment.
 
@@ -108,9 +108,9 @@ To use the MDM Migration feature in Apple Business, we need to have a different 
 So, first step is to create that, and link the ADE token into Jamf Pro.<br>
  - I won't cover that here, it's pretty bread and butter, and if you're already using ADE you'll have done it already. Nevertheless, here's the [docco from Jamf](https://learn.jamf.com/r/en-US/jamf-pro-documentation-current/Automated_Device_Enrollment_Integration){:target="_blank"}
 
-Once you've done that, I found the easiest step to take next was to clone your existing PreStage. This keeps all of the existing configuration the same, but you will need to update the ADE Instance the pre-stage is linked to, and tick the "Automatically assign new devices" box.
+Once you've done that, I found the easiest step to take next is to clone your existing PreStage. This keeps all of the existing configuration the same, but you will need to update the ADE Instance the PreStage is linked to, and tick the "Automatically assign new devices" box.
 
-![Cloned pre-stage with the relevant sections highlighted](/assets/img/postImages/2026-08-27/2-Cloned-Prestage.png)
+![Cloned PreStage with the relevant sections highlighted](/assets/img/postImages/2026-08-27/2-Cloned-Prestage.png)
 
 Once we've got that done, we can modify the device assignment in Apple Business, set a deadline, and await the notification on the device to begin the process.
 If you don't see the option to set a deadline, then you'll need to ensure your device(s) meet the [requirements.](https://support.apple.com/en-gb/guide/business/axm3a49a769d/web#axmc1e982710){:target="_blank"}
@@ -135,7 +135,7 @@ In a similar way to Managed Updates via DDM, when the MDM Migration prompt first
 Once they interact with that, the user is taken to System Settings and guided through a full screen enrolment process.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
->Note that there is a "Not Now" button available to select. I presume, this is because I've initiated it before the deadline, and that would not show up once the deadline is reached.... (I haven't tested that, though)
+>Note that there is a "Not Now" button available to select. I presume this is because I've initiated it before the deadline, and that would not show up once the deadline is reached.... (I haven't tested that, though)
 {: .prompt-info }
 
 <!-- markdownlint-restore -->
@@ -169,5 +169,5 @@ If your devices have never been through an MDM-Migration, it'll likely show `0`.
 On this device, now it's been migrated, it shows `1`.
 ![Terminal showing the MDM profile contents grepped to the 'Migration' key](/assets/img/postImages/2026-08-27/12-PostMigration-Profiles-Migrated.png)
 
-On that note, I did migrate this device a number of times to test this, and capture the screenshots for this post.<br>
+On that note, I did migrate this device a number of times to test this process and to capture the screenshots for this post.<br>
 Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value.
