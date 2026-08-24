@@ -76,6 +76,26 @@ If you aren't aware of this feature, here are the relevant pages from the [Deplo
 
 <!-- markdownlint-restore -->
 
+## Sidebar
+
+Before we carry on, I wanted to explain my thinking.
+<br>
+
+
+I think there's two problems that need to be solved here.
+
+1. Firstly, we need to make sure that any *new* enrolments are MDM-Enabled. 
+    - That's not the focus of this post, but really it should be the first thing you do. You don't want to be adding water into the bucket, whilst we're trying to empty it.
+2. Secondly, once you have that nailed, we need to retrofit this to our existing devices.
+    - That's what this post is focussing on.
+
+To support the retrospective enablment of the user channel via MDM-Migration, we'll need to create a new PreStage in Jamf Pro.
+
+This new PreStage will also give an opportunity to address point 1 above, _and_ enable point 2.
+
+After this has been done, it's possible that this new PreStage may also become your default moving forward, so ensuring devices enrolled using this new PreStage ensure your users become MDM-Enabled from the get-go is important.
+
+
 ## Sounds like a lot of work...
 
 Honestly, it's not!
@@ -92,11 +112,20 @@ Once you've done that, I found the easiest step to take next was to clone your e
 
 ![Cloned pre-stage with the relevant sections highlighted](/assets/img/postImages/2026-08-27/2-Cloned-Prestage.png)
 
+Once we've got that done, we can modify the device assignment in Apple Business, set a deadline, and await the notification on the device to begin the process.
+If you don't see the option to set a deadline, then you'll need to ensure your device(s) meet the [requirements.](https://support.apple.com/en-gb/guide/business/axm3a49a769d/web#axmc1e982710){:target="_blank"}
 
-Before we carry on, I think there's two problems that need to be solved here.
-1. Firstly, we need to make sure that any *new* enrolments are MDM-Enabled. 
-    - That's not the focus of this post, but really it should be the first thing you do. You don't want to be adding water into the bucket, whilst we're trying to empty it.
-    - This new pre-stage will possibly become your default moving forward, unless you want to migrate devices back again. If that's how you'll proceed, make those changes on this newly created prestage.
-2. Secondly, once you have that nailed, we need to retrofit this to our existing devices.
-    - That's what this post is focussing on.
+### What does it look like on the device?
+
+Before we complete the migration, I took a screenshot to prove two things:
+1. The current logged in user is ***not*** an admin on the device. 
+    - We need this to work with standard users *and* admin users, and this proves it works for standard users.
+2. There is no MDM-Enabled user on the device already. 
+    - Running the command from Rich's post I linked earlier shows no results.
+
+![Terminal showing the two commands proving logged in user is not admin, and no MDM-Enabled user on system](/assets/img/postImages/2026-08-27/3-PreMigration-Terminal.png)
+
+
+When the MDM Migration prompt first appears for a user, they will see a notification in Notification Center:
+![Notification Center prompt for Migration starting](/assets/img/postImages/2026-08-27/4-Migration-Notification.png){: width="872" height="458" .w-75}
 
