@@ -33,7 +33,7 @@ However, if you - like me - are skipping user creation in Setup Assistant, and h
 
 And this presents a big headache.
 
-## Sidebar
+## The problem
 
 Before we carry on, I wanted to explain my thinking.
 <br>
