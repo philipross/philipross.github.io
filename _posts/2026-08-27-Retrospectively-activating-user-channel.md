@@ -33,6 +33,25 @@ However, if you - like me - are skipping user creation in Setup Assistant, and h
 
 And this presents a big headache.
 
+## Sidebar
+
+Before we carry on, I wanted to explain my thinking.
+<br>
+
+
+I think there are two problems that need to be solved here.
+
+1. Firstly, we need to make sure that any *new* enrolments are MDM-Enabled. 
+    - That's not the focus of this post, but really it should be the first thing we do. We don't want to be adding water to the bucket while trying to empty it.
+2. Secondly, once we have that nailed, we need to retrofit this to our existing devices.
+    - That's what this post is focusing on.
+
+To support the retrospective enablement of the user channel via MDM-Migration, we'll need to create a new PreStage in Jamf Pro.
+
+This new PreStage will also give an opportunity to address point 1 above, _and_ enable point 2.
+
+After this has been done, it's possible that this new PreStage may also become your default moving forward, so ensuring that devices enrolled using this new PreStage result in your users become MDM-Enabled from the get-go is important.
+
 ## Ah crap.  My users aren't MDM-Enabled...What do I do?
 
 At the time of writing, Apple haven't formally given admins a way to retrospectively enable the user channel on macOS devices, and make existing users MDM-Enabled.
@@ -75,25 +94,6 @@ If you aren't aware of this feature, here are the relevant pages from the [Deplo
 {: .prompt-warning }
 
 <!-- markdownlint-restore -->
-
-## Sidebar
-
-Before we carry on, I wanted to explain my thinking.
-<br>
-
-
-I think there are two problems that need to be solved here.
-
-1. Firstly, we need to make sure that any *new* enrolments are MDM-Enabled. 
-    - That's not the focus of this post, but really it should be the first thing we do. We don't want to be adding water to the bucket while trying to empty it.
-2. Secondly, once we have that nailed, we need to retrofit this to our existing devices.
-    - That's what this post is focusing on.
-
-To support the retrospective enablement of the user channel via MDM-Migration, we'll need to create a new PreStage in Jamf Pro.
-
-This new PreStage will also give an opportunity to address point 1 above, _and_ enable point 2.
-
-After this has been done, it's possible that this new PreStage may also become your default moving forward, so ensuring that devices enrolled using this new PreStage result in your users become MDM-Enabled from the get-go is important.
 
 
 ## Sounds like a lot of work...
