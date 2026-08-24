@@ -171,3 +171,15 @@ On this device, now it's been migrated, it shows `1`.
 
 On that note, I did migrate this device a number of times to test this process and to capture the screenshots for this post.<br>
 Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value, so this may be a one-way change on this key.
+
+### Couple of caveats
+
+There's a few gotchas that are worth calling out here.
+[Armin](https://github.com/scriptingosx){:target="_blank"} mentioned to me that in Jamf Pro, running this may re-trigger any policies attached to the `enrollment complete` trigger.<br>
+I also wonder, but haven't tested, that if your re-enrollment settings are set to flush policy logs, you might end up with policies attempting to reinstall.
+
+There's probably others too, but the list of combinations and environmental nuances could almost be infinite, and I do need to finish this post at *some* point!
+
+Ultimately, if you're interested in this approach, the only way to see what might happen for you would be to ***test in your own environment.***
+
+***And then test again!***
