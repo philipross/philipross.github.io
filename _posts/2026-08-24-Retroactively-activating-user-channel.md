@@ -1,6 +1,6 @@
 ---
 title: "Back to the Future: Retroactively activating the macOS User Channel post-enrolment"
-date: 2026-08-25 08:00:00 +0100
+date: 2026-08-24 14:30:00 +0100
 description: "For many organisations, their current macOS provisioning process doesn't make the user MDM-enabled. Here's an example of how you can activate that for your already enrolled devices."
 categories: [Mac Management]
 tags: [Jamf, macOS, DDM, Blueprints, MDM Migration, Apple Business]
@@ -12,7 +12,7 @@ When applying configurations across Apple OS platforms, Apple gives us details o
 
 Taking the [Safari Extension declarative settings](https://developer.apple.com/documentation/devicemanagement/safariextensionsettings#Configuration-availability){:target="_blank"} as an example:
 
-![The configuration availability of Safari Extension declarative controls taken from Apple's Developer docs](/assets/img/postImages/2026-08-25/1-Safari-Extension-Configuration-Availability.png)
+![The configuration availability of Safari Extension declarative controls taken from Apple's Developer docs](/assets/img/postImages/2026-08-24/1-Safari-Extension-Configuration-Availability.png)
 
 We can see that this declaration is applicable to the system scope on iOS and visionOS, but only the user scope on macOS and Shared iPad.<br>
 As this control is applicable to macOS *only on the user scope*, it can only be applied if there is an MDM-Enabled user on the macOS device.
@@ -110,7 +110,7 @@ So, first step is to create that and link the ADE token into Jamf Pro.<br>
 
 Once you've done that, I found the easiest step to take next is to clone your existing PreStage. This keeps all of the existing configuration the same, but you will need to update the ADE Instance the PreStage is linked to, and tick the "Automatically assign new devices" box.
 
-![Cloned PreStage with the relevant sections highlighted](/assets/img/postImages/2026-08-25/2-Cloned-Prestage.png)
+![Cloned PreStage with the relevant sections highlighted](/assets/img/postImages/2026-08-24/2-Cloned-Prestage.png)
 
 Once we've got that done, we can modify the device assignment in Apple Business, set a deadline, and await the notification on the device to begin the process.
 If you don't see the option to set a deadline, then you'll need to ensure your device(s) meet the [requirements.](https://support.apple.com/en-gb/guide/business/axm3a49a769d/web#axmc1e982710){:target="_blank"}
@@ -122,8 +122,8 @@ Before we complete the migration, I took a screenshot to prove two things:
     - We need this to work with standard users *and* admin users, and this proves it works for standard users.
 2. There is no MDM-Enabled user on the device already. 
     - Running the command from Rich's post I linked earlier shows no results.
-![Terminal showing the two commands proving the logged in user is not an admin, and no MDM-Enabled user on system](/assets/img/postImages/2026-08-25/3-PreMigration-Terminal.png)
-![Notification Center prompt for Migration starting](/assets/img/postImages/2026-08-25/4-Migration-Notification.png){: width="872" height="458" .w-50 .right} 
+![Terminal showing the two commands proving the logged in user is not an admin, and no MDM-Enabled user on system](/assets/img/postImages/2026-08-24/3-PreMigration-Terminal.png)
+![Notification Center prompt for Migration starting](/assets/img/postImages/2026-08-24/4-Migration-Notification.png){: width="872" height="458" .w-50 .right} 
 <br>
 <br>
 
@@ -142,12 +142,12 @@ Once they interact with that, the user is taken to System Settings and guided th
 
 The next images show the process flow seen by the user of the device when they're completing the MDM Migration process:
 
-![System Settings showing the start of the Migration process](/assets/img/postImages/2026-08-25/5-Migration-SystemSettings.png){: width="1670" height="1474" .w-75 }
-![Full Screen enrolment page showing a deadline](/assets/img/postImages/2026-08-25/6-Migration-Enrol-Prompt.png){: width="1670" height="1474" .w-75 }
-![Enrolment prompt asking for credentials](/assets/img/postImages/2026-08-25/7-Migration-Enrol-Credentials.png){: width="1670" height="1474" .w-75 }
-![Enrolment flow removing current MDM profile](/assets/img/postImages/2026-08-25/8-Migration-Unenrol.png){: width="1670" height="1474" .w-75 }
-![Enrolment flow installing new MDM profile](/assets/img/postImages/2026-08-25/9-Migration-Reenrol.png){: width="1670" height="1474" .w-75 }
-![Enrolment flow showing enrolment complete](/assets/img/postImages/2026-08-25/10-Migration-Complete.png){: width="1670" height="1474" .w-75 }
+![System Settings showing the start of the Migration process](/assets/img/postImages/2026-08-24/5-Migration-SystemSettings.png){: width="1670" height="1474" .w-75 }
+![Full Screen enrolment page showing a deadline](/assets/img/postImages/2026-08-24/6-Migration-Enrol-Prompt.png){: width="1670" height="1474" .w-75 }
+![Enrolment prompt asking for credentials](/assets/img/postImages/2026-08-24/7-Migration-Enrol-Credentials.png){: width="1670" height="1474" .w-75 }
+![Enrolment flow removing current MDM profile](/assets/img/postImages/2026-08-24/8-Migration-Unenrol.png){: width="1670" height="1474" .w-75 }
+![Enrolment flow installing new MDM profile](/assets/img/postImages/2026-08-24/9-Migration-Reenrol.png){: width="1670" height="1474" .w-75 }
+![Enrolment flow showing enrolment complete](/assets/img/postImages/2026-08-24/10-Migration-Complete.png){: width="1670" height="1474" .w-75 }
 
 And that's it!
 
@@ -159,7 +159,7 @@ I thought that question might come up...
 
 Keeping my 90s TV show references going - here's a screenshot I prepared earlier:
 
-![Terminal showing the two commands proving logged in user is not admin, and now the user is MDM-Enabled](/assets/img/postImages/2026-08-25/11-PostMigration-Terminal.png)
+![Terminal showing the two commands proving logged in user is not admin, and now the user is MDM-Enabled](/assets/img/postImages/2026-08-24/11-PostMigration-Terminal.png)
 
 ### Bonus info
 
@@ -167,7 +167,7 @@ I also spotted while testing this process that there's a boolean key in the MDM 
 
 If your devices have never been through an MDM Migration, it'll likely show `0`.<br>
 On this device, now it's been migrated, it shows `1`.
-![Terminal showing the MDM profile contents grepped to the 'Migration' key](/assets/img/postImages/2026-08-25/12-PostMigration-Profiles-Migrated.png)
+![Terminal showing the MDM profile contents grepped to the 'Migration' key](/assets/img/postImages/2026-08-24/12-PostMigration-Profiles-Migrated.png)
 
 On that note, I did migrate this device a number of times to test this process and to capture the screenshots for this post.<br>
 Even after reverting the device assignment and reinstalling macOS via a DFU Restore, this key persisted with the `1` value, so this may be a one-way change on this key.
