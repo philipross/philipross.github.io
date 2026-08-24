@@ -124,10 +124,13 @@ Before we complete the migration, I took a screenshot to prove two things:
     - We need this to work with standard users *and* admin users, and this proves it works for standard users.
 2. There is no MDM-Enabled user on the device already. 
     - Running the command from Rich's post I linked earlier shows no results.
-
 ![Terminal showing the two commands proving logged in user is not admin, and no MDM-Enabled user on system](/assets/img/postImages/2026-08-27/3-PreMigration-Terminal.png)
+![Notification Center prompt for Migration starting](/assets/img/postImages/2026-08-27/4-Migration-Notification.png){: width="872" height="458" .w-50 .right} 
+<br>
+
+In a similar way to Managed Updates via DDM, when the MDM Migration prompt first appears for a user they will see a notification in Notification Center.
+
+<br>
 
 
-When the MDM Migration prompt first appears for a user, they will see a notification in Notification Center:
-![Notification Center prompt for Migration starting](/assets/img/postImages/2026-08-27/4-Migration-Notification.png){: width="872" height="458" .w-75}
-
+Lorem
