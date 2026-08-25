@@ -69,9 +69,9 @@ However, Apple have already released functionality within macOS to make this a m
 
 To make this as straightforward as possible, you can leverage these settings to specify a Minimum OS version at enrolment, and either:
 - Set it to 15.5 explicitly<br>
-    ![Image showing ADE Minimum OS version set to 15.5 in Jamf Pro PreStage](/assets/img/postImages/ADE-Minimum-15.5.png)
+    ![Image showing ADE Minimum OS version set to 15.5 in Jamf Pro PreStage](/assets/img/postImages/2025-05-12/ADE-Minimum-15.5.png)
 - Set it to the Latest Major version available
-    ![Image showing ADE Minimum OS version set to Latest Major Version in Jamf Pro PreStage](/assets/img/postImages/ADE-Minimum-LatestMajor.png)
+    ![Image showing ADE Minimum OS version set to Latest Major Version in Jamf Pro PreStage](/assets/img/postImages/2025-05-12/ADE-Minimum-LatestMajor.png)
 
 By setting one of these options, *any* macOS client that's not on 15.5 should be forced to update its OS during Setup Assistant, before enrolment into MDM can complete.
 
