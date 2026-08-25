@@ -86,3 +86,5 @@ The tool deliberately has different ways to configure it to make it mouldable to
 
 But I would consider my previous point as the closet thing to best practice I'm prepared to declare:
 - Make sure you join AppleSeed for IT if you're able to. You can get hands-on with Beta versions of macOS before they're released, and find solutions for your organsation before the GA release.
+
+  
