@@ -46,9 +46,7 @@ I think there are two problems that need to be solved here.
 2. Secondly, once we have that nailed, we need to retrofit this to our existing devices.
     - That's what this post is focusing on.
 
-To support the retroactive enablement of the user channel via MDM Migration, we'll need to create a new PreStage in Jamf Pro.
-
-This new PreStage will also give an opportunity to address point 1 above, _and_ enable point 2.
+Creating a new PreStage will give an opportunity to address point 1 above, _and_ enable point 2.
 
 After this has been done, it's possible that this new PreStage may also become your default moving forward, so ensuring that devices enrolled using this new PreStage result in your users becoming MDM-Enabled from the get-go is important.
 
