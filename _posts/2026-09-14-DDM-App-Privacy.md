@@ -8,8 +8,8 @@ tags: [Jamf, macOS, DDM, Blueprints, App Privacy]
 
 ## What is *App Privacy*?
 
-Apple's approach to privacy is well known, and well [documented](https://www.apple.com/in/privacy/control/){:target="_blank"}.<br>
-For an App to have access to your Camera, Photos, Calendar, Reminders, Local Network, Location, Microphone... (the list does go on!) this permission ***must*** be expressely given by **you**.
+Apple's approach to privacy is well-known and well [documented](https://www.apple.com/in/privacy/control/){:target="_blank"}.<br>
+For an app to have access to your Camera, Photos, Calendar, Reminders, Local Network, Location, Microphone... (the list does go on!) this permission ***must*** be expressly given by **you**.
 
 If you've been using or managing Macs through the recent Tahoe era, you'll most likely be familiar with this pop-up:<br>
 ![Privacy Prompt where Google Chrome is asking permission to find devices on the local network](/assets/img/postImages/2026-09-14/1-Chrome-local-network-popup.png)
@@ -20,18 +20,20 @@ macOS 27 Golden Gate takes a step forward in helping smooth that path for Mac Ad
 
 ## How is this going to help me, or my users?
 
-At WWDC26, Apple announced a [consolidated privacy prompt](https://www.youtube.com/watch?v=XimrZukpOfg&t=656s){:target="_blank"}. This replaces prompts for individual permissions that appear when an App, or a website accessed via Safari, try to use a feature on the device that requires user permission.
+At WWDC26, Apple announced a [consolidated privacy prompt](https://www.youtube.com/watch?v=XimrZukpOfg&t=656s){:target="_blank"}. This replaces prompts for individual permissions that appear when an app, or a website accessed via Safari, try to use a feature on the device that requires user permission.
 
-So instead of a user getting a prompt to allow access Location services, and then a second prompt to allow access to the Camera, and then a third prompt to allow access to the Local Network, and then a fourth prompt....<br>
+So instead of a user getting a prompt to allow access to Location Services, and then a second prompt to allow access to the Camera, and then a third prompt to allow access to the Local Network, and then a fourth prompt....*(need I go on??)*<br>
 The user now gets a single prompt to allow all of the necessary permissions as defined by their organisation.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
->Important to note: the user can still deny this access.  This does not silently enable it for them, it's simply guiding the user to set the correct permissions, all in a single click
+>Important to note: the user can still deny this access.  This does not silently enable it for them; it simply guides the user to set the correct permissions, all in a single click.
 {: .prompt-info }
 
 <!-- markdownlint-restore -->
+
+
 
 ## Sounds useful! How do I do it?
 
@@ -49,27 +51,28 @@ However, to keep this post relevant to Mac Admins who may not use Jamf, I'll tou
 
 In both cases, I'll be using the Zoom Workplace desktop app for the examples here.
 
-To build the Declaration, in a similar way to PPPC/TCC profiles, you need to point the declaration to the relevant app by using the Bundle-ID, and the Designated Requirement.
+To build the Declaration, in a similar way to PPPC/TCC profiles, you need to point the declaration to the relevant app by using the Bundle ID and the Designated Requirement.
 
-To get the Bundle-ID of an App, run the following in Terminal:
+To get the Bundle ID of an app, run the following in Terminal:
 ```terminal
 codesign -dv /Applications/zoom.us.app
 ```
-And the Bundle-ID is returned with the header `Identifier`
-![Terminal window showing the output of the codesign command to obtain the Bundle-ID](/assets/img/postImages/2026-09-14/2-App-Bundle-ID.png)
+And the Bundle ID is returned with the header `Identifier`.
+![Terminal window showing the output of the codesign command to obtain the Bundle ID](/assets/img/postImages/2026-09-14/2-App-Bundle-ID.png)
 
 
-To get the Designated Requirement, it's the following command:<br>
+
+To get the Designated Requirement, run the following command:<br>
 ```terminal
 codesign -d -r - /Applications/zoom.us.app
 ```
-The bit we need here is everything after `designated =>`
+The part we need here is everything after *`designated =>`*
 ![Terminal window showing the output of the codesign command to obtain the Designated Requirement](/assets/img/postImages/2026-09-14/3-App-Designated-Requirement.png)
 
 
 #### Custom Declaration
 
-Now we've got all of the relevant information it's time to create the declaration.
+Now that we've got all the relevant information, it's time to create the declaration.
 
 The contents of my custom declaration are:
 
@@ -93,7 +96,7 @@ The contents of my custom declaration are:
 }
 ```
 
-Note that because this is JSON, it's important to escape the double quotes else the JSON object will not be valid.
+Note that because this is JSON, it's important to escape the double quotes or else the JSON object will not be valid.
 
 ![Blueprints showing the custom declaration configured](/assets/img/postImages/2026-09-14/4-Custom-Declaration.png)
 
@@ -111,25 +114,32 @@ We can see the Declaration lands on the client:
 
 Next time I launch Zoom, I'm presented with the consolidated prompt to allow the services configured in my Declaration.
 
-![Consolidated privacy prompt asking me to approve the permissions for Camera, Microphone, and Device Control and Data Access, formerly called Accessibility](/assets/img/postImages/2026-09-14/6-Consolidated%20prompt.png)
+![Consolidated privacy prompt asking me to approve the permissions for Camera, Microphone, and Device Control and Data Access, formerly called Accessibility](/assets/img/postImages/2026-09-14/6-Consolidated-prompt.png)
 
-I noticed that I wasn't prompted to approve Local Network access at this time, but this looks to be because Zoom haven't included Local Network in the App entitlements, and the App hasn't yet attempted to communicate with devices on my local network.
+I noticed that I wasn't prompted to approve Local Network access at this time, but this looks to be because Zoom hasn't included Local Network in the app entitlements, and the app hasn't yet attempted to communicate with devices on my local network.
 
-Also note that Apple have renamed `Accessibility` to `Device Control and Data Access` within the OS.
+Also note that Apple has renamed `Accessibility` to `Device Control and Data Access` within the OS.
 
 #### Jamf Blueprints UI
 
-To do this in the Blueprints UI, we will make use of the new `App Settings` component within Blueprints:
+Using custom declarations is great, but Jamf have made this easier by introducing native support within the Blueprints UI.
+
+The new `App Settings` component automatically formats the payload, meaning you can bypass the manual JSON object construction altogether.<br>
+If you’ve ever lost twenty minutes of your life hunting down a missing backslash or an unescaped double quote in a JSON payload, this UI will save you that headache.
+
 ![App Settings configuration in Jamf Pro Blueprints](/assets/img/postImages/2026-09-14/7-New-App-Settings-Declaration.png)
 
-The `key` field in Blueprints is the app identifer - which in macOS is the composed identifier using the Bundle-ID, and the Designated Requirement.<br>
-Because we're not creating the JSON ourselves, we don't need to add the double quotes, or escape any characters that would invalidate the JSON object.
+To get started, the `key` field in Blueprints is for the app's identifier - which in macOS is the composed identifier using the Bundle ID and the Designated Requirement.<br>
+Because Blueprints builds the underlying JSON structure for you, you can paste the verbose output from your `codesign` commands without needing to escape quotes.
+
 ![Blueprint with the app identified added in](/assets/img/postImages/2026-09-14/8-Privacy-Declaration.png)
 
-When selecting configure, we can choose the default permissions for the services we want to include within the configuration:
+When selecting Configure, you're presented with drop-down controls to select the default permissions for whichever services you want to include in the declaration:
+
 ![Blueprint showing choices of the default permissions](/assets/img/postImages/2026-09-14/9-Privacy-Declaration-configure-permissions.png)
 
-Once that's completed, updating the configuration will then allow you to add the settings to the blueprint, ready for deployment.
+Once selected, saving the settings adds the configuration directly to your blueprint, ready to deploy across your devices.
+
 ![Blueprint showing the confirmed settings](/assets/img/postImages/2026-09-14/10-Privacy-Declaration-Configured.png)
 ![Showing the full configuration, ready to be added to the blueprint](/assets/img/postImages/2026-09-14/11-Blueprint-Configured.png)
 
@@ -141,11 +151,20 @@ It might take a bit of time to get the configurations crafted, tested, and deplo
 
 ### Important points about deprecations.
 
-As a result of these controls now moving into the DDM spec, Apple have announced that the PPPC/TCC method of deploying profiles for controls of `Camera`, `Microphone`, `Accessibility`, `Speech Recognition`, and `BluetoothAlways` are deprecated.
+As a result of these controls now moving into the DDM spec, Apple have announced the deprecation for controls of `Camera`, `Microphone`, `Accessibility`, `Speech Recognition`, and `BluetoothAlways` using a PPPC/TCC configuration profile.
 
-This doesn't mean *removed*, but it's a show across the bow to move your controls to DDM (if you can), and that you won't get support if you encounter issues using a deprecated control.
+This doesn't mean *removed*, but it's a shot across the bow to move your controls to DDM (if you can), and that you may not get support if you encounter issues using a deprecated control.
 
-`Accessibility` is a unique case, here.<br>
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+>`Accessibility` also has some other changes to how it works via PPPC/TCC on macOS 27.
+>
+>*These are detailed below.*
+{: .prompt-warning }
+
+<!-- markdownlint-restore -->
+
 If you've got existing PPPC/TCC profiles for `Accessibility`, they will continue to enable this setting ***but*** users will see a new notification alerting them to this.
 
 ![UNC notification for accessibility prompt](/assets/img/postImages/2026-09-14/12-New-Accessibility-UNC.png)
@@ -155,9 +174,11 @@ Not only will the user get this new notification, they'll also be able to *disab
 ***It is no longer greyed out.***
 
 > *"In macOS 27.0, the device shows a non-blocking notification for each application when this setting is applied, and it allows the user to make changes to the setting in the System Settings app."*
-<br>[Source](https://github.com/apple/device-management/blob/seed_OS_27_0/mdm/profiles/com.apple.TCC.configuration-profile-policy.yaml#L166){:target="_blank"}
 
-*And*, this notification also seems to display for *any* app that you have a PPPC/TCC profile installed where `Accessibility` installed, even if the app isn't installed on the device.<br>
+[Source](https://github.com/apple/device-management/blob/seed_OS_27_0/mdm/profiles/com.apple.TCC.configuration-profile-policy.yaml#L166){:target="_blank"}
+
+*And* this notification also seems to display for any app where you have a PPPC/TCC profile with `Accessibility` installed - even if the app itself isn't on the device.<br>
+
 So if you pre-deploy PPPC/TCC profiles for apps that your users *might* install, this could be quite noisy.
 
 <br>
@@ -166,4 +187,4 @@ So if you pre-deploy PPPC/TCC profiles for apps that your users *might* install,
 
 ##### Catch you next time!
 
-That's all I've got today, all that remains is for me to wish you Happy Release day, and good fortune for the journey of AppleOS 27!
+That's all I've got today, so all that remains is for me to wish you Happy Release Day and good fortune for the journey of AppleOS 27!
