@@ -1,6 +1,6 @@
 ---
 title: "App Privacy, Declarative Style: Reducing privacy prompt fatigue in macOS 27"
-date: 2026-09-14 18:00:00 +0100
+date: 2026-09-14 18:25:00 +0100
 description: "Say goodbye to endless permission pop-ups with macOS 27 Golden Gate. An example of how using the new App Privacy declaration type can cut down the number of prompts seen by your users."
 categories: [Mac Management, Device Configuration]
 tags: [Jamf, macOS, DDM, Blueprints, App Privacy]
