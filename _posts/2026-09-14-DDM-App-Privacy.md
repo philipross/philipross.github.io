@@ -136,3 +136,34 @@ Once that's completed, updating the configuration will then allow you to add the
 
 ## That's it!
 
+That's all there is for configuring the new App Privacy Declaration.<br>
+It might take a bit of time to get the configurations crafted, tested, and deployed to your fleet, but hopefully this short post gives you an example of what you can do with this new control if you haven't been testing it during the Betas.
+
+### Important points about deprecations.
+
+As a result of these controls now moving into the DDM spec, Apple have announced that the PPPC/TCC method of deploying profiles for controls of `Camera`, `Microphone`, `Accessibility`, `Speech Recognition`, and `BluetoothAlways` are deprecated.
+
+This doesn't mean *removed*, but it's a show across the bow to move your controls to DDM (if you can), and that you won't get support if you encounter issues using a deprecated control.
+
+`Accessibility` is a unique case, here.<br>
+If you've got existing PPPC/TCC profiles for `Accessibility`, they will continue to enable this setting ***but*** users will see a new notification alerting them to this.
+
+![UNC notification for accessibility prompt](/assets/img/postImages/2026-09-14/12-New-Accessibility-UNC.png)
+
+Not only will the user get this new notification, they'll also be able to *disable* the control in System Settings, if they wanted to. 
+
+***It is no longer greyed out.***
+
+> *"In macOS 27.0, the device shows a non-blocking notification for each application when this setting is applied, and it allows the user to make changes to the setting in the System Settings app."*
+<br>[Source](https://github.com/apple/device-management/blob/seed_OS_27_0/mdm/profiles/com.apple.TCC.configuration-profile-policy.yaml#L166){:target="_blank"}
+
+*And*, this notification also seems to display for *any* app that you have a PPPC/TCC profile installed where `Accessibility` installed, even if the app isn't installed on the device.<br>
+So if you pre-deploy PPPC/TCC profiles for apps that your users *might* install, this could be quite noisy.
+
+<br>
+
+<br>
+
+##### Catch you next time!
+
+That's all I've got today, all that remains is for me to wish you Happy Release day, and good fortune for the journey of AppleOS 27!
