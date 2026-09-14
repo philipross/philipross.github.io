@@ -96,3 +96,16 @@ The contents of my custom declaration are:
 Note that because this is JSON, it's important to escape the double quotes else the JSON object will not be valid.
 
 ![Blueprints showing the custom declaration configured](/assets/img/postImages/2026-09-14/4-Custom-Declaration.png)
+
+We can see the Declaration lands on the client:
+
+{%
+  include embed/video.html
+  src='/assets/img/postImages/2026-09-14/5-Declaration-Client-side.mp4'
+  types='mov'
+  title='App Privacy declaration installing on client'
+  autoplay=true
+  loop=true
+  muted=true
+%}
+
