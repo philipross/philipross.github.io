@@ -69,3 +69,30 @@ The bit we need here is everything after `designated =>`
 
 #### Custom Declaration
 
+Now we've got all of the relevant information it's time to create the declaration.
+
+The contents of my custom declaration are:
+
+- Kind: **Configuration**
+- Channel: **User**
+- Type: **com.apple.configuration.app.settings**
+- Payload:
+```json
+{
+  "Privacy": {
+    "PermissionDefaults": {
+      "us.zoom.xos {identifier \"us.zoom.xos\" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = BJ4HAAB9B3}": {
+        "Camera": "Allow",
+        "Microphone": "Allow",
+        "LocalNetwork": "Allow",
+        "Accessibility": "Allow",
+        "OrganizationJustification": "This app is used for Video Conferencing"
+      }
+    }
+  }
+}
+```
+
+Note that because this is JSON, it's important to escape the double quotes else the JSON object will not be valid.
+
+![Blueprints showing the custom declaration configured](/assets/img/postImages/2026-09-14/4-Custom-Declaration.png)
