@@ -47,6 +47,25 @@ However, to keep this post relevant to Mac Admins who may not use Jamf, I'll tou
 
 <!-- markdownlint-restore -->
 
+In both cases, I'll be using the Zoom Workplace desktop app for the examples here.
+
+To build the Declaration, in a similar way to PPPC/TCC profiles, you need to point the declaration to the relevant app by using the Bundle-ID, and the Designated Requirement.
+
+To get the Bundle-ID of an App, run the following in *Terminal*:
+```terminal
+codesign -dv /Applications/zoom.us.app
+```
+![Terminal window showing the output of the codesign command to obtain the Bundle-ID](/assets/img/postImages/2026-09-14/2-App-Bundle-ID.png)
+The Bundle-ID is returned with the header *Identifier*
+
+<br>
+
+To get the Designated Requirement, it's the following command:<br>
+```terminal
+codesign -d -r - /Applications/zoom.us.app
+```
+![Terminal window showing the output of the codesign command to obtain the Designated Requirement](/assets/img/postImages/2026-09-14/3-App-Designated-Requirement.png)
+
 
 #### Custom Declaration
 
