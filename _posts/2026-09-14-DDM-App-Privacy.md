@@ -55,10 +55,9 @@ To get the Bundle-ID of an App, run the following in Terminal:
 ```terminal
 codesign -dv /Applications/zoom.us.app
 ```
+And the Bundle-ID is returned with the header *Identifier*
 ![Terminal window showing the output of the codesign command to obtain the Bundle-ID](/assets/img/postImages/2026-09-14/2-App-Bundle-ID.png)
-The Bundle-ID is returned with the header Identifier
 
-<br>
 
 To get the Designated Requirement, it's the following command:<br>
 ```terminal
