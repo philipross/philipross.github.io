@@ -122,7 +122,7 @@ Also note that Apple have renamed `Accessibility` to `Device Control and Data Ac
 To do this in the Blueprints UI, we will make use of the new `App Settings` component within Blueprints:
 ![App Settings configuration in Jamf Pro Blueprints](/assets/img/postImages/2026-09-14/7-New-App-Settings-Declaration.png)
 
-The `key` field in Blueprints is the app identifer - which in macOS is the composed identifier using the Bundle-ID, and the Designared Requirement.<br>
+The `key` field in Blueprints is the app identifer - which in macOS is the composed identifier using the Bundle-ID, and the Designated Requirement.<br>
 Because we're not creating the JSON ourselves, we don't need to add the double quotes, or escape any characters that would invalidate the JSON object.
 ![Blueprint with the app identified added in](/assets/img/postImages/2026-09-14/8-Privacy-Declaration.png)
 
