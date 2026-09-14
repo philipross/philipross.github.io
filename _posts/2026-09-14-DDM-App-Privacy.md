@@ -109,3 +109,30 @@ We can see the Declaration lands on the client:
   muted=true
 %}
 
+Next time I launch Zoom, I'm presented with the consolidated prompt to allow the services configured in my Declaration.
+
+![Consolidated privacy prompt asking me to approve the permissions for Camera, Microphone, and Device Control and Data Access, formerly called Accessibility](/assets/img/postImages/2026-09-14/6-Consolidated%20prompt.png)
+
+I noticed that I wasn't prompted to approve Local Network access at this time, but this looks to be because Zoom haven't included Local Network in the App entitlements, and the App hasn't yet attempted to communicate with devices on my local network.
+
+Also note that Apple have renamed `Accessibility` to `Device Control and Data Access` within the OS.
+
+#### Jamf Blueprints UI
+
+To do this in the Blueprints UI, we will make use of the new `App Settings` component within Blueprints:
+![App Settings configuration in Jamf Pro Blueprints](/assets/img/postImages/2026-09-14/7-New-App-Settings-Declaration.png)
+
+The `key` field in Blueprints is the app identifer - which in macOS is the composed identifier using the Bundle-ID, and the Designared Requirement.<br>
+Because we're not creating the JSON ourselves, we don't need to add the double quotes, or escape any characters that would invalidate the JSON object.
+![Blueprint with the app identified added in](/assets/img/postImages/2026-09-14/8-Privacy-Declaration.png)
+
+When selecting configure, we can choose the default permissions for the services we want to include within the configuration:
+![Blueprint showing choices of the default permissions](/assets/img/postImages/2026-09-14/9-Privacy-Declaration-configure-permissions.png)
+
+Once that's completed, updating the configuration will then allow you to add the settings to the blueprint, ready for deployment.
+![Blueprint showing the confirmed settings](/assets/img/postImages/2026-09-14/10-Privacy-Declaration-Configured.png)
+![Showing the full configuration, ready to be added to the blueprint](/assets/img/postImages/2026-09-14/11-Blueprint-Configured.png)
+
+
+## That's it!
+
