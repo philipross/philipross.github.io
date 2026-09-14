@@ -51,12 +51,12 @@ In both cases, I'll be using the Zoom Workplace desktop app for the examples her
 
 To build the Declaration, in a similar way to PPPC/TCC profiles, you need to point the declaration to the relevant app by using the Bundle-ID, and the Designated Requirement.
 
-To get the Bundle-ID of an App, run the following in *Terminal*:
+To get the Bundle-ID of an App, run the following in Terminal:
 ```terminal
 codesign -dv /Applications/zoom.us.app
 ```
 ![Terminal window showing the output of the codesign command to obtain the Bundle-ID](/assets/img/postImages/2026-09-14/2-App-Bundle-ID.png)
-The Bundle-ID is returned with the header *Identifier*
+The Bundle-ID is returned with the header Identifier
 
 <br>
 
