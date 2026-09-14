@@ -33,3 +33,20 @@ The user now gets a single prompt to allow all of the necessary permissions as d
 
 <!-- markdownlint-restore -->
 
+## Sounds useful! How do I do it?
+
+Jamf have [recently released](https://learn.jamf.com/r/en-US/jamf-pro-blueprints-configuration-guide/2026-09-10){:target="_blank"} support for this control within the Blueprints UI.
+
+However, to keep this post relevant to Mac Admins who may not use Jamf, I'll touch first on how to do this with a custom declaration, and then how that translates to the options in the Blueprints UI.
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+>In all cases, it's important that your users are MDM-Enabled as this declaration is only applicable to the user scope on macOS. If your users aren't MDM-Enabled, my [previous post](https://philipross.github.io/posts/Retroactively-activating-user-channel/){:target="_blank"} gives an example on how to retroactively enable them.
+{: .prompt-warning }
+
+<!-- markdownlint-restore -->
+
+
+#### Custom Declaration
+
