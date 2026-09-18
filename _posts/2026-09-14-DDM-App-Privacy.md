@@ -129,23 +129,27 @@ If you’ve ever lost twenty minutes of your life hunting down a missing backsla
 
 ![App Settings configuration in Jamf Pro Blueprints](/assets/img/postImages/2026-09-14/7-New-App-Settings-Declaration.png)
 
-To get started, the `key` field in Blueprints is for the app's identifier - which in macOS is the composed identifier using the Bundle ID and the Designated Requirement.
+To get started, the `key` field in Blueprints is for the app's identifier — which in macOS is the composed identifier combining the Bundle ID and the Designated Requirement.
 
-You'll still need to create the composed identifier here but because Blueprints builds the underlying JSON structure for you, you can paste the verbose output from your `codesign` commands without the need to escape any characters that would invalidate the JSON object.
+Here’s how to put it together:
+
+1. Grab the Bundle ID and Designated Requirement using the two `codesign` commands shown above.
+2. Combine them using the format listed by Apple for this control: `Bundle-ID {Designated Requirement}`.
+
+Because Blueprints builds the underlying JSON structure for you, you can paste this raw output straight in without the headache of escaping characters or wrestling with extra double quotes.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
->Make sure to wrap the Designated Requirement in curly brackets.
+>Make sure to wrap the Designated Requirement in curly brackets `{}`, **not** standard brackets `()`.
+>Also check that you're not wrapping the app identifier in double quotes `""`, otherwise the declaration configuration won't be valid.
 {: .prompt-warning }
 
 <!-- markdownlint-restore -->
 
-When using the Blueprints UI to craft this, it's als important to not wrap the composed identifier with double quotes, else the Declaration configuration won't be valid.
-
 For Zoom, the `key` field is:<br>
 ```
-us.zoom.xos {identifier \"us.zoom.xos\" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = BJ4HAAB9B3}
+us.zoom.xos {identifier "us.zoom.xos" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = BJ4HAAB9B3}
 ```
 
 ![Blueprint with the app identified added in](/assets/img/postImages/2026-09-14/8-Privacy-Declaration.png)
@@ -167,7 +171,7 @@ It might take a bit of time to get the configurations crafted, tested, and deplo
 
 ### Important points about deprecations.
 
-As a result of these controls now moving into the DDM spec, Apple have announced the deprecation for controls of `Camera`, `Microphone`, `Accessibility`, `Speech Recognition`, and `BluetoothAlways` using a PPPC/TCC configuration profile.
+As a result of these controls now moving into the DDM spec, Apple have announced the deprecation of controls for `Camera`, `Microphone`, `Accessibility`, `Speech Recognition`, and `BluetoothAlways` using a PPPC/TCC configuration profile.
 
 This doesn't mean *removed*, but it's a shot across the bow to move your controls to DDM (if you can), and that you may not get support if you encounter issues using a deprecated control.
 
@@ -185,7 +189,7 @@ If you've got existing PPPC/TCC profiles for `Accessibility`, they will continue
 
 ![UNC notification for accessibility prompt](/assets/img/postImages/2026-09-14/12-New-Accessibility-UNC.png)
 
-Not only will the user get this new notification, they'll also be able to *disable* the control in System Settings, if they wanted to. 
+Not only will the user get this new notification, they'll also be able to *disable* the control in System Settings, if they want to. 
 
 ***It is no longer greyed out.***
 
