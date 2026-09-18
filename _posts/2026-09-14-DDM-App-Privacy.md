@@ -134,7 +134,7 @@ To get started, the `key` field in Blueprints is for the app's identifier — wh
 Here’s how to put it together:
 
 1. Grab the Bundle ID and Designated Requirement using the two `codesign` commands shown above.
-2. Combine them using the format listed by Apple for this control: `Bundle-ID {Designated Requirement}`.
+2. Combine them using the format listed by Apple for this control:<br>`Bundle ID {Designated Requirement}`.
 
 Because Blueprints builds the underlying JSON structure for you, you can paste this raw output straight in without the headache of escaping characters or wrestling with extra double quotes.
 
