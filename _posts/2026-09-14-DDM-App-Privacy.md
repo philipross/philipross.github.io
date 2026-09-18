@@ -129,8 +129,24 @@ If you’ve ever lost twenty minutes of your life hunting down a missing backsla
 
 ![App Settings configuration in Jamf Pro Blueprints](/assets/img/postImages/2026-09-14/7-New-App-Settings-Declaration.png)
 
-To get started, the `key` field in Blueprints is for the app's identifier - which in macOS is the composed identifier using the Bundle ID and the Designated Requirement.<br>
-Because Blueprints builds the underlying JSON structure for you, you can paste the verbose output from your `codesign` commands without needing to escape quotes.
+To get started, the `key` field in Blueprints is for the app's identifier - which in macOS is the composed identifier using the Bundle ID and the Designated Requirement.
+
+You'll still need to create the composed identifier here but because Blueprints builds the underlying JSON structure for you, you can paste the verbose output from your `codesign` commands without the need to escape any characters that would invalidate the JSON object.
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+>Make sure to wrap the Designated Requirement in curly brackets.
+{: .prompt-warning }
+
+<!-- markdownlint-restore -->
+
+When using the Blueprints UI to craft this, it's als important to not wrap the composed identifier with double quotes, else the Declaration configuration won't be valid.
+
+For Zoom, the `key` field is:<br>
+```
+us.zoom.xos {identifier \"us.zoom.xos\" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = BJ4HAAB9B3}
+```
 
 ![Blueprint with the app identified added in](/assets/img/postImages/2026-09-14/8-Privacy-Declaration.png)
 
@@ -175,7 +191,7 @@ Not only will the user get this new notification, they'll also be able to *disab
 
 > *"In macOS 27.0, the device shows a non-blocking notification for each application when this setting is applied, and it allows the user to make changes to the setting in the System Settings app."*
 
-[Source](https://github.com/apple/device-management/blob/seed_OS_27_0/mdm/profiles/com.apple.TCC.configuration-profile-policy.yaml#L166){:target="_blank"}
+[Source](https://github.com/apple/device-management/blob/release/mdm/profiles/com.apple.TCC.configuration-profile-policy.yaml#L166){:target="_blank"}
 
 *And* this notification also seems to display for any app where you have a PPPC/TCC profile with `Accessibility` installed - even if the app itself isn't on the device.<br>
 

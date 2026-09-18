@@ -48,7 +48,7 @@ So you'd end up with something like this:
 This worked great.<br>
 All of your devices have *some* configuration applied to the Software Update settings, and you could easily allow a computer to access the Beta seeds by modifying its group memberships in Jamf Pro.
 
-Now though, Apple has deprecated that configuration profile, and it has been confirmed to be [*removed* in macOS 27.0](https://github.com/apple/device-management/blob/seed_OS_27_0/mdm/profiles/com.apple.SoftwareUpdate.yaml#L12){:target="_blank"}
+Now though, Apple has deprecated that configuration profile, and it has been confirmed to be [*removed* in macOS 27.0](https://github.com/apple/device-management/blob/release/mdm/profiles/com.apple.SoftwareUpdate.yaml#L12){:target="_blank"}
 
 ### So...what do we do now then?
 
