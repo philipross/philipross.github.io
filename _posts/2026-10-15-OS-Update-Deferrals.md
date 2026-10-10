@@ -43,19 +43,29 @@ Before I continue, let me explain what an OS version number means.
 <!-- markdownlint-restore -->
 ----
 
-Firstly, Major and Minor.
+Firstly, major and minor.
 
 To understand the behaviour you should expect to see, you need to look at what you're expecting from the perspective of the device's *current* OS version.
 
-A device moving *from* macOS 15.X *to* macOS 26.X, is a Major Upgrade.<br>
-A device moving *from* macOS 15.X *to* macOS 27.X, is a Major Upgrade.<br>
-A device moving *from* macOS 26.X *to* macOS 27.X, is also a Major Upgrade.
+Majors
+: A device moving *from* macOS 15.8 *to* macOS 26.7.1, is a major upgrade.<br>
+: A device moving *from* macOS 15.8 *to* macOS 27.0.1, is a major upgrade.<br>
+: A device moving *from* macOS 26.7.1 *to* macOS 27.0.1, is also a major upgrade.
 
-If the Major number of the OS version is increasing, the device will be following any specified deferrals for Major Upgrades.
+If the major number of the OS version is increasing, the device will be following any specified deferrals for major upgrades.
+
+Minors
+: A device moving *from* macOs 15.8 *to* macOs 15.8.1, is a minor update.<br>
+: A device moving *from* macOS 26.6 *to* macOS 26.6.2, is a minor update.<br>
+: A device moving *from* macOS 26.6 *to* macOS 26.7, is also a minor update.<br>
+
+If only the minor number is increasing, the device wil be following any minor update deferral controls.
 
 ## Right, how are they applied?
 
-At the time of writing, we're in the midst of a crossover between MDM and DDM controls for a number of settings, which includes sOS update deferrals.
+At the time of writing, we're in the midst of a crossover between MDM and DDM controls for a number of settings, which includes OS update deferrals.
+
+Only macOS supports different values for major and minor deferrals. This is because 
 
 #### Pre-AppleOS 26.0
 Deferrals were applied using the [`com.apple.applicationaccess`](https://developer.apple.com/documentation/devicemanagement/restrictions){:target="_blank"} preference domain, using a combination of the following keys: 
@@ -71,9 +81,9 @@ Deferrals were applied using the [`com.apple.applicationaccess`](https://develop
 With the AppleOS 26 releases, it was announced these keys were deprecated, to be removed in a future version of the OS.<br>
 To maintain this functionality, but aligned to the - at the time - *Future of Device Management*, Apple provided a DDM replacement using the *deferrals* object in the [`com.apple.configuration.softwareupdate.settings`](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettingsdeferralsobject){:target="_blank"} declaration type.
 
-To defer Major update for 90 days, Minor updates for 30 days, and Non-OS updates for 7 days on macOS, the declaration payload would look like this:
+To defer major update for 90 days, minor updates for 30 days, and Non-OS updates for 7 days on macOS, the declaration payload would look like this:
 
-```SoftwareUpdateSettingsDeferralsObject
+```json
 {
     "Deferrals": {
         "MajorPeriodInDays": 90,
@@ -85,7 +95,7 @@ To defer Major update for 90 days, Minor updates for 30 days, and Non-OS updates
 
 To defer updates for 45 days on non-macOS Platforms (iOS/iPadOS, tvOS, and visionOS), the declaration payload would look like this:
 
-```SoftwareUpdateSettingsDeferralsObject
+```json
 {
     "Deferrals": {
         "CombinedPeriodInDays": 45
