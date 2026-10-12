@@ -98,7 +98,7 @@ Here's a timeline to help visualise that:
 If you don't push a Software Update enforcement declaration, macOS 27 will become visible on your fleet 90 days after release - which in this example would be 30th November 2026.<br>
 However, because more than 30 days have passed since macOS 27.0.1 was released, once the user had upgraded from macOS 26.X to macOS 27.0 they would then immediately be presented with the option to update to 27.0.1.
 
-If you *did* push a Software Update enforcement declaration or had a client enrol into your DMS already running macOS 27.0, macOS 27.0.1 would be visible from 1st October.
+If you *did* push a Software Update enforcement declaration or had a client enrol into your DMS already running macOS 27.0, macOS 27.0.1 would be visible from 1st October 2026.
 
 Once the device is on 27.0, or 27.0.1, macOS 27.1 would become visible on 30th December, which is 30 days after it's release.
 
