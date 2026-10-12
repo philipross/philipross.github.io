@@ -45,36 +45,45 @@ Before I continue, let me explain what an OS version number means.
 
 Whilst the platforms all defer upgrades and updates in broadly the same way, there are some nuances that need to be understood.<br>
 
-###### Firstly, let's talk about macOS.
+#### Firstly, let's talk about macOS.
 
 To understand the behaviour you should expect to see, you need to look at what you're expecting from the perspective of the device's *current* OS version.
 
-Majors
-: A device moving *from* macOS 15.8 *to* macOS 26.7.1, is a major upgrade.<br>
-: A device moving *from* macOS 15.8 *to* macOS 27.0.1, is a major upgrade.<br>
-: A device moving *from* macOS 26.7.1 *to* macOS 27.0.1, is also a major upgrade.
+| Majors |
+| :-- |
+|A device moving *from* macOS 15.8 *to* macOS 26.7.1, is a major upgrade.|
+|A device moving *from* macOS 15.8 *to* macOS 27.0.1, is a major upgrade.|
+ A device moving *from* macOS 26.7.1 *to* macOS 27.0.1, is also a major upgrade.|
 
-If the major number of the OS version is increasing, the device will be following any specified deferrals for major upgrades.
+If the major number of the OS version is increasing, the device will be following any specified deferrals for major upgrades - irrespective of what's happening with the minor number(s).
 
-Minors
-: A device moving *from* macOs 15.8 *to* macOs 15.8.1, is a minor update.<br>
-: A device moving *from* macOS 26.6 *to* macOS 26.6.2, is a minor update.<br>
-: A device moving *from* macOS 26.6 *to* macOS 26.7, is also a minor update.<br>
+| Minors |
+| :-- |
+| A device moving *from* macOs 15.8 *to* macOs 15.8.1, is a minor update.|
+| A device moving *from* macOS 26.6 *to* macOS 26.6.2, is a minor update.|
+| A device moving *from* macOS 26.6 *to* macOS 26.7, is also a minor update.|
 
 If only the minor number is increasing, the device wil be following any minor update deferral controls.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
->macOS is the only platform that allows for major upgrade deferral period that is different to the minor update deferral period. 
+>macOS is the only platform that allows for major and minor deferral periods to have differing values. 
 {: .prompt-warning }
 
 <!-- markdownlint-restore -->
 
-Misunderstanding how the deferral periods work can lead to some unintended consequences, where versions you expect to be shown are hidden, or versions you expect to be hidden are shown.<br>
+Misunderstanding how the deferral periods work can lead to some unintended consequences where versions you expect to be shown are hidden, or versions you expect to be hidden are shown.<br>
 Let me give an example to show what that means.
 
-Important note: the timelines in this example are ***completely fictional***, but they work for the purposes of the example so please bare with me.
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+>The timelines in this example are ***completely fictional***, but they work for the purposes of the example so please bear  with me.
+{: .prompt-info }
+
+<!-- markdownlint-restore -->
+
 
 Let's say you have a fleet of macOS Devices running *X* version of macOS 26.<br>
 macOS 27 is released, and you have deferral periods of 90 days for majors, and 30 days for minors.<br>
@@ -95,23 +104,23 @@ Once the device is on 27.0, or 27.0.1, macOS 27.1 would become visible on 30th D
 
 If a user did not upgrade from macOS 26.X to macOS 27.0 when it became visible and they were waiting for 27.0.1, that would become visible on 30th December 2026, which is 90 days after the 27.0.1 release date. Again, once they'd upgraded they'd immediately be presented with macOS 27.1 to update again.
 
-Here's another timeline to help illustrate that:
+Here's a timeline to help illustrate the experience on device:
 ![Timeline depicting the impact on a client based on the release schedule above](/assets/img/postImages/2026-10-15/2-Deferral-Example-impact.png)
 
-###### Most common trip up
+---
 
-Most commonly, I see people asking why their devices are not seeing 27.0.1 or 27.1 available to their devices running macOS 26.X after the 90 day major deferral has lapsed.
+Most commonly I see people querying why their devices are seeing 27.0, and not 27.0.1 or 27.1 when the 90 day major upgrade deferral period has passed.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
->This is because deferrals start from the date the OS version was released.<br>If you're expecting your device to see a major upgrade, then it will not see it until the deferral period has lapsed for that specific release. 
+>Each deferral starts from the date the OS version was released.<br>If you're expecting your device to see a major upgrade, then it will not see it until the deferral period has lapsed for that specific release. 
 {: .prompt-tip }
 
 <!-- markdownlint-restore -->
 
 
-###### Now let's talk about iOS/iPadOS
+#### Now let's talk about iOS/iPadOS
 
 
 iOS/iPadOS/tvOS/visionOS platforms don't differentiate between major and minor, but they do allow admins to set a `RecommendedCadence` to preference an upgrade over an update (or vice versa) should both deferrals lapse on the same date - which they often do!
