@@ -41,7 +41,7 @@ If you're using configuration profiles for deferrals, you'll likely spot a combi
 With the AppleOS 26 releases, it was announced these keys were deprecated, to be removed in a future version of the OS.<br>
 To maintain this functionality, but aligned to the - at the time - *Future of Device Management*, Apple provided a DDM replacement using the *deferrals* object in the [`com.apple.configuration.softwareupdate.settings`](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettingsdeferralsobject){:target="_blank"} declaration type.
 
-To defer major update for 90 days, minor updates for 30 days, and Non-OS updates for 7 days on macOS, the declaration payload would look like this:
+To defer major updates for 90 days, minor updates for 30 days, and Non-OS updates for 7 days on macOS, the declaration payload would look like this:
 
 ```json
 {
@@ -65,7 +65,7 @@ To defer updates for 45 days on non-macOS Platforms (iOS/iPadOS, tvOS, and visio
 ```
 
 #### AppleOS 27 and beyond...
-The forewarned removal of MDM deferrals was confirmed to be realised in Apple's release of the version 27 OS, meaning the only way now to defer updates and upgrades across the platforms is via DDM.
+The forewarned removal of MDM deferrals was confirmed to be realised in Apple's release of the version 27 OS, meaning the only way to defer upgrades and updates on devices running version 27 or later is via the DDM controls above.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
@@ -91,7 +91,7 @@ Before I continue, let me explain what an OS version number means.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
->As deferral of maintenance/patch updates fall under the control of minor updates on macOS, they'll be included in the minor update behaviour within this post. 
+>As the deferral of maintenance/patch updates falls within the same control as minor updates on macOS, they'll be included in the minor update behaviour within this post. 
 {: .prompt-info }
 
 <!-- markdownlint-restore -->
@@ -273,8 +273,8 @@ Having read the documentation I do expect that they follow the same pathway as i
 
 There are a few key points that hopefully have been made clear above, but I'll list them now:
 1. Each Software version is deferred from *the day it is released*
-2. Doing a Major Upgrade will always be deferred for however long you configure it for, from *the day it is released*
-3. macOS is the only platform that allows for different deferral lengths for Major Upgrades, and Minor Updates.
+2. Doing a major upgrade will always be deferred for however long you configure it for, from *the day it is released*
+3. macOS is the only platform that allows for different deferral lengths for major upgrades, and minor updates.
 4. iOS/iPadOS can achieve a similar outcome with use of the `RecommendedCadence` key.
 5. I have no first-hand experience with tvOS or visionOS, but from what I've read they behave in the same way as iOS and iPadOS.
 
