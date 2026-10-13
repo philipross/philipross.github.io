@@ -17,16 +17,14 @@ I'm hoping this post can serve as a go-to reference resource to help clear up th
 In short, OS update deferrals are a mechanism across Apple platforms that lets admins control exactly which OS versions users see when they check Software Update.<br>
 Think of it as a way to prevent your users from accidentally leaping ahead to a new shiny release before your IT stack is actually ready for it.
 
-Apple provide the ability to defer software updates for a maximum of 90 days from the date of release.
+Apple provides the ability to defer software updates for a maximum of 90 days from the date of release.
 
-[SOFA](https://sofa.macadmins.io/release-deferrals){:target="_blank"}, from Mac Admins Open Source has a great table for easily tracking drop dates for common deferral durations, across all of Apple's Managed Platforms.
+[SOFA](https://sofa.macadmins.io/release-deferrals){:target="_blank"}, from Mac Admins Open Source has a great table for easily tracking drop dates for common deferral durations across all of Apple's Managed Platforms.
 
 
 ## How are they applied?
 
 At the time of writing, we're in the midst of a crossover between MDM and DDM controls for a number of settings, which includes OS update deferrals.
-
-Only macOS supports different values for major and minor deferrals. This is because 
 
 #### Pre-AppleOS 26.0
 Deferrals were applied using the [`com.apple.applicationaccess`](https://developer.apple.com/documentation/devicemanagement/restrictions){:target="_blank"} preference domain, using a combination of the following keys: 
@@ -118,7 +116,7 @@ If the major number of the OS version is increasing, the device will be followin
 | A device moving *from* macOS 26.6 *to* macOS 26.6.2, is a minor update.|
 | A device moving *from* macOS 26.6 *to* macOS 26.7, is also a minor update.|
 
-If only the minor number is increasing, the device wil be following any minor update deferral controls.
+If only the minor number is increasing, the device will follow any minor update deferral controls.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
@@ -155,7 +153,7 @@ However, because more than 30 days have passed since macOS 27.0.1 was released, 
 
 If you *did* push a Software Update enforcement declaration or had a client enrol into your DMS already running macOS 27.0, macOS 27.0.1 would be visible from 1st October 2026.
 
-Once the device is on 27.0, or 27.0.1, macOS 27.1 would become visible on 30th December, which is 30 days after it's release.
+Once the device is on 27.0 or 27.0.1, macOS 27.1 would become visible on 30th December, which is 30 days after its release.
 
 If a user did not upgrade from macOS 26.X to macOS 27.0 when it became visible and they were waiting for 27.0.1, that would become visible on 30th December 2026, which is 90 days after the 27.0.1 release date. Again, once they'd upgraded they'd immediately be presented with macOS 27.1 to update again.
 
@@ -255,7 +253,7 @@ We can see the declarations are reflecting those changes on the client side:<br>
 ![Software Update settings configuration view with cadence showing oldest on iPad and newest on iPhone](/assets/img/postImages/2026-10-15/6-Software-Update-Settings-Cadence-Set.png)
 
 Now when we go to Software Update, the iPad is offered an update to iPadOS 26.7, but it is not offered an upgrade to iPadOS 27 at all<br>
-The iPhone is offered an update to iOS 27, but it's now shown anything about 26.7.<br>
+The iPhone is offered an update to iOS 27, but it's not shown anything about 26.7.<br>
 ![Software updates offered to the iPhone and iPad with the cadence set to Newest and Oldest respectively](/assets/img/postImages/2026-10-15/7-Software-Updates-Offered-Cadence-Set.png)
 
 If I reduce the deferral period to show 26.7.1 and 27.0.1, again the offerings are shown relative to the `RecommendedCadence` value, but this time the iPhone is shown 27.0.1 on the first screen, without having to additionally select *"Upgrade to iOS 27"*.<br>
@@ -270,7 +268,7 @@ Having read the documentation I do expect that they follow the same pathway as i
 
 ## TL;DR
 
-There's a few key points that hopefully have been made clear above, but I'll list them now:
+There are a few key points that hopefully have been made clear above, but I'll list them now:
 1. Each Software version is deferred from *the day it is released*
 2. Doing a Major Upgrade will always be deferred for however long you configure it for, from *the day it is released*
 3. macOS is the only platform that allows for different deferral lengths for Major Upgrades, and Minor Updates.
@@ -290,7 +288,7 @@ I haven't touched on Software Update enforcement in this post, but there's also 
 <!-- markdownlint-restore -->
 
 This is great from a UX perspective, as if you're pushing a DDM SU plan then you would probably want your users to see the version you're telling them they need to be on.<br>
-However, if you're using a set-it-and-forget-it type approach, this can mean that deferrals become effectively moot, so you may need to factor that in to you workflows.
+However, if you're using a set-it-and-forget-it type approach, this can mean that deferrals become effectively moot, so you may need to factor that into your workflows.
 
 
 
