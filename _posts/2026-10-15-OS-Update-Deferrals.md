@@ -242,7 +242,7 @@ I have a similar declaration payload deployed to my iPad:
 }
 ```
 And this is what shows up on my iPad:<br>
-![iPad Software Update settings configuration view](/assets/img/postImages/2026-10-15/4-iPad-Software-Update-Settings.png){: width="200" }
+![iPad Software Update settings configuration view](/assets/img/postImages/2026-10-15/4-iPad-Software-Update-Settings.png){: width="600" }
 
 The difference here is I'm not using the `RecommendedCadence` key on the iPhone declaration, and I'm including it with the value of `All` on the iPad.
 
