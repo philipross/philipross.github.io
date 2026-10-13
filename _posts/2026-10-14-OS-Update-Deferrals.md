@@ -1,6 +1,6 @@
 ---
 title: "Not today, macOS: Demystifying OS update deferrals across Apple platforms"
-date: 2026-10-15 09:00:00 +0100
+date: 2026-10-14 08:00:00 +0100
 description: "An in-depth look at OS update deferrals across iOS, iPadOS, and macOS. Exploring how deferral windows behave to help you navigate nuances and maintain fleet compliance."
 categories: [Mac Management, Patching]
 tags: [Jamf, macOS, DDM, Blueprints, App Privacy, OS Updates, iOS/iPadOS]
@@ -147,7 +147,7 @@ Let's also imagine the following:
 * macOS 27.1 is released 45 days after 27.0, on 16th October 2026
 
 Here's a timeline to help visualise those release dates:
-![Timeline depicting the example above](/assets/img/postImages/2026-10-15/1-Deferral-Example-timeline.png)
+![Timeline depicting the example above](/assets/img/postImages/2026-10-14/1-Deferral-Example-timeline.png)
 
 If you don't push a Software Update enforcement declaration, macOS 27 will become visible on your fleet 90 days after release - which in this example would be 30th November 2026.<br>
 However, because more than 30 days have passed since macOS 27.0.1 was released, once the user had upgraded from macOS 26.X to macOS 27.0 they would then immediately be presented with the option to update to 27.0.1.
@@ -159,7 +159,7 @@ Once the device is on 27.0 or 27.0.1, macOS 27.1 would become visible on 30th De
 If a user did not upgrade from macOS 26.X to macOS 27.0 when it became visible and they were waiting for 27.0.1, that would become visible on 30th December 2026, which is 90 days after the 27.0.1 release date. Again, once they'd upgraded they'd immediately be presented with macOS 27.1 to update again.
 
 Here's a timeline to help illustrate the experience on device:
-![Timeline depicting the impact on a client based on the release schedule above](/assets/img/postImages/2026-10-15/2-Deferral-Example-impact.png)
+![Timeline depicting the impact on a client based on the release schedule above](/assets/img/postImages/2026-10-14/2-Deferral-Example-impact.png)
 
 ---
 
@@ -214,7 +214,7 @@ This is the declaration payload I've deployed to my iPhone:
 ```
 
 This is what that looks like on the iPhone:<br>
-![iPhone Software Update settings configuration view](/assets/img/postImages/2026-10-15/3-iPhone-Software-Update-Settings.png){: width="200" }
+![iPhone Software Update settings configuration view](/assets/img/postImages/2026-10-14/3-iPhone-Software-Update-Settings.png){: width="200" }
 
 I have a similar declaration payload deployed to my iPad:
 
@@ -241,24 +241,24 @@ I have a similar declaration payload deployed to my iPad:
 }
 ```
 And this is what shows up on my iPad:<br>
-![iPad Software Update settings configuration view](/assets/img/postImages/2026-10-15/4-iPad-Software-Update-Settings.png){: width="600" }
+![iPad Software Update settings configuration view](/assets/img/postImages/2026-10-14/4-iPad-Software-Update-Settings.png){: width="600" }
 
 The difference here is I'm not using the `RecommendedCadence` key on the iPhone declaration, and I'm including it with the value of `All` on the iPad.
 
 Both of the devices show the same experience to the user:
-![Software updates offered to iPhone and iPad](/assets/img/postImages/2026-10-15/5-Software-Updates-Offered-Default-Cadence.png)
+![Software updates offered to iPhone and iPad](/assets/img/postImages/2026-10-14/5-Software-Updates-Offered-Default-Cadence.png)
 
 Now I'm going to change the `RecommendedCadence` value to `Oldest` on iPad, and `Newest` on iPhone.
 
 We can see the declarations are reflecting those changes on the client side:<br>
-![Software Update settings configuration view with cadence showing oldest on iPad and newest on iPhone](/assets/img/postImages/2026-10-15/6-Software-Update-Settings-Cadence-Set.png)
+![Software Update settings configuration view with cadence showing oldest on iPad and newest on iPhone](/assets/img/postImages/2026-10-14/6-Software-Update-Settings-Cadence-Set.png)
 
 Now when we go to Software Update, the iPad is offered an update to iPadOS 26.7, but it is not offered an upgrade to iPadOS 27 at all<br>
 The iPhone is offered an update to iOS 27, but it's not shown anything about 26.7.<br>
-![Software updates offered to the iPhone and iPad with the cadence set to Newest and Oldest respectively](/assets/img/postImages/2026-10-15/7-Software-Updates-Offered-Cadence-Set.png)
+![Software updates offered to the iPhone and iPad with the cadence set to Newest and Oldest respectively](/assets/img/postImages/2026-10-14/7-Software-Updates-Offered-Cadence-Set.png)
 
 If I reduce the deferral period to show 26.7.1 and 27.0.1, again the offerings are shown relative to the `RecommendedCadence` value, but this time the iPhone is shown 27.0.1 on the first screen, without having to additionally select *"Upgrade to iOS 27"*.<br>
-![Software updates offered to the iPhone and iPad with the cadence set to Newest and Oldest respectively, with no deferral hiding available updates](/assets/img/postImages/2026-10-15/8-Software-Updates-Offered-Cadence-Set-No-Deferral.png)
+![Software updates offered to the iPhone and iPad with the cadence set to Newest and Oldest respectively, with no deferral hiding available updates](/assets/img/postImages/2026-10-14/8-Software-Updates-Offered-Cadence-Set-No-Deferral.png)
 
 
 ### What about tvOS and visionOS?
