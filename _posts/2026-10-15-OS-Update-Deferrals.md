@@ -6,9 +6,9 @@ categories: [Mac Management, Patching]
 tags: [Jamf, macOS, DDM, Blueprints, App Privacy, OS Updates, iOS/iPadOS]
 ---
 
-When Apple's major OS release comes around, the [Mac Admins](https://www.macadmins.org/){:target="_blank"} Slack inevitably lights up with conversations from admins questioning why devices are seeing OS update versions they expected would be hidden - or conversely, why a version they *hoped* would be visible is completely missing. 
+When Apple's major OS release comes around, it's usually not until the maximum 90-day deferral window starts to expire that threads and questions begin appearing on the [Mac Admins](https://www.macadmins.org/){:target="_blank"} Slack from admins questioning why devices are seeing OS update versions they expected would be hidden - or conversely, why a version they *hoped* would be visible is completely missing. 
 
-Most of the time, this boils down to a misunderstanding of how deferrals actually function under the hood. 
+Most of the time, this boils down to a misunderstanding of how deferrals actually function under the bonnet. 
 
 I'm hoping this post can serve as a go-to reference resource to help clear up the confusion, navigate platform nuances, and keep your devices and users safely on the right update track.
 
@@ -27,7 +27,8 @@ Apple provides the ability to defer software updates for a maximum of 90 days fr
 At the time of writing, we're in the midst of a crossover between MDM and DDM controls for a number of settings, which includes OS update deferrals.
 
 #### Pre-AppleOS 26.0
-Deferrals were applied using the [`com.apple.applicationaccess`](https://developer.apple.com/documentation/devicemanagement/restrictions){:target="_blank"} preference domain, using a combination of the following keys: 
+Deferrals were applied using the [`com.apple.applicationaccess`](https://developer.apple.com/documentation/devicemanagement/restrictions){:target="_blank"} preference domain.<br>
+If you're using configuration profiles for deferrals, you'll likely spot a combination of these keys: 
 * enforcedSoftwareUpdateDelay
 * enforcedSoftwareUpdateMajorOSDeferredInstallDelay
 * enforcedSoftwareUpdateMinorOSDeferredInstallDelay
@@ -104,17 +105,17 @@ To understand the behaviour you should expect to see, you need to look at what y
 
 | Majors |
 | :-- |
-|A device moving *from* macOS 15.8 *to* macOS 26.7.1, is a major upgrade.|
-|A device moving *from* macOS 15.8 *to* macOS 27.0.1, is a major upgrade.|
- A device moving *from* macOS 26.7.1 *to* macOS 27.0.1, is also a major upgrade.|
+| A device moving *from* macOS 15.8 *to* macOS 26.7.1, is a major upgrade. |
+| A device moving *from* macOS 15.8 *to* macOS 27.0.1, is a major upgrade. |
+| A device moving *from* macOS 26.7.1 *to* macOS 27.0.1, is also a major upgrade. |
 
 If the major number of the OS version is increasing, the device will be following any specified deferrals for major upgrades - irrespective of what's happening with the minor number(s).
 
 | Minors |
 | :-- |
-| A device moving *from* macOs 15.8 *to* macOs 15.8.1, is a minor update.|
-| A device moving *from* macOS 26.6 *to* macOS 26.6.2, is a minor update.|
-| A device moving *from* macOS 26.6 *to* macOS 26.7, is also a minor update.|
+| A device moving *from* macOs 15.8 *to* macOs 15.8.1, is a minor update. |
+| A device moving *from* macOS 26.6 *to* macOS 26.6.2, is a minor update. |
+| A device moving *from* macOS 26.6 *to* macOS 26.7, is also a minor update. |
 
 If only the minor number is increasing, the device will follow any minor update deferral controls.
 
@@ -262,7 +263,9 @@ If I reduce the deferral period to show 26.7.1 and 27.0.1, again the offerings a
 
 ### What about tvOS and visionOS?
 
-I don't have any experience managing Apple TVs, or Vision Pros, so I don't have first hand understanding of how deferrals work on those platforms.
+Because writing about platforms you don't run in production is a fast track to looking like an absolute plum on the internet, I'll keep this brief.
+
+I don't have any experience managing Apple TVs, or Vision Pros, so I don't have first-hand understanding of how deferrals work on those platforms.
 
 Having read the documentation I do expect that they follow the same pathway as iOS and iPadOS which I spoke about above, but I don't want to write this and mislead someone into thinking I've got knowledge from real world experiences with those platforms.
 
@@ -273,7 +276,7 @@ There are a few key points that hopefully have been made clear above, but I'll l
 2. Doing a Major Upgrade will always be deferred for however long you configure it for, from *the day it is released*
 3. macOS is the only platform that allows for different deferral lengths for Major Upgrades, and Minor Updates.
 4. iOS/iPadOS can achieve a similar outcome with use of the `RecommendedCadence` key.
-5. I have no first hand experience with tvOS or visionOS, but from what I've read they behave in the same way as iOS and iPadOS.
+5. I have no first-hand experience with tvOS or visionOS, but from what I've read they behave in the same way as iOS and iPadOS.
 
 <br>
 
