@@ -92,7 +92,7 @@ Let's also imagine the following:
 * macOS 27.0.1 was released 30 days later, on 1st October 2026
 * macOS 27.1 is released 45 days after 27.0, on 16th October 2026
 
-Here's a timeline to help visualise that:
+Here's a timeline to help visualise those release dates:
 ![Timeline depicting the example above](/assets/img/postImages/2026-10-15/1-Deferral-Example-timeline.png)
 
 If you don't push a Software Update enforcement declaration, macOS 27 will become visible on your fleet 90 days after release - which in this example would be 30th November 2026.<br>
@@ -115,7 +115,7 @@ Most commonly I see people querying why their devices are seeing 27.0, and not 2
 <!-- markdownlint-disable -->
 
 >Each deferral starts from the date the OS version was released.<br>If you're expecting your device to see a major upgrade, then it will not see it until the deferral period has lapsed for that specific release. 
-{: .prompt-tip }
+{: .prompt-info }
 
 <!-- markdownlint-restore -->
 
@@ -123,7 +123,78 @@ Most commonly I see people querying why their devices are seeing 27.0, and not 2
 #### Now let's talk about iOS/iPadOS
 
 
-iOS/iPadOS/tvOS/visionOS platforms don't differentiate between major and minor, but they do allow admins to set a `RecommendedCadence` to preference an upgrade over an update (or vice versa) should both deferrals lapse on the same date - which they often do!
+iOS and iPadOS platforms don't differentiate between major and minor, but they do allow admins to set a `RecommendedCadence` to preference an upgrade over an update (or vice versa) should both deferrals lapse on the same date - which they often do!
+
+To help explain how the `RecommendedCadence` key works, I have an iPhone and an iPad both running iOS/iPadOS 26.5.2.<br>
+At the time of writing, both iOS/iPadOS 27 and 26.7 were released 31 days ago. iOS/iPadOS 27.0.1 and 26.7.1 were released 17 days ago.
+
+Based on those timings, I'll use a deferral of 20 days for this example, as that should mean 27.0/26.7 are visible to the devices, and 27.0.1/26.7.1 remain deferred.
+
+`RecommendedCadence` has 3 values:
+* All
+* Oldest
+* Newest
+
+This is the declaration payload I've deployed to my iPhone:
+
+```json
+{
+    "Type": "com.apple.configuration.softwareupdate.settings",
+    "Payload":{
+        "Notifications": false,
+        "Deferrals": {
+            "CombinedPeriodInDays": 20
+        },
+        "AutomaticActions": {
+            "Download": "Allowed",
+            "InstallOSUpdates": "AlwaysOff",
+            "InstallSecurityUpdate": "AlwaysOn"
+        },
+        "RapidSecurityResponse": {
+            "Enable": true,
+            "EnableRollback": true
+        }
+    },
+    "Predicate": "(devices.operating-system.family == 'iOS')"
+}
+```
+
+This is what that looks like on the iPhone:
+![iPhone Software Update settings configuration view](/assets/img/postImages/2026-10-15/3-iPhone-Software-Update-Settings.png)
+
+I have a similar declaration payload deployed to my iPad:
+
+```json
+{
+    "Type": "com.apple.configuration.softwareupdate.settings",
+    "Payload":{
+        "Notifications": false,
+        "Deferrals": {
+            "CombinedPeriodInDays": 20
+        },
+        "RecommendedCadence": "All",
+        "AutomaticActions": {
+            "Download": "Allowed",
+            "InstallOSUpdates": "AlwaysOff",
+            "InstallSecurityUpdate": "AlwaysOn"
+        },
+        "RapidSecurityResponse": {
+            "Enable": true,
+            "EnableRollback": true
+        }
+    },
+    "Predicate": "(devices.operating-system.family == 'iPadOS')"
+}
+```
+And this is what shows up on my iPad:
+![iPad Software Update settings configuration view](/assets/img/postImages/2026-10-15/4-iPad-Software-Update-Settings.png)
+
+The difference here is I'm not using the `RecommendedCadence` key on the iPhone declaration, and I'm including it with the value of `All` on the iPad.
+
+Both of the devices show the same experience to the user:
+![Software updates offered to iPhone](/assets/img/postImages/2026-10-15/5-iPhone-Software-Updates-Offered.png){: .w-75 .left} ![Software updates offered to iPad](/assets/img/postImages/2026-10-15/6-iPad-Software-Updates-Offered.png){: .w-75 .right}
+
+
 
 ## Right, how are they applied?
 
@@ -178,3 +249,10 @@ The forewarned removal of MDM deferrals was confirmed to be realised in Apple's 
 {: .prompt-warning }
 
 <!-- markdownlint-restore -->
+
+### What about tvOS and visionOS?
+
+I don't have any experience managing Apple TVs, or Vision Pros, so I don't have first hand understanding of how deferrals work on those platforms.
+
+Having read the documentation I do expect that they follow the same pathway as iOS and iPadOS which I spoke about above, but I don't want to write this and mislead someone into thinking I've got knowledge from real world experiences with those platforms.
+
