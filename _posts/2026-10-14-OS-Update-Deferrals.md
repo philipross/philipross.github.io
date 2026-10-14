@@ -10,12 +10,12 @@ When Apple's major OS release comes around, it's usually not until the maximum 9
 
 Most of the time, this boils down to a misunderstanding of how deferrals actually function under the bonnet. 
 
-I'm hoping this post can serve as a go-to reference resource to help clear up the confusion, navigate platform nuances, and keep your devices and users safely on the right update track.
+I'm hoping this post can serve as a go-to reference resource to help clear up the confusion and navigate platform nuances, to help keep your devices and users safely on the right update track.
 
 ## What are *OS Update Deferrals*?
 
 In short, OS update deferrals are a mechanism across Apple platforms that lets admins control exactly which OS versions users see when they check Software Update.<br>
-Think of it as a way to prevent your users from accidentally leaping ahead to a new shiny release before your IT stack is actually ready for it.
+Think of it as a way to prevent your users from accidentally leaping ahead to a brand spanking new release before your $Org is actually ready for it.
 
 Apple provides the ability to defer software updates for a maximum of 90 days from the date of release.
 
@@ -24,7 +24,7 @@ Apple provides the ability to defer software updates for a maximum of 90 days fr
 
 ## How are they applied?
 
-At the time of writing, we're in the midst of a crossover between MDM and DDM controls for a number of settings, which includes OS update deferrals.
+At the time of writing we're in the midst of a crossover between MDM and DDM controls for a number of settings, including OS update deferrals.
 
 #### Pre-AppleOS 26.0
 Deferrals were applied using the [`com.apple.applicationaccess`](https://developer.apple.com/documentation/devicemanagement/restrictions){:target="_blank"} preference domain.<br>
@@ -38,10 +38,10 @@ If you're using configuration profiles for deferrals, you'll likely spot a combi
 * forceDelayedSoftwareUpdates
 
 #### AppleOS 26.X
-With the AppleOS 26 releases, it was announced these keys were deprecated, to be removed in a future version of the OS.<br>
-To maintain this functionality, but aligned to the - at the time - *Future of Device Management*, Apple provided a DDM replacement using the *deferrals* object in the [`com.apple.configuration.softwareupdate.settings`](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettingsdeferralsobject){:target="_blank"} declaration type.
+With the AppleOS 26 releases it was announced these keys were deprecated, to be removed in a future version of the OS.<br>
+To maintain this functionality, but align to the - at the time - *Future of Device Management*, Apple provided a DDM replacement using the *deferrals* object in the [`com.apple.configuration.softwareupdate.settings`](https://developer.apple.com/documentation/devicemanagement/softwareupdatesettingsdeferralsobject){:target="_blank"} declaration type.
 
-To defer major updates for 90 days, minor updates for 30 days, and Non-OS updates for 7 days on macOS, the declaration payload would look like this:
+To defer major updates for 90 days, minor updates for 30 days, and non-OS updates for 7 days on macOS, the declaration payload would look like this:
 
 ```json
 {
@@ -70,14 +70,14 @@ The forewarned removal of MDM deferrals was confirmed to be realised in Apple's 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
->In my testing on macOS 27 and 27.0.1, the MDM profile deferrals still apply and defer successfully.<br> However, as Apple have announced this has been removed, my feeling is that it would be wrong to rely on this working as the 27 release progresses.<br>It may work now, but it may stop without warning...
+>In my testing on macOS 27 and 27.0.1, the MDM profile deferrals still apply and defer successfully.<br> However, as Apple have announced this has been removed my feeling is that it would be wrong to rely on this working as the 27 release progresses.<br>It may work now, but it may stop without warning...
 {: .prompt-warning }
 
 <!-- markdownlint-restore -->
 
 ## Got it. So how do they work?
 
-Broadly speaking, update deferrals function in the same way across all the applicable platforms (macOS, iOS, iPadOS, tvOS, and visionOS), but there are a couple of subtle differences to be mindful of.
+Broadly speaking, update deferrals function in the same way across all the applicable platforms (macOS, iOS, iPadOS, tvOS, and visionOS), but there are some nuances that need to be understood.
 
 ----
 Before I continue, let me explain what an OS version number means.
@@ -96,8 +96,6 @@ Before I continue, let me explain what an OS version number means.
 
 <!-- markdownlint-restore -->
 ----
-
-Whilst the platforms all defer upgrades and updates in broadly the same way, there are some nuances that need to be understood.<br>
 
 #### Firstly, let's talk about macOS.
 
@@ -243,7 +241,7 @@ I have a similar declaration payload deployed to my iPad:
 And this is what shows up on my iPad:<br>
 ![iPad Software Update settings configuration view](/assets/img/postImages/2026-10-14/4-iPad-Software-Update-Settings.png){: width="600" }
 
-The difference here is I'm not using the `RecommendedCadence` key on the iPhone declaration, and I'm including it with the value of `All` on the iPad.
+The difference here is I'm **not** using the `RecommendedCadence` key on the iPhone declaration, and I'm including it with the value of `All` on the iPad.
 
 Both of the devices show the same experience to the user:
 ![Software updates offered to iPhone and iPad](/assets/img/postImages/2026-10-14/5-Software-Updates-Offered-Default-Cadence.png)
