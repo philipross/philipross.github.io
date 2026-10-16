@@ -24,7 +24,7 @@ Apple provides the ability to defer software updates for a maximum of 90 days fr
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
->SOFA is a brilliant tool, but it is 3rd Party.<br>It has a fantastic UI, so if you're not comfortable parsing json or just want to find something really quickly, it's a good reference to use. <br>Apple's official update feed is the [Apple Software Lookup Service web page](http://gdmf.apple.com/v2/pmv){:target="_blank"}, as referenced in the [Apple Platform Deployment Guide.](https://support.apple.com/en-gb/guide/deployment/depc4c80847a/web#:~:text=Software%20release%20dates){:target="_blank"}
+>SOFA is a brilliant tool, but it is 3rd Party.<br>It has a fantastic UI, so if you're not comfortable parsing json or just want to find something really quickly, it's a good reference to use. <br>Apple's official update feed is the [Apple Software Lookup Service web page](https://gdmf.apple.com/v2/pmv){:target="_blank"}, as referenced in the [Apple Platform Deployment Guide.](https://support.apple.com/en-gb/guide/deployment/depc4c80847a/web#:~:text=Software%20release%20dates){:target="_blank"}
 {: .prompt-tip }
 
 <!-- markdownlint-restore -->
