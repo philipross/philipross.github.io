@@ -21,6 +21,16 @@ Apple provides the ability to defer software updates for a maximum of 90 days fr
 
 [SOFA](https://sofa.macadmins.io/release-deferrals){:target="_blank"}, from Mac Admins Open Source has a great table for easily tracking drop dates for common deferral durations across all of Apple's Managed Platforms.
 
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+>SOFA is a brilliant tool, but it is 3rd Party.<br>It has a fantastic UI, so if you're not comfortable parsing json or just want to find something really quickly, it's a good reference to use. <br>Apple's official update feed is the [Apple Software Lookup Service web page](http://gdmf.apple.com/v2/pmv){:target="_blank"}, as referenced in the [Apple Platform Deployment Guide.](https://support.apple.com/en-gb/guide/deployment/depc4c80847a/web#:~:text=Software%20release%20dates){:target="_blank"}
+{: .prompt-tip }
+
+<!-- markdownlint-restore -->
+
+gdmf.apple.com/v2/pmv
+
 
 ## How are they applied?
 
@@ -153,6 +163,15 @@ However, because more than 30 days have passed since macOS 27.0.1 was released, 
 If you *did* push a Software Update enforcement declaration or had a client enrol into your DMS already running macOS 27.0, macOS 27.0.1 would be visible from 1st October 2026.
 
 Once the device is on 27.0 or 27.0.1, macOS 27.1 would become visible on 30th December, which is 30 days after its release.
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+>Users getting multiple updates presented to them immediately after each other is not a good UX.<br><br>To help mitigate that, once your major deferral period has expired you could set the major and minor deferral periods to the *same* duration, and/or remove one or both deferral periods entirely.
+{: .prompt-tip }
+
+<!-- markdownlint-restore -->
+
 
 If a user did not upgrade from macOS 26.X to macOS 27.0 when it became visible and they were waiting for 27.0.1, that would become visible on 30th December 2026, which is 90 days after the 27.0.1 release date. Again, once they'd upgraded they'd immediately be presented with macOS 27.1 to update again.
 
