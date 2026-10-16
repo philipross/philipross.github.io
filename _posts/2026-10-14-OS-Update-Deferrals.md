@@ -29,8 +29,6 @@ Apple provides the ability to defer software updates for a maximum of 90 days fr
 
 <!-- markdownlint-restore -->
 
-gdmf.apple.com/v2/pmv
-
 
 ## How are they applied?
 
